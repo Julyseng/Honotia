@@ -9,10 +9,17 @@ const App = () => {
   return (
     <Router>
       <div className='app'>
-      hello world
-      <Registration />
+        <nav>
+          <div>
+            <h1>JOURNEY</h1>
+            <ul>
+              <li><Link to="/registration">Registration</Link></li>
+            </ul>
+          </div>
+        </nav>
       </div>
 
+      
       <Route path="/registration" component={Registration}/>
 
   </Router>
