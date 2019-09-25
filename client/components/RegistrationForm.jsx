@@ -6,10 +6,11 @@ class Registration extends React.Component {
 
         this.state = {
             name: '',
-            age: '',
+            age: 18,
             languages: '',
             location: '',
             occupation: '',
+            interests: '',
             support: '',
             email:''
         }
@@ -20,7 +21,21 @@ class Registration extends React.Component {
         this.setState({
             [name]: value
         })
-        console.log(name, value)
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const data = {
+            name: this.state.name,
+            age: this.state.age,
+            languages: this.state.languages,
+            location: this.state.location,
+            occupation: this.state.occupation,
+            interests: this.state.interests,
+            support: this.state.support,
+            email:this.state.email
+        }
+        
     }
 
     render() {
@@ -28,7 +43,7 @@ class Registration extends React.Component {
             <React.Fragment>
                 <h1>Registration Form</h1>
                 <div>
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <div>
                             <label>
                                 Name:
@@ -125,6 +140,7 @@ class Registration extends React.Component {
                                     />
                             </label>
                         </div>
+                        <input type="submit" value="Submit" />
                     </form>
                 </div>
             </React.Fragment>
