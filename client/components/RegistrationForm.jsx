@@ -1,4 +1,6 @@
 import React from 'react'
+import { postUserInfo } from '../apiClient'
+
 
 class Registration extends React.Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class Registration extends React.Component {
             support: this.state.support,
             email:this.state.email
         }
-        
+        postUserInfo(data)
     }
 
     render() {
