@@ -1,19 +1,27 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
-import M from '../materialize-js/bin/materialize'
+import M from '../../materialize-js/bin/materialize'
+
+import SideNav from './SideNav'
 
 export default class Nav extends Component {
   componentDidMount() {
-    let elems = document.querySelectorAll('.sidenav')
-    M.Sidenav.init(elems)
+    let sidenav = document.querySelectorAll('.sidenav')
+    M.Sidenav.init(sidenav)
   }
 
   render() {
     return (
       <Fragment>
         <nav>
-          <div className='nav-wrapper container'>
+          <div className='nav-wrapper'>
+            {/* <Link
+              to='/'
+              className='waves-effect waves-light btn-large'
+            >
+              Register
+            </Link> */}
             <a href='#!' className='brand-logo'>
               Journey
             </a>
@@ -30,32 +38,23 @@ export default class Nav extends Component {
               <li>
                 <Link
                   to='/registration'
-                  className='waves-effect waves-light btn-large'
+                  className='waves-effect waves-light btn-large btn-round'
                 >
                   Register
                 </Link>
               </li>
               <li>
-                <a className='waves-effect waves-light btn-large'>Login</a>
+                <Link
+                  to='/login'
+                  className='waves-effect waves-light btn-large btn-round'
+                >
+                  Login
+                </Link>
               </li>
             </ul>
           </div>
         </nav>
-
-        <ul className='sidenav' id='mobile-demo'>
-          <li>
-            <a href='sass.html'>About</a>
-          </li>
-          <li>
-            <a href='badges.html'>Stories</a>
-          </li>
-          <li>
-            <a className='waves-effect btn'>Register</a>
-          </li>
-          <li>
-            <a className='waves-effect btn'>Login</a>
-          </li>
-        </ul>
+        <SideNav />
       </Fragment>
     )
   }
