@@ -3,5 +3,5 @@ function postUserInfoDb(data, connection) {
 }
 
 module.exports = {
-    postUserInfoDb
+  postUserInfoDb
 }

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { register, isAuthenticated } from 'authenticare/client'
 import { postUserInfo } from '../../apiClient'
 
 class RegistrationForm extends Component {
@@ -7,13 +8,14 @@ class RegistrationForm extends Component {
 
     this.state = {
       name: '',
+      email: '',
+      password: '',
       age: 18,
       languages: '',
       location: '',
       occupation: '',
       interests: '',
-      support: '',
-      email: ''
+      support: ''
     }
   }
 
@@ -26,7 +28,19 @@ class RegistrationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    postUserInfo(this.state)
+    // postUserInfo(this.state)
+    register(
+      {
+        username: this.state.email,
+        password: this.state.password
+      },
+      { baseUrl: '/api/v1' }
+    ).then(() => {
+      if (isAuthenticated()) {
+        props.history.push('/')
+      }
+      //push form data
+    })
   }
 
   render() {
@@ -43,6 +57,30 @@ class RegistrationForm extends Component {
                   id='name'
                   name='name'
                   value={this.state.name}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Email:
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                password:
+                <input
+                  type='password'
+                  id='password'
+                  name='password'
+                  value={this.state.password}
                   onChange={this.handleChange}
                 />
               </label>
@@ -119,18 +157,7 @@ class RegistrationForm extends Component {
                 />
               </label>
             </div>
-            <div>
-              <label>
-                Email:
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
+
             <input type='submit' value='Submit' />
           </form>
         </div>
