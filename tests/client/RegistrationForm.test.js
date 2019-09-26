@@ -3,72 +3,105 @@ import { shallow } from 'enzyme'
 
 import RegistrationForm from '../../client/components/RegistrationForm'
 
-const wrapper = shallow(<RegistrationForm />)
+let wrapper
 
 describe('<RegistrationForm />', () => {
-    beforeEach(() => {
-        wrapper.instance().setState({
-            name: 'Arthur',
-            age: 24,
-            languages: 'English, French',
-            location: 'Wellington',
-            occupation: 'student',
-            interests: 'soccer',
-            support: 'friendship',
-            email: 'arthur@gmail.com'
-        })
+  beforeEach(() => {
+    wrapper = shallow(<RegistrationForm />)
+
+    wrapper.instance().setState({
+      name: 'Arthur',
+      age: 24,
+      languages: 'English, French',
+      location: 'Wellington',
+      occupation: 'student',
+      interests: 'soccer',
+      support: 'friendship',
+      email: 'arthur@gmail.com'
     })
-    test('form renders correct value for name', () => {
-        let input = wrapper.find('#name')
-        expect(input.prop('value')).toBe('Arthur')
+  })
+
+  describe('form renders correct values', () => {
+    test('name', () => {
+      let input = wrapper.find('#name')
+      expect(input.prop('value')).toBe('Arthur')
     })
-    test('form renders correct value for age', () => {
-        let input = wrapper.find('#age')
-        expect(input.prop('value')).toBe(24)
+    test('age', () => {
+      let input = wrapper.find('#age')
+      expect(input.prop('value')).toBe(24)
     })
-    test('form renders correct value for languages', () => {
-        let input = wrapper.find('#languages')
-        expect(input.prop('value')).toBe('English, French')
+    test('languages', () => {
+      let input = wrapper.find('#languages')
+      expect(input.prop('value')).toBe('English, French')
     })
-    test('form renders correct value for location', () => {
-        let input = wrapper.find('#location')
-        expect(input.prop('value')).toBe('Wellington')
+    test('location', () => {
+      let input = wrapper.find('#location')
+      expect(input.prop('value')).toBe('Wellington')
+    })
+  })
+
+  describe('triggers eventhandler functions', () => {
+    test('handleChange', () => {
+      wrapper.instance().handleChange = jest.fn()
+      wrapper.instance().forceUpdate()
+
+      wrapper.find('#name').simulate('change')
+      expect(wrapper.instance().handleChange).toHaveBeenCalled()
     })
 
-    test('state of occupation updates when content entered', () => {
-        let input = wrapper.find('#occupation')
-        input.simulate('onKeyPress', { target: {
-            name: 'occupation',
-            value: 'student'
-        }})
-        let state = wrapper.instance().state
-        expect(state.occupation).toBe('student')
+    test('handleSubmit', () => {
+      wrapper.instance().handleSubmit = jest.fn()
+      wrapper.instance().forceUpdate()
+
+      wrapper.find('form').simulate('submit')
+      expect(wrapper.instance().handleSubmit).toHaveBeenCalled()
     })
-    test('state of interests updates when content entered', () => {
-        let input = wrapper.find('#interests')
-        input.simulate('onKeyPress', { target: {
-            name: 'interests',
-            value: 'soccer'
-        }})
-        let state = wrapper.instance().state
-        expect(state.interests).toBe('soccer')
+  })
+
+  describe('update state on input change event', () => {
+    test('occupation', () => {
+      let input = wrapper.find('#occupation')
+      input.simulate('change', {
+        target: {
+          name: 'occupation',
+          value: 'golfer'
+        }
+      })
+      let state = wrapper.instance().state
+      expect(state.occupation).toBe('golfer')
     })
-    test('state of support updates when content entered', () => {
-        let input = wrapper.find('#support')
-        input.simulate('onKeyPress', { target: {
-            name: 'support',
-            value: 'friendship'
-        }})
-        let state = wrapper.instance().state
-        expect(state.support).toBe('friendship')
+    test('interests', () => {
+      let input = wrapper.find('#interests')
+      input.simulate('change', {
+        target: {
+          name: 'interests',
+          value: 'films'
+        }
+      })
+      let state = wrapper.instance().state
+      expect(state.interests).toBe('films')
     })
-    test('state of email updates when content entered', () => {
-        let input = wrapper.find('#email')
-        input.simulate('onKeyPress', { target: {
-            name: 'email',
-            value: 'arthur@gmail.com'
-        }})
-        let state = wrapper.instance().state
-        expect(state.email).toBe('arthur@gmail.com')
+    test('support', () => {
+      let input = wrapper.find('#support')
+      input.simulate('change', {
+        target: {
+          name: 'support',
+          value: 'housing'
+        }
+      })
+      let state = wrapper.instance().state
+      expect(state.support).toBe('housing')
     })
+    test('email', () => {
+      let input = wrapper.find('#email')
+      input.simulate('change', {
+        target: {
+          name: 'email',
+          value: 'test@gmail.com'
+        }
+      })
+      let state = wrapper.instance().state
+      expect(state.email).toBe('test@gmail.com')
+    })
+  })
 })
