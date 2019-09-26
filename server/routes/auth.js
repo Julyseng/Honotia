@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const { applyAuthRoutes } = require('authenticare/server')
 const router = express.Router()

@@ -2,7 +2,10 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 
-function createUser(email, password, db = connection) {
+const { generateHash } = require('authenticare/server')
+
+function createUser({ username, password }, db = connection) {
+  let email = username
   return userExists(email, db)
     .then(exists => {
       if (exists) {
