@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import dummy from './dummy'
+import placeHolderReducer from './placeHolderReducer'
 
 export default combineReducers({
-   dummy
+    placeHolderReducer
 })
