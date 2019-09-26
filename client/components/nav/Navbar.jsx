@@ -22,7 +22,7 @@ export default class Nav extends Component {
             >
               Register
             </Link> */}
-            <a href='#!' className='brand-logo'>
+            <a href='#' className='brand-logo'>
               Journey
             </a>
             <a href='#' data-target='mobile-demo' className='sidenav-trigger'>
