@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 
-const journeyRoutes = require('./journey')
+const journeyRoutes = require('./routes/journey')
 const server = express()
 
 server.use(express.static(path.join(__dirname, '../public')))

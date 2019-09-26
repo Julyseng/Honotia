@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+import M from '../materialize-js/bin/materialize'
+
 import { postUserInfo } from '../apiClient'
 
 class Registration extends Component {
@@ -8,15 +10,26 @@ class Registration extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      DOB: null,
-      languages: '',
+      email: '',
+      password: '',
+      DOB: '',
       location: '',
+      languages: '',
       occupation: '',
       interests: '',
       support: '',
-      email: ''
+      bio: ''
     }
   }
+
+  componentDidMount() {
+    let elems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(elems);
+
+    let elems1 = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems1);
+    
+  }  
 
   handleChange = e => {
     let { name, value } = e.target
@@ -61,7 +74,29 @@ class Registration extends Component {
               <div className="row">
                 <div className="input-field col s6">
                   <input
-                    type='date'
+                    type='email'
+                    id='email'
+                    name='email'
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                  <label>Email</label>
+                </div>
+                <div className="input-field col s6">
+                  <input
+                    type='text'
+                    id='password'
+                    name='password'
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                  <label>Password</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s6">
+                  <input
+                    className='datepicker'
                     id='DOB'
                     name='DOB'
                     value={this.state.DOB}
@@ -71,29 +106,35 @@ class Registration extends Component {
                 </div>
                 <div className="input-field col s6">
                   <input
-                    type='email'
-                    id='email'
-                    name='email'
-                    value={this.state.email}
+                    type='text'
+                    id='location'
+                    name='location'
+                    value={this.state.location}
                     onChange={this.handleChange}
                   />
-                  <label>Email</label>
+                  <label className='dropdown-trigger' data-target='dropdown1'>Current location</label>
+                  <ul id='dropdown1' className='dropdown-content'>
+                    <li>One</li>
+                    <li>Two</li>
+                  </ul>
                 </div>
               </div>
               <div className="row">
-                <div className="input-field col s12">
+                <div className="input-field col s6">
                   <input
-                      type='text'
-                      id='languages'
-                      name='languages'
-                      value={this.state.languages}
-                      onChange={this.handleChange}
-                    />
-                  <label>Languages</label>
+                    type='text'
+                    id='languages'
+                    name='languages'
+                    value={this.state.languages}
+                    onChange={this.handleChange}
+                  />
+                  <label className='dropdown-trigger' data-target='dropdown2'>Languages I speak</label>
+                  <ul id='dropdown2' className='dropdown-content'>
+                    <li>English</li>
+                    <li>French</li>
+                  </ul>  
                 </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
+                <div className="input-field col s6">
                   <input
                     type='text'
                     id='occupation'
@@ -118,26 +159,45 @@ class Registration extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
+                  <label>
+                    How I can support others
+                  <div className="row">
+                  <div className="col s6">
+                    <input
+                      type='checkbox'
+                      className='filled-in'
+                      id='support'
+                      name='support'
+                      value={this.state.support}
+                      onChange={this.handleChange}
+                    />
+                    <span>Healthcare</span>
+                  </div>
+                  <div className="col s6">
                   <input
-                    type='text'
+                    type='checkbox'
+                    className='filled-in'
                     id='support'
                     name='support'
                     value={this.state.support}
                     onChange={this.handleChange}
                   />
-                  <label>How I can support others</label>
+                  <span>Education</span>
+                  </div>
+                  </div>
+                  </label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
                   <input
                     type='text'
-                    id='location'
-                    name='location'
-                    value={this.state.location}
+                    id='bio'
+                    name='bio'
+                    value={this.state.bio}
                     onChange={this.handleChange}
                   />
-                  <label>Current location</label>  
+                  <label>Bio - a bit about myself</label>
                 </div>
               </div>
               <input type='submit' value='Submit' />

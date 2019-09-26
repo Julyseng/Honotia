@@ -1,13 +1,9 @@
-const env = process.env.NODE_ENV || 'development'
-const config = require('../knexfile')[env]
-const connection = require('knex')(config)
-
 module.exports = {
     postUserInfoDb
 }
 
-function postUserInfoDb(data, db=connection) {
-    return db('tableName')
+function postUserInfoDb(data, connection) {
+    return connection('tableName')
         .insert({
             name: data.name,
             age: data.age,
