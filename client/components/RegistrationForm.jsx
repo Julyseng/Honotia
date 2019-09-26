@@ -13,12 +13,13 @@ class Registration extends Component {
       email: '',
       password: '',
       DOB: '',
-      location: '',
-      languages: '',
+      // location: '',
+      // languages: '',
       occupation: '',
       interests: '',
       support: '',
-      bio: ''
+      bio: '',
+      value: event.target.value
     }
   }
 
@@ -28,7 +29,7 @@ class Registration extends Component {
 
     let elems1 = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems1);
-    
+   
   }  
 
   handleChange = e => {
@@ -36,6 +37,15 @@ class Registration extends Component {
     this.setState({
       [name]: value
     })
+    console.log(name, value)
+    console.log(e)
+  }
+
+  handleChangeDrop = e => {
+    this.setState({
+      value: e.target.value
+    })
+    console.log(e.target.value)
   }
 
   handleSubmit = e => {
@@ -105,34 +115,22 @@ class Registration extends Component {
                   <label>Date of Birth</label>
                 </div>
                 <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='location'
-                    name='location'
-                    value={this.state.location}
-                    onChange={this.handleChange}
-                  />
-                  <label className='dropdown-trigger' data-target='dropdown1'>Current location</label>
-                  <ul id='dropdown1' className='dropdown-content'>
-                    <li>One</li>
-                    <li>Two</li>
-                  </ul>
+                <label>Current location
+                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                      <option value="Wellington">Wellington</option>
+                      <option value="Auckland">Auckland</option>
+                    </select>
+                  </label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='languages'
-                    name='languages'
-                    value={this.state.languages}
-                    onChange={this.handleChange}
-                  />
-                  <label className='dropdown-trigger' data-target='dropdown2'>Languages I speak</label>
-                  <ul id='dropdown2' className='dropdown-content'>
-                    <li>English</li>
-                    <li>French</li>
-                  </ul>  
+                  <label>Languages I speak
+                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                      <option value="English">English</option>
+                      <option value="French">French</option>
+                    </select>
+                  </label>
                 </div>
                 <div className="input-field col s6">
                   <input
@@ -188,12 +186,14 @@ class Registration extends Component {
                   </label>
                 </div>
               </div>
+              <br></br>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    type='text'
+                  <textarea
                     id='bio'
                     name='bio'
+                    // className='materialize-textarea'
+                    data-length='1000'
                     value={this.state.bio}
                     onChange={this.handleChange}
                   />
