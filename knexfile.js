@@ -4,9 +4,9 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3'
+      filename: './server/db/dev.sqlite3'
     },
-    useNullAsDefault: false
+    useNullAsDefault: true
   },
 
   staging: {

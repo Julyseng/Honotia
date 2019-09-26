@@ -6528,7 +6528,7 @@ input[type=range]::-ms-thumb {
 nav {
   box-shadow: none; }
 
-.btn, .btn-large, .btn-small {
+.btn-round {
   border-radius: 40px; }
 
 .container {
