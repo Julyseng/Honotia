@@ -1,21 +1,21 @@
 import React from 'react'
-
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
-import Registration from './Registration'
-
+import RegistrationForm from './RegistrationForm'
+import Nav from './Nav'
 
 const App = () => {
   return (
     <Router>
+      <Nav />
       <div className='app'>
-      hello world
-      <Registration />
+        <div>
+          <Link to='/registration'>Registration</Link>
+        </div>
       </div>
 
-      <Route path="/registration" component={Registration}/>
-
-  </Router>
+      <Route path='/registration' component={RegistrationForm} />
+    </Router>
   )
 }
 
