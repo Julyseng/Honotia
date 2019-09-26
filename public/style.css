@@ -3138,8 +3138,8 @@ table span.badge {
         left: 100%; } }
 
 nav {
-  color: #fff;
-  background-color: #ee6e73;
+  color: #272727;
+  background-color: #FFFFFF;
   width: 100%;
   height: 56px;
   line-height: 56px; }
@@ -3152,7 +3152,7 @@ nav {
       position: relative;
       line-height: normal; }
   nav a {
-    color: #fff; }
+    color: #272727; }
   nav i,
   nav [class^="mdi-"], nav [class*="mdi-"],
   nav i.material-icons {
@@ -3177,7 +3177,7 @@ nav {
       line-height: 56px; }
   nav .brand-logo {
     position: absolute;
-    color: #fff;
+    color: #272727;
     display: inline-block;
     font-size: 2.1rem;
     padding: 0; }
@@ -3219,7 +3219,7 @@ nav {
     nav ul a {
       transition: background-color .3s;
       font-size: 1rem;
-      color: #fff;
+      color: #272727;
       display: block;
       padding: 0 15px;
       cursor: pointer; }
@@ -3254,7 +3254,7 @@ nav {
         color: rgba(255, 255, 255, 0.7);
         transition: color .3s; }
       nav .input-field label.active i {
-        color: #fff; }
+        color: #272727; }
 
 .navbar-fixed {
   position: relative;
@@ -3265,12 +3265,12 @@ nav {
 
 @media only screen and (min-width: 601px) {
   nav.nav-extended .nav-wrapper {
-    min-height: 64px; }
+    min-height: 80px; }
   nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
-    height: 64px;
-    line-height: 64px; }
+    height: 80px;
+    line-height: 80px; }
   .navbar-fixed {
-    height: 64px; } }
+    height: 80px; } }
 
 a {
   text-decoration: none; }
@@ -3741,9 +3741,9 @@ small {
 .btn-small[disabled],
 .btn-flat[disabled] {
   pointer-events: none;
-  background-color: #DFDFDF !important;
+  background-color: #dfdfdf !important;
   box-shadow: none;
-  color: #9F9F9F !important;
+  color: #9f9f9f !important;
   cursor: default; }
   .btn.disabled:hover, .disabled.btn-large:hover, .disabled.btn-small:hover,
   .btn-floating.disabled:hover,
@@ -3764,8 +3764,8 @@ small {
   .btn-large[disabled]:hover,
   .btn-small[disabled]:hover,
   .btn-flat[disabled]:hover {
-    background-color: #DFDFDF !important;
-    color: #9F9F9F !important; }
+    background-color: #dfdfdf !important;
+    color: #9f9f9f !important; }
 
 .btn, .btn-large, .btn-small,
 .btn-floating,
@@ -3784,18 +3784,18 @@ small {
 
 .btn:focus, .btn-large:focus, .btn-small:focus,
 .btn-floating:focus {
-  background-color: #1d7d74; }
+  background-color: #e6e6e6; }
 
 .btn, .btn-large, .btn-small {
   text-decoration: none;
-  color: #fff;
-  background-color: #26a69a;
+  color: #272727;
+  background-color: #FFFFFF;
   text-align: center;
   letter-spacing: .5px;
   transition: background-color .2s ease-out;
   cursor: pointer; }
   .btn:hover, .btn-large:hover, .btn-small:hover {
-    background-color: #2bbbad; }
+    background-color: white; }
 
 .btn-floating {
   display: inline-block;
@@ -5175,7 +5175,7 @@ textarea {
   .switch label .lever:before {
     background-color: rgba(38, 166, 154, 0.15); }
   .switch label .lever:after {
-    background-color: #F1F1F1;
+    background-color: #f1f1f1;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); }
 
 input[type=checkbox]:checked:not(:disabled) ~ .lever:active::before,
@@ -5531,13 +5531,13 @@ input[type=range]::-ms-thumb {
     .sidenav li > a.btn, .sidenav li > a.btn-large, .sidenav li > a.btn-small, .sidenav li > a.btn-large, .sidenav li > a.btn-flat, .sidenav li > a.btn-floating {
       margin: 10px 15px; }
     .sidenav li > a.btn, .sidenav li > a.btn-large, .sidenav li > a.btn-small, .sidenav li > a.btn-large, .sidenav li > a.btn-floating {
-      color: #fff; }
+      color: #272727; }
     .sidenav li > a.btn-flat {
       color: #343434; }
     .sidenav li > a.btn:hover, .sidenav li > a.btn-large:hover, .sidenav li > a.btn-small:hover, .sidenav li > a.btn-large:hover {
-      background-color: #2bbbad; }
+      background-color: white; }
     .sidenav li > a.btn-floating:hover {
-      background-color: #26a69a; }
+      background-color: #FFFFFF; }
     .sidenav li > a > i,
     .sidenav li > a > [class^="mdi-"], .sidenav li > a li > a > [class*="mdi-"],
     .sidenav li > a > i.material-icons {
@@ -6524,6 +6524,42 @@ input[type=range]::-ms-thumb {
     bottom: auto;
     text-align: center;
     margin-top: 1.2rem; } }
+
+nav {
+  box-shadow: none; }
+
+.btn, .btn-large, .btn-small {
+  border-radius: 40px; }
+
+.container {
+  width: 90%; }
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(https://rawgit.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.woff2) format("woff2"), url(https://rawgit.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.woff) format("woff"), url(https://rawgit.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf) format("truetype"); }
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga'; }
 
 
 /*# sourceMappingURL=style.css.map*/
