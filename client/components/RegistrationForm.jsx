@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {Component, Fragment} from 'react'
 import { postUserInfo } from '../apiClient'
 
 
-class Registration extends React.Component {
+class Registration extends Component {
     constructor(props) {
         super(props)
 
@@ -27,22 +27,12 @@ class Registration extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const data = {
-            name: this.state.name,
-            age: this.state.age,
-            languages: this.state.languages,
-            location: this.state.location,
-            occupation: this.state.occupation,
-            interests: this.state.interests,
-            support: this.state.support,
-            email:this.state.email
-        }
-        postUserInfo(data)
+        postUserInfo(this.state)
     }
 
     render() {
         return(
-            <React.Fragment>
+            <Fragment>
                 <h1>Registration Form</h1>
                 <div>
                     <form onSubmit={this.handleSubmit}>
@@ -145,7 +135,7 @@ class Registration extends React.Component {
                         <input type="submit" value="Submit" />
                     </form>
                 </div>
-            </React.Fragment>
+            </Fragment>
         )
     }
 }
