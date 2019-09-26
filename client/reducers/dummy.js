@@ -1,4 +1,4 @@
-export default function placeholder(state = [], action) {
+export default function dummy(state = [], action) {
   switch (action.type) {
     case 'DUMMY_ACTION':
       return action.gossips
