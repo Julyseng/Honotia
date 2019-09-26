@@ -11,7 +11,7 @@ exports.up = function(knex) {
         t.string('email')
         t.string('password')
         t.string('bio')
-        t.string('user_type')
+        t.string('user_status')
     })
 };
 
