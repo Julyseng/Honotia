@@ -67,17 +67,17 @@ class Registration extends Component {
                     value={this.state.DOB}
                     onChange={this.handleChange}
                   />
-                  <label>Age:</label>
+                  <label>Date of Birth</label>
                 </div>
                 <div className="input-field col s6">
                   <input
-                    type='text'
-                    id='location'
-                    name='location'
-                    value={this.state.location}
+                    type='email'
+                    id='email'
+                    name='email'
+                    value={this.state.email}
                     onChange={this.handleChange}
                   />
-                  <label>Current location</label>
+                  <label>Email</label>
                 </div>
               </div>
               <div className="row">
@@ -131,13 +131,13 @@ class Registration extends Component {
               <div className="row">
                 <div className="input-field col s12">
                   <input
-                    type='email'
-                    id='email'
-                    name='email'
-                    value={this.state.email}
+                    type='text'
+                    id='location'
+                    name='location'
+                    value={this.state.location}
                     onChange={this.handleChange}
                   />
-                  <label>Email</label>
+                  <label>Current location</label>  
                 </div>
               </div>
               <input type='submit' value='Submit' />
