@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
 import M from '../materialize-js/bin/materialize'
 
@@ -27,7 +28,12 @@ export default class Nav extends Component {
                 <a href='sass.html'>Stories</a>
               </li>
               <li>
-                <a className='waves-effect waves-light btn-large'>Register</a>
+                <Link
+                  to='/registration'
+                  className='waves-effect waves-light btn-large'
+                >
+                  Register
+                </Link>
               </li>
               <li>
                 <a className='waves-effect waves-light btn-large'>Login</a>
