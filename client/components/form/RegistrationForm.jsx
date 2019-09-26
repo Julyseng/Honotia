@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { postUserInfo } from '../apiClient'
+import { postUserInfo } from '../../apiClient'
 
-class Registration extends Component {
+class RegistrationForm extends Component {
   constructor(props) {
     super(props)
 
@@ -139,4 +139,4 @@ class Registration extends Component {
   }
 }
 
-export default Registration
+export default RegistrationForm
