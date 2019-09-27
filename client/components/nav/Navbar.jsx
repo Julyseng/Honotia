@@ -22,6 +22,15 @@ export default class Nav extends Component {
     form.classList.toggle('open')
   }
 
+  finishLogin = () => {
+    this.setState({ displayLogin: false })
+    const currentPath = this.props.history.location.pathname
+
+    if (currentPath != '/') {
+      return this.props.history.push('/')
+    }
+  }
+
   render() {
     return (
       <Fragment>
@@ -35,7 +44,7 @@ export default class Nav extends Component {
             </a>
             <ul className='right hide-on-med-and-down'>
               <li>
-                <a href='sass.html'>About</a>
+                <Link to='/about'>About</Link>
               </li>
               <li>
                 <a href='sass.html'>Stories</a>
@@ -61,7 +70,9 @@ export default class Nav extends Component {
         </nav>
         <SideNav />
 
-        {this.state.displayLogin && <LoginForm />}
+        {this.state.displayLogin && (
+          <LoginForm finishLogin={this.finishLogin} />
+        )}
       </Fragment>
     )
   }
