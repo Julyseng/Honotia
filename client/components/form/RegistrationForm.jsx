@@ -139,7 +139,7 @@ class RegistrationForm extends Component {
                 <div className="input-field col s6">
                   <input
                     type='email'
-                    id='email'
+                    id='emailRegForm'
                     name='email'
                     value={this.state.email}
                     onChange={this.handleChange}
@@ -148,8 +148,8 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="input-field col s6">
                   <input
-                    type='text'
-                    id='password'
+                    type='password'
+                    id='passwordRegForm'
                     name='password'
                     value={this.state.password}
                     onChange={this.handleChange}
@@ -171,7 +171,10 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="input-field col s6">
                 <label>Current location
-                    <select name="location" value={this.state.location} onChange={this.handleChange}>
+                    <select 
+                    name="location" 
+                    value={this.state.location} 
+                    onChange={this.handleChange}>
                       <option value="Wellington">Wellington</option>
                       <option value="Auckland">Auckland</option>
                     </select>
@@ -210,7 +213,7 @@ class RegistrationForm extends Component {
                         <input
                           type='checkbox'
                           className='filled-in'
-                          id='support'
+                          id='supportHealthcare'
                           name='support'
                           value='healthcare'
                           onChange={this.handleChange}
@@ -223,7 +226,7 @@ class RegistrationForm extends Component {
                       <input
                         type='checkbox'
                         className='filled-in'
-                        id='support'
+                        id='supportEducation'
                         name='support'
                         value='education'
                         onChange={this.handleChange}
@@ -240,14 +243,14 @@ class RegistrationForm extends Component {
               <div className="row">
                 <div className="input-field col s12">
                   <textarea
-                    id='bio'
-                    name='bio'
+                    id="bio"
+                    name="bio"
                     // className='materialize-textarea'
                     data-length='1000'
                     value={this.state.bio}
                     onChange={this.handleChange}
                   />
-                  <label>Bio - a bit about myself</label>
+                  <label htmlFor="bio">Bio - a bit about myself</label>
                 </div>
               </div>
               <input type='submit' value='Submit' />
