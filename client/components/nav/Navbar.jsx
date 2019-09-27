@@ -1,10 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import { logOff } from 'authenticare/client'
 
 import M from '../../materialize-js/bin/materialize'
 
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+
 import SideNav from './SideNav'
 import LoginForm from '../form/LoginForm'
+import RegoButton from './RegoButton'
+import LoginButton from './LoginButton'
+import LogoffButton from './LogoffButton'
 
 export default class Nav extends Component {
   state = {
@@ -16,7 +22,7 @@ export default class Nav extends Component {
     M.Sidenav.init(sidenav)
   }
 
-  handleClick = () => {
+  displayLogin = () => {
     this.setState({ displayLogin: true })
     let form = document.querySelector('.login-container')
     form.classList.toggle('open')
@@ -29,6 +35,13 @@ export default class Nav extends Component {
     if (currentPath != '/') {
       return this.props.history.push('/')
     }
+  }
+
+  handleLogoff = () => {
+    logOff()
+
+    this.props.history.push('/')
+    // TO DO: refresh page to reflect logged off state
   }
 
   render() {
@@ -49,22 +62,13 @@ export default class Nav extends Component {
               <li>
                 <a href='sass.html'>Stories</a>
               </li>
-              <li>
-                <Link
-                  to='/registration'
-                  className='waves-effect waves-light btn-large btn-round'
-                >
-                  Register
-                </Link>
-              </li>
-              <li>
-                <a
-                  className='waves-effect waves-light btn-large btn-round'
-                  onClick={this.handleClick}
-                >
-                  Login
-                </a>
-              </li>
+              <IfAuthenticated>
+                <LogoffButton handleLogoff={this.handleLogoff} />
+              </IfAuthenticated>
+              <IfNotAuthenticated>
+                <RegoButton />
+                <LoginButton displayLogin={this.displayLogin} />
+              </IfNotAuthenticated>
             </ul>
           </div>
         </nav>
