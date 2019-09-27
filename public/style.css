@@ -6527,10 +6527,40 @@ input[type=range]::-ms-thumb {
 
 nav {
   box-shadow: none;
-  padding: 20px 0; }
+  display: flex;
+  align-items: center; }
 
 .brand-logo {
-  font-family: 'Merriweather', Arial, Helvetica, sans-serif; }
+  font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+  position: relative !important; }
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: auto;
+    transform: none; } }
+
+.brand-title {
+  font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+  font-size: 30px; }
+
+.nav-list {
+  display: flex; }
+
+.adminBtns-wrapper a {
+  margin-left: 30px; }
+
+.manuItems-wrapper {
+  margin-left: 27px; }
+  .manuItems-wrapper a {
+    display: inline-block;
+    padding: 0 20px; }
+  .manuItems-wrapper a:hover {
+    background-color: #e9e9e9; }
+
+.navItems-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; }
 
 .btn-round {
   border-radius: 40px; }
@@ -6552,7 +6582,8 @@ nav {
 
 .container {
   width: 90%;
-  position: relative; }
+  position: relative;
+  padding-top: 20px; }
 
 .bg_gradient {
   width: 100vw;
@@ -6571,6 +6602,9 @@ nav {
   position: absolute;
   right: 0;
   z-index: 5; }
+
+.nav-ul {
+  display: inline-block; }
 
 @-webkit-keyframes slide {
   0% {
