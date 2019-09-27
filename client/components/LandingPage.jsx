@@ -38,7 +38,9 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <a class='waves-effect waves-light btn-large btn-register'>Register</a>
+      <a className='waves-effect waves-light btn-large btn-register'>
+        Register
+      </a>
     </div>
   )
 }
