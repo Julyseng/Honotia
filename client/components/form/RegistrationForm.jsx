@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
+import RefugeeRegForm from './RefugeeRegForm'
+
 import { postUserInfo } from '../../apiClient'
 
 class RegistrationForm extends Component {
@@ -258,6 +260,7 @@ class RegistrationForm extends Component {
             </form>
           </div>
         </div>
+        <RefugeeRegForm />
       </Fragment>
     )
   }
