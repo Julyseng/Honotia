@@ -48,7 +48,7 @@ export default class LoginForm extends Component {
                 onChange={this.handleInput}
               />
               <label htmlFor='email'>Email</label>
-            </div>
+            </div> 
           </div>
           <div className='row'>
             <div className='input-field col s12'>

@@ -14,12 +14,12 @@ class RegistrationForm extends Component {
       password: '',
       DOB: '',
       // languages: '',
-      // location: '',
+      location: '',
       occupation: '',
       interests: '',
-      support: '',
+      support: {},
       bio: '',
-      value: event.target.value
+      language: ''
     }
   }
 
@@ -34,15 +34,19 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
+    if (e.target.type == 'checkbox') {
+      let support = {...this.state.support, [value]: e.target.checked}
+      if (!e.target.checked) {
+        delete support[value]
+      }
+      value = support
+    } 
+
     this.setState({
       [name]: value
     })
-  }
+  
 
-  handleChangeDrop = e => {
-    this.setState({
-      value: e.target.value
-    })
   }
 
   handleSubmit = e => {
@@ -63,11 +67,13 @@ class RegistrationForm extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <Fragment>
         <div className="container">
           <h1>Registration Form</h1>
           <div className="row">
+            
             <form className="col s12" onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="input-field col s6">
@@ -90,6 +96,7 @@ class RegistrationForm extends Component {
                   />
                   <label>Last Name</label>
               </div>
+              
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -112,6 +119,7 @@ class RegistrationForm extends Component {
                   <label>Password</label>
                 </div>
               </div>
+              
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -125,17 +133,18 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="input-field col s6">
                 <label>Current location
-                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                    <select name="location" value={this.state.location} onChange={this.handleChange}>
                       <option value="Wellington">Wellington</option>
                       <option value="Auckland">Auckland</option>
                     </select>
                   </label>
                 </div>
               </div>
+              
               <div className="row">
                 <div className="input-field col s6">
                   <label>Languages I speak
-                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                    <select name='language' value={this.state.language} onChange={this.handleChange}>
                       <option value="English">English</option>
                       <option value="French">French</option>
                     </select>
@@ -152,6 +161,7 @@ class RegistrationForm extends Component {
                   <label>Occupation</label>
                 </div>
               </div>
+              
               <div className="row">
                 <div className="input-field col s12">
                   <input
@@ -164,38 +174,46 @@ class RegistrationForm extends Component {
                   <label>Interests and talents</label>
                 </div>
               </div>
+              
               <div className="row">
                 <div className="input-field col s12">
                   <label>
                     How I can support others
                   <div className="row">
+                    <div className="col s6">
+                      <label>
+                        <input
+                          type='checkbox'
+                          className='filled-in'
+                          id='support'
+                          name='support'
+                          value='healthcare'
+                          onChange={this.handleChange}
+                          // checked={this.state.support.healthcare || false}
+                        />
+                        <span>Healthcare</span>
+                      </label>
+                    </div>
                   <div className="col s6">
-                    <input
-                      type='checkbox'
-                      className='filled-in'
-                      id='support'
-                      name='support'
-                      value={this.state.support}
-                      onChange={this.handleChange}
-                    />
-                    <span>Healthcare</span>
-                  </div>
-                  <div className="col s6">
-                  <input
-                    type='checkbox'
-                    className='filled-in'
-                    id='support'
-                    name='support'
-                    value={this.state.support}
-                    onChange={this.handleChange}
-                  />
-                  <span>Education</span>
+                    <label>
+                      <input
+                        type='checkbox'
+                        className='filled-in'
+                        id='support'
+                        name='support'
+                        value='education'
+                        onChange={this.handleChange}
+                        // checked={this.state.support.education || false}
+                      />
+                      <span>Education</span>
+                    </label>
                   </div>
                   </div>
                   </label>
                 </div>
               </div>
               <br></br>
+              
               <div className="row">
                 <div className="input-field col s12">
                   <textarea
