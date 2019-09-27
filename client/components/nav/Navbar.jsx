@@ -72,7 +72,10 @@ export default class Nav extends Component {
             </ul>
           </div>
         </nav>
-        <SideNav />
+        <SideNav
+          displayLogin={this.displayLogin}
+          handleLogoff={this.handleLogoff}
+        />
 
         {this.state.displayLogin && (
           <LoginForm finishLogin={this.finishLogin} />
