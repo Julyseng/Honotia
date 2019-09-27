@@ -63,6 +63,9 @@ export default class Nav extends Component {
                 <a href='sass.html'>Stories</a>
               </li>
               <IfAuthenticated>
+                <li>
+                  <Link to='/profiles'>Profiles</Link>
+                </li>
                 <LogoffButton handleLogoff={this.handleLogoff} />
               </IfAuthenticated>
               <IfNotAuthenticated>
