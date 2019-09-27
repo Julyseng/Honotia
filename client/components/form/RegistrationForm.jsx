@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { register, isAuthenticated } from 'authenticare/client'
+import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
 import { postUserInfo } from '../../apiClient'
 import M from '../../materialize-js/bin/materialize'
 
@@ -23,6 +23,7 @@ class RegistrationForm extends Component {
   }
 
   componentDidMount() {
+    // console.log(getDecodedToken())
     let elems = document.querySelectorAll('.datepicker')
     M.Datepicker.init(elems)
 
@@ -50,7 +51,7 @@ class RegistrationForm extends Component {
       if (isAuthenticated()) {
         props.history.push('/')
       }
-      //push form data
+      //then push form data here
     })
   }
 
