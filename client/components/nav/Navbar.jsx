@@ -8,7 +8,7 @@ import LoginForm from '../form/LoginForm'
 
 export default class Nav extends Component {
   state = {
-    displayLogin: false
+    displayLogin: true
   }
 
   componentDidMount() {
@@ -18,6 +18,8 @@ export default class Nav extends Component {
 
   handleClick = () => {
     this.setState({ displayLogin: true })
+    let form = document.querySelector('.login-container')
+    form.classList.toggle('open')
   }
 
   render() {
@@ -25,12 +27,6 @@ export default class Nav extends Component {
       <Fragment>
         <nav>
           <div className='nav-wrapper'>
-            {/* <Link
-              to='/'
-              className='waves-effect waves-light btn-large'
-            >
-              Register
-            </Link> */}
             <a href='#' className='brand-logo'>
               Honotia
             </a>

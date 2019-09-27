@@ -1,4 +1,21 @@
 .btn-round {
-   border-radius: 40px;
- }
- 
+  border-radius: 40px;
+}
+
+.btn-register {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f57171;
+  color: #ffffff;
+  width: 200px;
+}
+
+.btn-register:hover {
+  background-color: #ffa0a0;
+}
+
+.btn-login {
+  margin: 20px 0;
+  width: 100%;
+}
