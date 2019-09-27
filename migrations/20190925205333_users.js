@@ -9,8 +9,8 @@ exports.up = function(knex) {
         t.string('occupation')
         t.string('interests')
         t.string('email')
-        t.binary('hash')
-        t.text('bio')
+        t.string('hash')
+        t.string('bio')
         t.string('user_status')
     })
 };
