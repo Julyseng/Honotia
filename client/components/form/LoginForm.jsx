@@ -39,7 +39,7 @@ export default class LoginForm extends Component {
       <div className='login-container z-depth-1'>
         <form onSubmit={this.handleSubmit}>
           <div className='input-field login-input'>
-            <i class='material-icons prefix'>account_circle</i>
+            <i className='material-icons prefix'>account_circle</i>
             <input
               id='email'
               type='email'
@@ -50,7 +50,7 @@ export default class LoginForm extends Component {
             <label htmlFor='email'>Email</label>
           </div>
           <div className='input-field login-input'>
-            <i class='material-icons prefix'>lock</i>
+            <i className='material-icons prefix'>lock</i>
             <input
               id='password'
               type='password'

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
   return (
@@ -38,9 +39,12 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <a className='waves-effect waves-light btn-large btn-register'>
+      <Link
+        to='/registration'
+        className='waves-effect waves-light btn-large btn-register'
+      >
         Register
-      </a>
+      </Link>
     </div>
   )
 }
