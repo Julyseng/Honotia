@@ -4,11 +4,20 @@ import { Link } from 'react-router-dom'
 import M from '../../materialize-js/bin/materialize'
 
 import SideNav from './SideNav'
+import LoginForm from '../form/LoginForm'
 
 export default class Nav extends Component {
+  state = {
+    displayLogin: false
+  }
+
   componentDidMount() {
     let sidenav = document.querySelectorAll('.sidenav')
     M.Sidenav.init(sidenav)
+  }
+
+  handleClick = () => {
+    this.setState({ displayLogin: true })
   }
 
   render() {
@@ -22,8 +31,8 @@ export default class Nav extends Component {
             >
               Register
             </Link> */}
-            <a href='#!' className='brand-logo'>
-              Journey
+            <a href='#' className='brand-logo'>
+              Honotia
             </a>
             <a href='#' data-target='mobile-demo' className='sidenav-trigger'>
               <i className='material-icons'>menu</i>
@@ -44,17 +53,19 @@ export default class Nav extends Component {
                 </Link>
               </li>
               <li>
-                <Link
-                  to='/login'
+                <a
                   className='waves-effect waves-light btn-large btn-round'
+                  onClick={this.handleClick}
                 >
                   Login
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
         </nav>
         <SideNav />
+
+        {this.state.displayLogin && <LoginForm />}
       </Fragment>
     )
   }
