@@ -28,14 +28,37 @@ nav {
   }
 }
 
+.exclusive-menuItem {
+  color: #f75e5e;
+}
+
 // .nav-list {
 //   display: flex;
 // }
 
-.adminBtns-wrapper a {
-  margin-left: 30px;
+.adminBtns-wrapper {
+  display: flex;
+  align-items: center;
+
+  a {
+    margin-left: 30px;
+  }
 }
 
 .sidenav {
   padding-top: 30px;
+}
+
+.icon-profile {
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid #a8a8a8;
+  border-radius: 50%;
+  width: 56px;
+
+  i {
+    display: inline-block !important;
+    font-size: 30px !important;
+    color: #f57171;
+  }
 }

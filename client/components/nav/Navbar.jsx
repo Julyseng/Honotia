@@ -59,12 +59,19 @@ export default class Nav extends Component {
               <Link to='/about'>About</Link>
               <a href='sass.html'>Stories</a>
               <IfAuthenticated>
-                <Link to='/resources'>Resources</Link>
-                <Link to='/connect'>Connect</Link>
+                <Link to='/resources' className='exclusive-menuItem'>
+                  Resources
+                </Link>
+                <Link to='/connect' className='exclusive-menuItem'>
+                  Connect
+                </Link>
               </IfAuthenticated>
             </div>
             <div className='adminBtns-wrapper'>
               <IfAuthenticated>
+                <Link to='/user-profile' className='icon-profile'>
+                  <i className='material-icons '>person_outline</i>
+                </Link>
                 <LogoffButton handleLogoff={this.handleLogoff} />
               </IfAuthenticated>
               <IfNotAuthenticated>

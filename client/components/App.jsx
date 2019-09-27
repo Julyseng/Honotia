@@ -18,6 +18,7 @@ const App = () => {
         <Route path='/about' component={AboutPage} />
         <Route path='/resources' component={ResourcesPage} />
         <Route path='/connect' component={ConnectPage} />
+        <Route path='/user-profile' component={ConnectPage} />
       </div>
 
       <div className='bg_gradient'></div>
