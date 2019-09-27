@@ -4,11 +4,31 @@ import { Link } from 'react-router-dom'
 import M from '../../materialize-js/bin/materialize'
 
 import SideNav from './SideNav'
+import LoginForm from '../form/LoginForm'
 
 export default class Nav extends Component {
+  state = {
+    displayLogin: true
+  }
+
   componentDidMount() {
     let sidenav = document.querySelectorAll('.sidenav')
     M.Sidenav.init(sidenav)
+  }
+
+  handleClick = () => {
+    this.setState({ displayLogin: true })
+    let form = document.querySelector('.login-container')
+    form.classList.toggle('open')
+  }
+
+  finishLogin = () => {
+    this.setState({ displayLogin: false })
+    const currentPath = this.props.history.location.pathname
+
+    if (currentPath != '/') {
+      return this.props.history.push('/')
+    }
   }
 
   render() {
@@ -16,21 +36,15 @@ export default class Nav extends Component {
       <Fragment>
         <nav>
           <div className='nav-wrapper'>
-            {/* <Link
-              to='/'
-              className='waves-effect waves-light btn-large'
-            >
-              Register
-            </Link> */}
             <a href='#' className='brand-logo'>
-              Journey
+              Honotia
             </a>
             <a href='#' data-target='mobile-demo' className='sidenav-trigger'>
               <i className='material-icons'>menu</i>
             </a>
             <ul className='right hide-on-med-and-down'>
               <li>
-                <a href='sass.html'>About</a>
+                <Link to='/about'>About</Link>
               </li>
               <li>
                 <a href='sass.html'>Stories</a>
@@ -44,17 +58,21 @@ export default class Nav extends Component {
                 </Link>
               </li>
               <li>
-                <Link
-                  to='/login'
+                <a
                   className='waves-effect waves-light btn-large btn-round'
+                  onClick={this.handleClick}
                 >
                   Login
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
         </nav>
         <SideNav />
+
+        {this.state.displayLogin && (
+          <LoginForm finishLogin={this.finishLogin} />
+        )}
       </Fragment>
     )
   }
