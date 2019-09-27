@@ -59,7 +59,8 @@ export default class Nav extends Component {
               <Link to='/about'>About</Link>
               <a href='sass.html'>Stories</a>
               <IfAuthenticated>
-                <Link to='/profiles'>Profiles</Link>
+                <Link to='/resources'>Resources</Link>
+                <Link to='/connect'>Connect</Link>
               </IfAuthenticated>
             </div>
             <div className='adminBtns-wrapper'>
