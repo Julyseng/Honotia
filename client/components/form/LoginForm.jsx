@@ -29,7 +29,7 @@ export default class LoginForm extends Component {
       }
     ).then(token => {
       if (isAuthenticated()) {
-        this.props.history.push('/')
+        this.props.finishLogin()
       }
     })
   }
