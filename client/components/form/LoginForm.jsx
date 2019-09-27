@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { isAuthenticated, signIn } from 'authenticare/client'
 
 export default class LoginForm extends Component {
   constructor() {
@@ -16,10 +17,27 @@ export default class LoginForm extends Component {
     })
   }
 
+  handleSubmit = e => {
+    e.preventDefault()
+    signIn(
+      {
+        username: this.state.email,
+        password: this.state.password
+      },
+      {
+        baseUrl: '/api/v1'
+      }
+    ).then(token => {
+      if (isAuthenticated()) {
+        this.props.history.push('/')
+      }
+    })
+  }
+
   render() {
     return (
       <div className='row'>
-        <form className='col s12 m5 l4'>
+        <form className='col s12 m5 l4' onSubmit={this.handleSubmit}>
           <div className='row'>
             <div className='input-field col s12'>
               <input
