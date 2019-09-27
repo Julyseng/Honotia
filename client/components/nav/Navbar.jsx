@@ -48,31 +48,29 @@ export default class Nav extends Component {
     return (
       <Fragment>
         <nav>
-          <div className='nav-wrapper'>
-            <a href='#' className='brand-logo'>
-              Honotia
-            </a>
-            <a href='#' data-target='mobile-demo' className='sidenav-trigger'>
-              <i className='material-icons'>menu</i>
-            </a>
-            <ul className='right hide-on-med-and-down'>
-              <li>
-                <Link to='/about'>About</Link>
-              </li>
-              <li>
-                <a href='sass.html'>Stories</a>
-              </li>
+          <a href='#' data-target='mobile-demo' className='sidenav-trigger'>
+            <i className='material-icons'>menu</i>
+          </a>
+          <a href='#' className='brand-title'>
+            Honotia
+          </a>
+          <div className='hide-on-med-and-down navItems-wrapper'>
+            <div className='manuItems-wrapper'>
+              <Link to='/about'>About</Link>
+              <a href='sass.html'>Stories</a>
               <IfAuthenticated>
-                <li>
-                  <Link to='/profiles'>Profiles</Link>
-                </li>
+                <Link to='/profiles'>Profiles</Link>
+              </IfAuthenticated>
+            </div>
+            <div className='adminBtns-wrapper'>
+              <IfAuthenticated>
                 <LogoffButton handleLogoff={this.handleLogoff} />
               </IfAuthenticated>
               <IfNotAuthenticated>
                 <RegoButton />
                 <LoginButton displayLogin={this.displayLogin} />
               </IfNotAuthenticated>
-            </ul>
+            </div>
           </div>
         </nav>
         <SideNav
