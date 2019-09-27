@@ -8,9 +8,14 @@
   transform: translateX(-50%);
   background-color: #f57171;
   color: #ffffff;
-  width: 200px; 
+  width: 200px;
 }
 
 .btn-register:hover {
   background-color: #ffa0a0;
+}
+
+.btn-login {
+  margin: 20px 0;
+  width: 100%;
 }
