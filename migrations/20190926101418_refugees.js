@@ -4,9 +4,9 @@ exports.up = function(knex) {
         t.increments('id')
         t.integer('user_id')
         t.string('country')
-        t.integer('year_left')
-        t.string('reason_for_leaving')
-        t.integer('year_of_arrival')        
+        t.integer('yearLeft')
+        t.string('reasonForLeaving')
+        t.integer('yearOfArrival')        
     })
 };
 
