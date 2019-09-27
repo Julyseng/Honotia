@@ -1,34 +1,36 @@
 import React, { Component, Fragment } from 'react'
-import { postUserInfo } from '../../apiClient'
+import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
+
+import { postUserInfo } from '../../apiClient'
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      firstName: '',
-      lastName: '',
+      name: '',
       email: '',
       password: '',
       DOB: '',
-      location: '',
-      languages: '',
+      // languages: '',
+      // location: '',
       occupation: '',
       interests: '',
       support: '',
-      bio: ''
+      bio: '',
+      value: event.target.value
     }
   }
 
   componentDidMount() {
-    let elems = document.querySelectorAll('.datepicker');
-    M.Datepicker.init(elems);
+    // console.log(getDecodedToken())
+    let elems = document.querySelectorAll('.datepicker')
+    M.Datepicker.init(elems)
 
-    let elems1 = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems1);
-    
-  }  
+    let elems1 = document.querySelectorAll('.dropdown-trigger')
+    M.Dropdown.init(elems1)
+  }
 
   handleChange = e => {
     let { name, value } = e.target
@@ -37,9 +39,27 @@ class RegistrationForm extends Component {
     })
   }
 
+  handleChangeDrop = e => {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
   handleSubmit = e => {
     e.preventDefault()
-    postUserInfo(this.state)
+    // postUserInfo(this.state)
+    register(
+      {
+        username: this.state.email,
+        password: this.state.password
+      },
+      { baseUrl: '/api/v1' }
+    ).then(() => {
+      if (isAuthenticated()) {
+        this.props.history.push('/')
+      }
+      //then push form data here
+    })
   }
 
   render() {
@@ -104,34 +124,22 @@ class RegistrationForm extends Component {
                   <label>Date of Birth</label>
                 </div>
                 <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='location'
-                    name='location'
-                    value={this.state.location}
-                    onChange={this.handleChange}
-                  />
-                  <label className='dropdown-trigger' data-target='dropdown1'>Current location</label>
-                  <ul id='dropdown1' className='dropdown-content'>
-                    <li>One</li>
-                    <li>Two</li>
-                  </ul>
+                <label>Current location
+                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                      <option value="Wellington">Wellington</option>
+                      <option value="Auckland">Auckland</option>
+                    </select>
+                  </label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='languages'
-                    name='languages'
-                    value={this.state.languages}
-                    onChange={this.handleChange}
-                  />
-                  <label className='dropdown-trigger' data-target='dropdown2'>Languages I speak</label>
-                  <ul id='dropdown2' className='dropdown-content'>
-                    <li>English</li>
-                    <li>French</li>
-                  </ul>  
+                  <label>Languages I speak
+                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                      <option value="English">English</option>
+                      <option value="French">French</option>
+                    </select>
+                  </label>
                 </div>
                 <div className="input-field col s6">
                   <input
@@ -187,12 +195,14 @@ class RegistrationForm extends Component {
                   </label>
                 </div>
               </div>
+              <br></br>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    type='text'
+                  <textarea
                     id='bio'
                     name='bio'
+                    // className='materialize-textarea'
+                    data-length='1000'
                     value={this.state.bio}
                     onChange={this.handleChange}
                   />
