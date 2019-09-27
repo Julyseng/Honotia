@@ -34,6 +34,8 @@ function getUserByName(email, db = connection) {
     .first()
 }
 
+
+
 module.exports = {
   userExists,
   getUserByName,

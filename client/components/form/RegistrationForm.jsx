@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
-import { postUserInfo } from '../../apiClient'
 import M from '../../materialize-js/bin/materialize'
+
+import { postUserInfo } from '../../apiClient'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -11,14 +12,14 @@ class RegistrationForm extends Component {
       name: '',
       email: '',
       password: '',
-      age: 18,
-      languages: '',
-      location: '',
-      languages: '',
+      DOB: '',
+      // languages: '',
+      // location: '',
       occupation: '',
       interests: '',
       support: '',
-      bio: ''
+      bio: '',
+      value: event.target.value
     }
   }
 
@@ -38,6 +39,12 @@ class RegistrationForm extends Component {
     })
   }
 
+  handleChangeDrop = e => {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     // postUserInfo(this.state)
@@ -49,7 +56,7 @@ class RegistrationForm extends Component {
       { baseUrl: '/api/v1' }
     ).then(() => {
       if (isAuthenticated()) {
-        props.history.push('/')
+        this.props.history.push('/')
       }
       //then push form data here
     })
@@ -58,12 +65,12 @@ class RegistrationForm extends Component {
   render() {
     return (
       <Fragment>
-        <div className='container'>
+        <div className="container">
           <h1>Registration Form</h1>
-          <div className='row'>
-            <form className='col s12' onSubmit={this.handleSubmit}>
-              <div className='row'>
-                <div className='input-field col s6'>
+          <div className="row">
+            <form className="col s12" onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="input-field col s6">
                   <input
                     type='text'
                     id='firstName'
@@ -73,7 +80,7 @@ class RegistrationForm extends Component {
                   />
                   <label>First Name</label>
                 </div>
-                <div className='input-field col s6'>
+                <div className="input-field col s6">
                   <input
                     type='text'
                     id='lastName'
@@ -82,141 +89,127 @@ class RegistrationForm extends Component {
                     onChange={this.handleChange}
                   />
                   <label>Last Name</label>
+              </div>
+              <div className="row">
+                <div className="input-field col s6">
+                  <input
+                    type='email'
+                    id='email'
+                    name='email'
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                  <label>Email</label>
                 </div>
-                <div className='row'>
-                  <div className='input-field col s6'>
-                    <input
-                      type='email'
-                      id='email'
-                      name='email'
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                    />
-                    <label>Email</label>
-                  </div>
-                  <div className='input-field col s6'>
-                    <input
-                      type='password'
-                      id='password'
-                      name='password'
-                      value={this.state.password}
-                      onChange={this.handleChange}
-                    />
-                    <label>Password</label>
-                  </div>
+                <div className="input-field col s6">
+                  <input
+                    type='text'
+                    id='password'
+                    name='password'
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                  <label>Password</label>
                 </div>
-                <div className='row'>
-                  <div className='input-field col s6'>
-                    <input
-                      className='datepicker'
-                      id='DOB'
-                      name='DOB'
-                      value={this.state.DOB}
-                      onChange={this.handleChange}
-                    />
-                    <label>Date of Birth</label>
-                  </div>
-                  <div className='input-field col s6'>
-                    <input
-                      type='text'
-                      id='location'
-                      name='location'
-                      value={this.state.location}
-                      onChange={this.handleChange}
-                    />
-                    <label className='dropdown-trigger' data-target='dropdown1'>
-                      Current location
-                    </label>
-                    <ul id='dropdown1' className='dropdown-content'>
-                      <li>One</li>
-                      <li>Two</li>
-                    </ul>
-                  </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s6">
+                  <input
+                    className='datepicker'
+                    id='DOB'
+                    name='DOB'
+                    value={this.state.DOB}
+                    onChange={this.handleChange}
+                  />
+                  <label>Date of Birth</label>
                 </div>
-                <div className='row'>
-                  <div className='input-field col s6'>
+                <div className="input-field col s6">
+                <label>Current location
+                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                      <option value="Wellington">Wellington</option>
+                      <option value="Auckland">Auckland</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s6">
+                  <label>Languages I speak
+                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                      <option value="English">English</option>
+                      <option value="French">French</option>
+                    </select>
+                  </label>
+                </div>
+                <div className="input-field col s6">
+                  <input
+                    type='text'
+                    id='occupation'
+                    name='occupation'
+                    value={this.state.occupation}
+                    onChange={this.handleChange}
+                  />
+                  <label>Occupation</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    type='text'
+                    id='interests'
+                    name='interests'
+                    value={this.state.interests}
+                    onChange={this.handleChange}
+                  />
+                  <label>Interests and talents</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <label>
+                    How I can support others
+                  <div className="row">
+                  <div className="col s6">
                     <input
-                      type='text'
-                      id='languages'
-                      name='languages'
-                      value={this.state.languages}
+                      type='checkbox'
+                      className='filled-in'
+                      id='support'
+                      name='support'
+                      value={this.state.support}
                       onChange={this.handleChange}
                     />
-                    <label className='dropdown-trigger' data-target='dropdown2'>
-                      Languages I speak
-                    </label>
-                    <ul id='dropdown2' className='dropdown-content'>
-                      <li>English</li>
-                      <li>French</li>
-                    </ul>
+                    <span>Healthcare</span>
                   </div>
-                  <div className='input-field col s6'>
-                    <input
-                      type='text'
-                      id='occupation'
-                      name='occupation'
-                      value={this.state.occupation}
-                      onChange={this.handleChange}
-                    />
-                    <label>Occupation</label>
+                  <div className="col s6">
+                  <input
+                    type='checkbox'
+                    className='filled-in'
+                    id='support'
+                    name='support'
+                    value={this.state.support}
+                    onChange={this.handleChange}
+                  />
+                  <span>Education</span>
                   </div>
+                  </div>
+                  </label>
                 </div>
-                <div className='row'>
-                  <div className='input-field col s12'>
-                    <input
-                      type='text'
-                      id='interests'
-                      name='interests'
-                      value={this.state.interests}
-                      onChange={this.handleChange}
-                    />
-                    <label>Interests and talents</label>
-                  </div>
+              </div>
+              <br></br>
+              <div className="row">
+                <div className="input-field col s12">
+                  <textarea
+                    id='bio'
+                    name='bio'
+                    // className='materialize-textarea'
+                    data-length='1000'
+                    value={this.state.bio}
+                    onChange={this.handleChange}
+                  />
+                  <label>Bio - a bit about myself</label>
                 </div>
-                <div className='row'>
-                  <div className='input-field col s12'>
-                    <label>
-                      How I can support others
-                      <div className='row'>
-                        <div className='col s6'>
-                          <input
-                            type='checkbox'
-                            className='filled-in'
-                            id='support'
-                            name='support'
-                            value={this.state.support}
-                            onChange={this.handleChange}
-                          />
-                          <span>Healthcare</span>
-                        </div>
-                        <div className='col s6'>
-                          <input
-                            type='checkbox'
-                            className='filled-in'
-                            id='support'
-                            name='support'
-                            value={this.state.support}
-                            onChange={this.handleChange}
-                          />
-                          <span>Education</span>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='input-field col s12'>
-                    <input
-                      type='text'
-                      id='bio'
-                      name='bio'
-                      value={this.state.bio}
-                      onChange={this.handleChange}
-                    />
-                    <label>Bio - a bit about myself</label>
-                  </div>
-                </div>
-                <input type='submit' value='Submit' />
+              </div>
+              <input type='submit' value='Submit' />
               </div>
             </form>
           </div>

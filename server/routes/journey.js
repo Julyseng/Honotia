@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-import { decodeToken } from 'authenticare/server'
+const { decodeToken } = require('authenticare/server')
 
 const db = require('../db/db')
 
