@@ -5,7 +5,7 @@ import LandingPage from './LandingPage'
 import RegistrationForm from './form/RegistrationForm'
 import Navbar from './nav/Navbar'
 import AboutPage from './AboutPage'
-import Profiles from './Profiles'
+import ConnectPage from './ConnectPage'
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
         <Route exact path='/' component={LandingPage} />
         <Route path='/registration' component={RegistrationForm} />
         <Route path='/about' component={AboutPage} />
-        <Route path='/profiles' component={Profiles} />
+        <Route path='/connect' component={ConnectPage} />
       </div>
 
       <div className='bg_gradient'></div>
