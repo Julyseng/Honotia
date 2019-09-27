@@ -9,17 +9,17 @@ class RegistrationForm extends Component {
     super(props)
 
     this.state = {
-      name: '',
+      userStatus:'',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       DOB: '',
-      // languages: '',
       location: '',
+      languages: '',
       occupation: '',
-      interests: '',
       support: {},
       bio: '',
-      language: ''
     }
   }
 
@@ -34,6 +34,7 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
+    // console.log(name, value)
     if (e.target.type == 'checkbox') {
       let support = {...this.state.support, [value]: e.target.checked}
       if (!e.target.checked) {
@@ -46,11 +47,11 @@ class RegistrationForm extends Component {
       [name]: value
     })
   
-
   }
 
   handleSubmit = e => {
     e.preventDefault()
+    console.log(this.state)
     // postUserInfo(this.state)
     register(
       {
@@ -67,7 +68,7 @@ class RegistrationForm extends Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Fragment>
         <div className="container">
@@ -75,6 +76,43 @@ class RegistrationForm extends Component {
           <div className="row">
             
             <form className="col s12" onSubmit={this.handleSubmit}>
+
+              <div className="row">
+                <div>
+                  <label>Please select a user status:
+                    <br></br>
+                    <input
+                      type="radio"
+                      id="newlyArrived"
+                      name="userStatus"
+                      value="newlyArrived"
+                      onChange={this.handleChange}
+                    />
+                    <span htmlFor="newlyArrived">Newly arrived refugee</span>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="formerRefugee"
+                      name="userStatus"
+                      value="formerRefugee"
+                      onChange={this.handleChange}
+                    />
+                    <span htmlFor="formerRefugee">Former refugee</span>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="ally"
+                      name="userStatus"
+                      value="ally"
+                      onChange={this.handleChange}
+                    />
+                    <span htmlFor="ally">Ally</span>
+                  </label>
+                </div>
+              </div>
+
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -144,7 +182,7 @@ class RegistrationForm extends Component {
               <div className="row">
                 <div className="input-field col s6">
                   <label>Languages I speak
-                    <select name='language' value={this.state.language} onChange={this.handleChange}>
+                    <select name='languages' value={this.state.languages} onChange={this.handleChange}>
                       <option value="English">English</option>
                       <option value="French">French</option>
                     </select>
@@ -164,19 +202,6 @@ class RegistrationForm extends Component {
               
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    type='text'
-                    id='interests'
-                    name='interests'
-                    value={this.state.interests}
-                    onChange={this.handleChange}
-                  />
-                  <label>Interests and talents</label>
-                </div>
-              </div>
-              
-              <div className="row">
-                <div className="input-field col s12">
                   <label>
                     How I can support others
                   <div className="row">
@@ -189,7 +214,6 @@ class RegistrationForm extends Component {
                           name='support'
                           value='healthcare'
                           onChange={this.handleChange}
-                          // checked={this.state.support.healthcare || false}
                         />
                         <span>Healthcare</span>
                       </label>
@@ -203,7 +227,6 @@ class RegistrationForm extends Component {
                         name='support'
                         value='education'
                         onChange={this.handleChange}
-                        // checked={this.state.support.education || false}
                       />
                       <span>Education</span>
                     </label>
