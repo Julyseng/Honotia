@@ -1,8 +1,8 @@
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('users')
     .del()
-    .then(function() {
+    .then(function () {
       // Inserts seed entries
       return knex('users').insert([
         {
@@ -14,10 +14,9 @@ exports.seed = function(knex) {
           occupation: 'Teacher',
           email: 'zawaki@gmail.com',
           bio: 'Hi I am zawaki from Iran. Excited to be here in NZ.',
-          userStatus: 'new comer',
+          userStatus: 'Newly arrived Refugee',
           hash: '1234abc',
-          userImg: ''
-
+          profileImg: 'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
         {
           id: 2,
@@ -25,12 +24,12 @@ exports.seed = function(knex) {
           lastName: 'Binmudah',
           dob: 03 / 05 / 1980,
           currentCity: 'Hamilton',
-          occupation: 'Butcher', 
+          occupation: 'Butcher',
           email: 'yahya_78@gmail.com',
           bio: 'Father of two children.',
-          userStatus: 'new comer',
+          userStatus: 'Newly arrived Refugee',
           hash: 'abc123',
-          userImg: ''
+          profileImg: 'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
         {
           id: 3,
@@ -43,7 +42,7 @@ exports.seed = function(knex) {
           bio: 'Lover of nature and reader.',
           userStatus: 'former refugee',
           hash: '321cba',
-          userImg: ''
+          profileImg: 'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
         {
           id: 4,
@@ -56,7 +55,7 @@ exports.seed = function(knex) {
           bio: 'Always love to get to know new people and being on the sky',
           userStatus: 'Ally',
           hash: '007flyers',
-          userImg: ''
+          profileImg: 'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
         {
           id: 5,
@@ -70,7 +69,7 @@ exports.seed = function(knex) {
             'Always up for a good yarn. My friends say I am a good listener too.',
           userStatus: 'Former Refugee',
           hash: 'f@stcar010',
-          userImg: ''
+          profileImg: 'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
         {
           id: 6,
@@ -83,7 +82,7 @@ exports.seed = function(knex) {
           bio: 'History is faacinating!',
           userStatus: 'Ally',
           hash: '12qsddv34',
-          userImg: ''
+          profileImg: 'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         }
       ])
     })
