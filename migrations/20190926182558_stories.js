@@ -1,10 +1,10 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('stories', t => {
-        t.increments('id')
+        t.increments('id').primary()
         t.integer('user_id')
-        t.date('date_created')
-        t.string('story')
+        t.timestamp('date_created').defaultTo(knex.fn.now())
+        t.text('story')
     })
   
 };
