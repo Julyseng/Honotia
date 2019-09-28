@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('countries', t =>{
         t.increments('id')
-        t.string('nameOfCountry')
+        t.string('name')
     })
   
 };
