@@ -5,6 +5,7 @@ import M from '../../materialize-js/bin/materialize'
 import RefugeeRegForm from './RefugeeRegForm'
 import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
+import RegoBioForm from './RegoBioForm'
 
 import { postUserInfo } from '../../apiClient'
 
@@ -79,87 +80,14 @@ class RegistrationForm extends Component {
             <div className='col l8'>
               <form onSubmit={this.handleSubmit}>
                 <div className='row'>
-                  <RegoProfileForm
+                  {/* <RegoProfileForm
+                    handleChange={this.handleChange}
+                    state={this.state}
+                  /> */}
+                  <RegoBioForm
                     handleChange={this.handleChange}
                     state={this.state}
                   />
-
-                  {/* <div className='row'>
-                    <div className='input-field col s6'>
-                      <label>
-                        Languages I speak
-                        <select
-                          name='languages'
-                          value={this.state.languages}
-                          onChange={this.handleChange}
-                        >
-                          <option value='English'>English</option>
-                          <option value='French'>French</option>
-                        </select>
-                      </label>
-                    </div>
-                    <div className='input-field col s6'>
-                      <input
-                        type='text'
-                        id='occupation'
-                        name='occupation'
-                        value={this.state.occupation}
-                        onChange={this.handleChange}
-                      />
-                      <label>Occupation</label>
-                    </div>
-                  </div> */}
-
-                  {/* <div className='row'>
-                    <div className='input-field col s12'>
-                      <label>
-                        How I can support others
-                        <div className='row'>
-                          <div className='col s6'>
-                            <label>
-                              <input
-                                type='checkbox'
-                                className='filled-in'
-                                id='supportHealthcare'
-                                name='support'
-                                value='healthcare'
-                                onChange={this.handleChange}
-                              />
-                              <span>Healthcare</span>
-                            </label>
-                          </div>
-                          <div className='col s6'>
-                            <label>
-                              <input
-                                type='checkbox'
-                                className='filled-in'
-                                id='supportEducation'
-                                name='support'
-                                value='education'
-                                onChange={this.handleChange}
-                              />
-                              <span>Education</span>
-                            </label>
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                  </div> */}
-
-                  {/* <div className='row'>
-                    <div className='input-field col s12'>
-                      <textarea
-                        id='bio'
-                        name='bio'
-                        // className='materialize-textarea'
-                        data-length='1000'
-                        value={this.state.bio}
-                        onChange={this.handleChange}
-                      />
-                      <label htmlFor='bio'>Bio - a bit about myself</label>
-                    </div>
-                  </div> */}
-                  {/* <input type='submit' value='Submit' /> */}
                 </div>
               </form>
             </div>
