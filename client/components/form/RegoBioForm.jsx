@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react'
 
-export default function RegoBioForm({ state, handleChange }) {
+export default function RegoBioForm({
+  state,
+  handleChange,
+  handleChangeSelect
+}) {
   return (
     <Fragment>
       <div className='row'>
@@ -16,18 +20,21 @@ export default function RegoBioForm({ state, handleChange }) {
         </div>
       </div>
       <div className='row'>
-        <div className='input-field col s6'>
-          <label>
-            Languages I speak
-            <select
-              name='languages'
-              value={state.languages}
-              onChange={handleChange}
-            >
-              <option value='English'>English</option>
-              <option value='French'>French</option>
-            </select>
-          </label>
+        <div className='input-field col s12'>
+          <select
+            multiple
+            // value={state.userAccount.location}
+            defaultValue={[]}
+            onChange={handleChangeSelect}
+            className='locationSelect'
+          >
+            <option value='' disabled selected>
+              Choose your option
+            </option>
+            <option value='English'>English</option>
+            <option value='French'>French</option>
+          </select>
+          <label>Languages I speak</label>
         </div>
       </div>
       <br />

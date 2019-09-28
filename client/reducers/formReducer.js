@@ -1,20 +1,28 @@
 import { SEND_USER_ACCOUNT } from '../actions'
 
 const initialState = {
-  userAccount: { 
-    status: '',
+  userAccount: {
+    userStatus: '',
     firstName: '',
     lastName: '',
     email: '',
-    DOB: '',
-    profileURL: ''
-
+    dob: '',
+    currentCity: '',
+    profileImg: ''
   },
   userBio: {
     occupation: '',
     languages: [],
-    support: [],
+    supports: [],
     bioText: ''
+  },
+  refugees: {
+    needs: [],
+    supports: [],
+    yearLeft: null,
+    reasonForLeaving: '',
+    yearOfArrival: null,
+    originCountry: ''
   }
 }
 
@@ -22,7 +30,7 @@ export default function form(state = initialState, action) {
   console.log(action.type)
   switch (action.type) {
     case SEND_USER_ACCOUNT:
-      return {...state, userAccount: action.userAccountData }
+      return { ...state, userAccount: action.userAccountData }
 
     default:
       return state

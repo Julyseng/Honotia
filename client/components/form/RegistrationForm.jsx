@@ -29,25 +29,28 @@ class RegistrationForm extends Component {
     //   bio: ''
     // }
     this.state = {
-      userAccount: { 
+      userAccount: {
         status: '',
         firstName: '',
         lastName: '',
         email: '',
         DOB: '',
         profileURL: ''
-    
       }
-    }  
+    }
   }
 
   componentDidMount() {
-    // console.log(getDecodedToken())
-    let elems = document.querySelectorAll('.datepicker')
-    M.Datepicker.init(elems)
+    // let datepicker = document.querySelectorAll('.datepicker')
+    // M.Datepicker.init(datepicker)
 
-    let elems1 = document.querySelectorAll('.dropdown-trigger')
-    M.Dropdown.init(elems1)
+    // let dropdowns = document.querySelectorAll('.dropdown-trigger')
+    // M.Dropdown.init(dropdowns, { inDuration: 300, outDuration: 225 })
+
+    // let select = document.querySelectorAll('select')
+    // M.FormSelect.init(select)
+
+    M.AutoInit()
   }
 
   handleChange = e => {
@@ -68,6 +71,13 @@ class RegistrationForm extends Component {
     })
   }
 
+  handleChangeSelect = e => {
+    let locationSelect = document.querySelector('.locationSelect')
+    let instance = M.FormSelect.getInstance(locationSelect)
+    let selected = instance.getSelectedValues()
+    console.log(selected)
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     // postUserInfo(this.state)
@@ -84,8 +94,8 @@ class RegistrationForm extends Component {
     //   //then push form data here
     // })
     // .then(() => {
-      console.log(this.props)
-      this.props.dispatch(storeFormData(this.state.userAccount))
+    console.log(this.props)
+    this.props.dispatch(storeFormData(this.state.userAccount))
     // })
   }
 
@@ -101,6 +111,7 @@ class RegistrationForm extends Component {
                   <RegoProfileForm
                     handleChange={this.handleChange}
                     state={this.state}
+                    handleChangeSelect={this.handleChangeSelect}
                   />
                   {/* <RegoBioForm
                     handleChange={this.handleChange}

@@ -1,10 +1,14 @@
 import React, { Fragment } from 'react'
 
-export default function RegoStatusForm({ state, handleChange }) {
+export default function RegoStatusForm({
+  state,
+  handleChange,
+  handleChangeSelect
+}) {
   return (
     <Fragment>
       <div className='row'>
-        <div className='input-field col s6'>
+        <div className='input-field col s12'>
           <input
             type='text'
             id='firstName'
@@ -16,7 +20,7 @@ export default function RegoStatusForm({ state, handleChange }) {
         </div>
       </div>
       <div className='row'>
-        <div className='input-field col s6'>
+        <div className='input-field col s12'>
           <input
             type='text'
             id='lastName'
@@ -28,7 +32,7 @@ export default function RegoStatusForm({ state, handleChange }) {
         </div>
       </div>
       <div className='row'>
-        <div className='input-field col s6'>
+        <div className='input-field col s12'>
           <input
             className='datepicker'
             id='DOB'
@@ -40,8 +44,8 @@ export default function RegoStatusForm({ state, handleChange }) {
         </div>
       </div>
 
-      <div className="row">
-        <div className="input-field col s6">
+      <div className='row'>
+        <div className='input-field col s12'>
           <input
             type='email'
             id='emailRegForm'
@@ -51,7 +55,7 @@ export default function RegoStatusForm({ state, handleChange }) {
           />
           <label>Email</label>
         </div>
-        <div className="input-field col s6">
+        <div className='input-field col s12'>
           <input
             type='password'
             id='passwordRegForm'
@@ -64,40 +68,41 @@ export default function RegoStatusForm({ state, handleChange }) {
       </div>
 
       <div className='row'>
-        <div className='input-field col s6'>
-          <label>
-            Current location
-            <select
-              name='location'
-              value={state.userAccount.location}
-              onChange={handleChange}
-            >
-              <option value="" disabled defaultValue>Choose your location</option>
-              <option value="Auckland">Auckland</option>
-              <option value="Christchurch">Christchurch</option>
-              <option value="Dunedin">Dunedin</option>
-              <option value="Hamilton">Hamilton</option>
-              <option value="Invercargill">Invercargill</option>
-              <option value="Nelson">Nelson</option>
-              <option value="Palmerston North">Palmerston North</option>
-              <option value="Wellington">Wellington</option>
-            </select>
-          </label>
+        <div className='input-field col s12'>
+          <select
+            // value={}
+            onChange={handleChangeSelect}
+            className='locationSelect'
+          >
+            <option value='' disabled>
+              Choose your option
+            </option>
+            <option value='Auckland'>Auckland</option>
+            <option value='Christchurch'>Christchurch</option>
+            <option value='Dunedin'>Dunedin</option>
+            <option value='Hamilton'>Hamilton</option>
+            <option value='Invercargill'>Invercargill</option>
+            <option value='Nelson'>Nelson</option>
+            <option value='Palmerston North'>Palmerston North</option>
+            <option value='Wellington'>Wellington</option>
+          </select>
+          <label> Current location</label>
         </div>
       </div>
+
       <br></br>
       <br></br>
 
-      <div className="file-field input-field">
-        <div className="btn">
+      <div className='file-field input-field'>
+        <div className='btn'>
           <span>Upload profile picture</span>
-          <input type="file" />
+          <input type='file' />
         </div>
-        <div className="file-path-wrapper">
-          <input className="file-path validate" type="text" />
+        <div className='file-path-wrapper'>
+          <input className='file-path validate' type='text' />
         </div>
       </div>
-      <button type="submit">Submit</button>
+      <button type='submit'>Submit</button>
     </Fragment>
   )
 }
