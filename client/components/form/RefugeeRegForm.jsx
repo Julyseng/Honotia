@@ -37,7 +37,7 @@ class RefugeeRegForm extends Component {
         return (
             <Fragment>
                 <div className="container">
-                    <h3>Registration Form continued</h3>
+                    <h3>Former refugees and newly arrived</h3>
                     <div className="row">
 
                         <form onSubmit={this.handleSubmit}>
