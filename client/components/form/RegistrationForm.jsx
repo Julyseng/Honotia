@@ -44,9 +44,6 @@ class RegistrationForm extends Component {
     // let datepicker = document.querySelectorAll('.datepicker')
     // M.Datepicker.init(datepicker)
 
-    // let dropdowns = document.querySelectorAll('.dropdown-trigger')
-    // M.Dropdown.init(dropdowns, { inDuration: 300, outDuration: 225 })
-
     // let select = document.querySelectorAll('select')
     // M.FormSelect.init(select)
 
@@ -55,7 +52,6 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
-    // console.log(name, value)
     if (e.target.type == 'checkbox') {
       let support = { ...this.state.support, [value]: e.target.checked }
       if (!e.target.checked) {
@@ -71,7 +67,7 @@ class RegistrationForm extends Component {
     })
   }
 
-  handleChangeSelect = e => {
+  handleSelectChange = e => {
     let locationSelect = document.querySelector('.locationSelect')
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
@@ -94,7 +90,6 @@ class RegistrationForm extends Component {
     //   //then push form data here
     // })
     // .then(() => {
-    console.log(this.props)
     this.props.dispatch(storeFormData(this.state.userAccount))
     // })
   }
@@ -111,7 +106,7 @@ class RegistrationForm extends Component {
                   <RegoProfileForm
                     handleChange={this.handleChange}
                     state={this.state}
-                    handleChangeSelect={this.handleChangeSelect}
+                    handleSelectChange={this.handleSelectChange}
                   />
                   {/* <RegoBioForm
                     handleChange={this.handleChange}

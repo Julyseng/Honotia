@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 export default function RegoBioForm({
   state,
   handleChange,
-  handleChangeSelect
+  handleSelectChange
 }) {
   return (
     <Fragment>
@@ -24,8 +24,8 @@ export default function RegoBioForm({
           <select
             multiple
             // value={state.userAccount.location}
-            defaultValue={[]}
-            onChange={handleChangeSelect}
+            // defaultValue={[]}
+            onChange={handleSelectChange}
             className='locationSelect'
           >
             <option value='' disabled selected>
