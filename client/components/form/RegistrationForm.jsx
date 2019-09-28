@@ -11,7 +11,6 @@ class RegistrationForm extends Component {
     super(props)
 
     this.state = {
-      userStatus: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -79,40 +78,6 @@ class RegistrationForm extends Component {
             <form onSubmit={this.handleSubmit}>
 
               <div className="row">
-                <label>Please select a user status:
-                  <br></br>
-                  <input
-                    type="radio"
-                    id="newlyArrived"
-                    name="userStatus"
-                    value="newlyArrived"
-                    onChange={this.handleChange}
-                  />
-                  <span htmlFor="newlyArrived">Newly arrived refugee</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    id="formerRefugee"
-                    name="userStatus"
-                    value="formerRefugee"
-                    onChange={this.handleChange}
-                  />
-                  <span htmlFor="formerRefugee">Former refugee</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    id="ally"
-                    name="userStatus"
-                    value="ally"
-                    onChange={this.handleChange}
-                  />
-                  <span htmlFor="ally">Ally</span>
-                </label>
-              </div>
-
-              <div className="row">
                 <div className="input-field col s6">
                   <input
                     type='text'
@@ -174,8 +139,15 @@ class RegistrationForm extends Component {
                         name="location"
                         value={this.state.location}
                         onChange={this.handleChange}>
-                        <option value="Wellington">Wellington</option>
+                        <option value="" disabled defaultValue>Choose your location</option>
                         <option value="Auckland">Auckland</option>
+                        <option value="Christchurch">Christchurch</option>
+                        <option value="Dunedin">Dunedin</option>
+                        <option value="Hamilton">Hamilton</option>
+                        <option value="Invercargill">Invercargill</option>
+                        <option value="Nelson">Nelson</option>
+                        <option value="Palmerston North">Palmerston North</option>
+                        <option value="Wellington">Wellington</option>
                       </select>
                     </label>
                   </div>
@@ -201,7 +173,7 @@ class RegistrationForm extends Component {
                     <label>Occupation</label>
                   </div>
                 </div>
-
+                
                 <div className="row">
                   <div className="input-field col s12">
                     <label>
@@ -252,6 +224,17 @@ class RegistrationForm extends Component {
                     <label htmlFor="bio">Bio - a bit about myself</label>
                   </div>
                 </div>
+
+                <div className="file-field input-field">
+                  <div className="btn">
+                    <span>Upload profile picture</span>
+                    <input type="file" />
+                  </div>
+                  <div className="file-path-wrapper">
+                    <input className="file-path validate" type="text" />
+                    </div>
+                  </div>
+                
                 <input type='submit' value='Submit' />
               </div>
             </form>

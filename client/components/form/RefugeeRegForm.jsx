@@ -6,20 +6,21 @@ class RefugeeRegForm extends Component {
 
         this.state = {
             originCountry: '',
-            leavingReason: '',
-            need: {}
+            leaveReason: '',
+            need: {},
+            support: {}
         }
     }
 
     handleChange = e => {
         let { name, value } = e.target
-        console.log(name, value)
+        // console.log(name, value)
         if (e.target.type == 'checkbox') {
-          let need = { ...this.state.need, [value]: e.target.checked }
-          if (!e.target.checked) {
-            delete need[value]
-          }
-          value = need
+            let need = { ...this.state.need, [value]: e.target.checked }
+            if (!e.target.checked) {
+                delete need[value]
+            }
+            value = need
         }
 
         this.setState({
@@ -39,7 +40,7 @@ class RefugeeRegForm extends Component {
                     <h3>Registration Form continued</h3>
                     <div className="row">
 
-                        <form className="col s12" onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit}>
 
                             <div className="row">
                                 <div className="input-field col s6">
@@ -53,14 +54,20 @@ class RefugeeRegForm extends Component {
                                     <label>Country of origin</label>
                                 </div>
                                 <div className="input-field col s6">
-                                    <input
-                                        type='text'
-                                        id='leavingReason'
-                                        name='leavingReason'
-                                        value={this.state.leavingReason}
-                                        onChange={this.handleChange}
-                                    />
-                                    <label>Reason for leaving</label>
+                                    <label>Reason for leaving country of origin
+                                    <select
+                                        name="leaveReason"
+                                        value={this.state.leaveReason}
+                                        onChange={this.handleChange}>
+                                        <option value="" disabled defaultValue>Choose your reason</option>
+                                        <option value="conflict">War or conflict</option>
+                                        <option value="religious">Religious persecution</option>
+                                        <option value="political">Political persecution</option>
+                                        <option value="humanRights">Human rights violations</option>
+                                        <option value="economic">Economic reasons</option>
+                                        <option value="climateChange">Climate change</option>
+                                    </select>
+                                    </label>
                                 </div>
                             </div>
 
@@ -99,6 +106,44 @@ class RefugeeRegForm extends Component {
                                     </label>
                                 </div>
                             </div>
+
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <label>
+                                        How I can support others
+                                        <div className="row">
+                                            <div className="col s6">
+                                                <label>
+                                                    <input
+                                                        type='checkbox'
+                                                        className='filled-in'
+                                                        id='supportHealthcare'
+                                                        name='support'
+                                                        value='healthcare'
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>Healthcare</span>
+                                                </label>
+                                            </div>
+                                            <div className="col s6">
+                                                <label>
+                                                    <input
+                                                        type='checkbox'
+                                                        className='filled-in'
+                                                        id='supportEducation'
+                                                        name='support'
+                                                        value='education'
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <span>Education</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <br></br>
                             <br></br>
                             <input type='submit' value='Submit' />
 
