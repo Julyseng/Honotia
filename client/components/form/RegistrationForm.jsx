@@ -4,6 +4,7 @@ import M from '../../materialize-js/bin/materialize'
 
 import RefugeeRegForm from './RefugeeRegForm'
 import RegoStatusForm from './RegoStatusForm'
+import RegoProfileForm from './RegoProfileForm'
 
 import { postUserInfo } from '../../apiClient'
 
@@ -78,75 +79,12 @@ class RegistrationForm extends Component {
             <div className='col l8'>
               <form onSubmit={this.handleSubmit}>
                 <div className='row'>
-                    <div className='input-field col s6'>
-                      <input
-                        type='text'
-                        id='firstName'
-                        name='firstName'
-                        value={this.state.firstName}
-                        onChange={this.handleChange}
-                      />
-                      <label>First Name</label>
-                    </div>
-                    <div className='input-field col s6'>
-                      <input
-                        type='text'
-                        id='lastName'
-                        name='lastName'
-                        value={this.state.lastName}
-                        onChange={this.handleChange}
-                      />
-                      <label>Last Name</label>
-                    </div>
+                  <RegoProfileForm
+                    handleChange={this.handleChange}
+                    state={this.state}
+                  />
 
-                    <div className='input-field col s6'>
-                      <input
-                        type='email'
-                        id='emailRegForm'
-                        name='email'
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                      />
-                      <label>Email</label>
-                    </div>
-                    <div className='input-field col s6'>
-                      <input
-                        type='password'
-                        id='passwordRegForm'
-                        name='password'
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                      />
-                      <label>Password</label>
-                    </div>
-
-                  <div className='row'>
-                    <div className='input-field col s6'>
-                      <input
-                        className='datepicker'
-                        id='DOB'
-                        name='DOB'
-                        value={this.state.DOB}
-                        onChange={this.handleChange}
-                      />
-                      <label>Date of Birth</label>
-                    </div>
-                    <div className='input-field col s6'>
-                      <label>
-                        Current location
-                        <select
-                          name='location'
-                          value={this.state.location}
-                          onChange={this.handleChange}
-                        >
-                          <option value='Wellington'>Wellington</option>
-                          <option value='Auckland'>Auckland</option>
-                        </select>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className='row'>
+                  {/* <div className='row'>
                     <div className='input-field col s6'>
                       <label>
                         Languages I speak
@@ -170,9 +108,9 @@ class RegistrationForm extends Component {
                       />
                       <label>Occupation</label>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className='row'>
+                  {/* <div className='row'>
                     <div className='input-field col s12'>
                       <label>
                         How I can support others
@@ -206,10 +144,9 @@ class RegistrationForm extends Component {
                         </div>
                       </label>
                     </div>
-                  </div>
-                  <br></br>
+                  </div> */}
 
-                  <div className='row'>
+                  {/* <div className='row'>
                     <div className='input-field col s12'>
                       <textarea
                         id='bio'
@@ -221,8 +158,8 @@ class RegistrationForm extends Component {
                       />
                       <label htmlFor='bio'>Bio - a bit about myself</label>
                     </div>
-                  </div>
-                  <input type='submit' value='Submit' />
+                  </div> */}
+                  {/* <input type='submit' value='Submit' /> */}
                 </div>
               </form>
             </div>
