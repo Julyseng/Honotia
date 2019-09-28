@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
+import RefugeeRegForm from './RefugeeRegForm'
+
 import { postUserInfo } from '../../apiClient'
 
 class RegistrationForm extends Component {
@@ -9,17 +11,17 @@ class RegistrationForm extends Component {
     super(props)
 
     this.state = {
-      name: '',
+      userStatus:'',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       DOB: '',
-      // languages: '',
-      // location: '',
+      location: '',
+      languages: '',
       occupation: '',
-      interests: '',
-      support: '',
+      support: {},
       bio: '',
-      value: event.target.value
     }
   }
 
@@ -34,19 +36,24 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
+    // console.log(name, value)
+    if (e.target.type == 'checkbox') {
+      let support = {...this.state.support, [value]: e.target.checked}
+      if (!e.target.checked) {
+        delete support[value]
+      }
+      value = support
+    } 
+
     this.setState({
       [name]: value
     })
-  }
-
-  handleChangeDrop = e => {
-    this.setState({
-      value: e.target.value
-    })
+  
   }
 
   handleSubmit = e => {
     e.preventDefault()
+    console.log(this.state)
     // postUserInfo(this.state)
     register(
       {
@@ -63,12 +70,51 @@ class RegistrationForm extends Component {
   }
 
   render() {
+    // console.log(this.state)
     return (
       <Fragment>
         <div className="container">
           <h1>Registration Form</h1>
           <div className="row">
+            
             <form className="col s12" onSubmit={this.handleSubmit}>
+
+              <div className="row">
+                <div>
+                  <label>Please select a user status:
+                    <br></br>
+                    <input
+                      type="radio"
+                      id="newlyArrived"
+                      name="userStatus"
+                      value="newlyArrived"
+                      onChange={this.handleChange}
+                    />
+                    <span htmlFor="newlyArrived">Newly arrived refugee</span>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="formerRefugee"
+                      name="userStatus"
+                      value="formerRefugee"
+                      onChange={this.handleChange}
+                    />
+                    <span htmlFor="formerRefugee">Former refugee</span>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      id="ally"
+                      name="userStatus"
+                      value="ally"
+                      onChange={this.handleChange}
+                    />
+                    <span htmlFor="ally">Ally</span>
+                  </label>
+                </div>
+              </div>
+
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -90,11 +136,12 @@ class RegistrationForm extends Component {
                   />
                   <label>Last Name</label>
               </div>
+              
               <div className="row">
                 <div className="input-field col s6">
                   <input
                     type='email'
-                    id='email'
+                    id='emailRegForm'
                     name='email'
                     value={this.state.email}
                     onChange={this.handleChange}
@@ -103,8 +150,8 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="input-field col s6">
                   <input
-                    type='text'
-                    id='password'
+                    type='password'
+                    id='passwordRegForm'
                     name='password'
                     value={this.state.password}
                     onChange={this.handleChange}
@@ -112,6 +159,7 @@ class RegistrationForm extends Component {
                   <label>Password</label>
                 </div>
               </div>
+              
               <div className="row">
                 <div className="input-field col s6">
                   <input
@@ -125,17 +173,21 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="input-field col s6">
                 <label>Current location
-                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                    <select 
+                    name="location" 
+                    value={this.state.location} 
+                    onChange={this.handleChange}>
                       <option value="Wellington">Wellington</option>
                       <option value="Auckland">Auckland</option>
                     </select>
                   </label>
                 </div>
               </div>
+              
               <div className="row">
                 <div className="input-field col s6">
                   <label>Languages I speak
-                    <select value={this.state.value} onChange={this.handleChangeDrop}>
+                    <select name='languages' value={this.state.languages} onChange={this.handleChange}>
                       <option value="English">English</option>
                       <option value="French">French</option>
                     </select>
@@ -152,61 +204,55 @@ class RegistrationForm extends Component {
                   <label>Occupation</label>
                 </div>
               </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    type='text'
-                    id='interests'
-                    name='interests'
-                    value={this.state.interests}
-                    onChange={this.handleChange}
-                  />
-                  <label>Interests and talents</label>
-                </div>
-              </div>
+              
               <div className="row">
                 <div className="input-field col s12">
                   <label>
                     How I can support others
                   <div className="row">
+                    <div className="col s6">
+                      <label>
+                        <input
+                          type='checkbox'
+                          className='filled-in'
+                          id='supportHealthcare'
+                          name='support'
+                          value='healthcare'
+                          onChange={this.handleChange}
+                        />
+                        <span>Healthcare</span>
+                      </label>
+                    </div>
                   <div className="col s6">
-                    <input
-                      type='checkbox'
-                      className='filled-in'
-                      id='support'
-                      name='support'
-                      value={this.state.support}
-                      onChange={this.handleChange}
-                    />
-                    <span>Healthcare</span>
-                  </div>
-                  <div className="col s6">
-                  <input
-                    type='checkbox'
-                    className='filled-in'
-                    id='support'
-                    name='support'
-                    value={this.state.support}
-                    onChange={this.handleChange}
-                  />
-                  <span>Education</span>
+                    <label>
+                      <input
+                        type='checkbox'
+                        className='filled-in'
+                        id='supportEducation'
+                        name='support'
+                        value='education'
+                        onChange={this.handleChange}
+                      />
+                      <span>Education</span>
+                    </label>
                   </div>
                   </div>
                   </label>
                 </div>
               </div>
               <br></br>
+              
               <div className="row">
                 <div className="input-field col s12">
                   <textarea
-                    id='bio'
-                    name='bio'
+                    id="bio"
+                    name="bio"
                     // className='materialize-textarea'
                     data-length='1000'
                     value={this.state.bio}
                     onChange={this.handleChange}
                   />
-                  <label>Bio - a bit about myself</label>
+                  <label htmlFor="bio">Bio - a bit about myself</label>
                 </div>
               </div>
               <input type='submit' value='Submit' />
@@ -214,6 +260,7 @@ class RegistrationForm extends Component {
             </form>
           </div>
         </div>
+        <RefugeeRegForm />
       </Fragment>
     )
   }
