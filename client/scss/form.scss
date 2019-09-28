@@ -2,3 +2,26 @@
   margin-bottom: 20px;
 }
 
+.status-container {
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    width: 220px;
+  }
+}
+
+.status-wrapper {
+  position: relative;
+  cursor: pointer;
+
+  p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin: 0;
+    font-size: 18px;
+  }
+}
