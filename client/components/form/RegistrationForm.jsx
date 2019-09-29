@@ -15,7 +15,7 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 3,
+      step: 1,
       previewProfileUrl: null,
       userStatus: '',
       userAccount: {
@@ -46,7 +46,6 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
-
   }
 
   initiateMaterialize = () => {
@@ -56,6 +55,10 @@ class RegistrationForm extends Component {
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
+  }
+
+  setUserStatus = userStatus => {
+    this.setState({ userStatus })
   }
 
   handleChange = e => {
@@ -93,11 +96,13 @@ class RegistrationForm extends Component {
     // also need for languages, year of arrival, year left, year born
   }
 
-  handlePrevious = () => {
+  handlePrevious = e => {
+    e.preventDefault()
     this.setState({ step: this.state.step - 1 })
   }
 
-  handleNext = () => {
+  handleNext = e => {
+    e.preventDefault()
     if (this.state.step === 4) {
       this.handleSubmit({ preventDefault: () => {} })
     } else {
@@ -108,24 +113,23 @@ class RegistrationForm extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    // register(
-    //   {
-    //     username: this.state.userAccount.email,
-    //     password: this.state.userAccount.password
-    //   },
-    //   { baseUrl: '/api/v1' }
-    // )
-    //   .then(() => {
-    //     if (isAuthenticated()) {
-    //       this.props.history.push('/')
-    //     }
-    //   })
-    //   .then(() => {
-    //     // this.props.dispatch(storeFormData(this.state.userAccount))
-    //     registerUser(this.state).then(res => {
-    //       console.log(res.text)
-    //     })
-    //   })
+    register(
+      {
+        username: this.state.userAccount.email,
+        password: this.state.userAccount.password
+      },
+      { baseUrl: '/api/v1' }
+    )
+      .then(() => {
+        if (isAuthenticated()) {
+          this.props.history.push('/')
+        }
+      })
+      .then(() => {
+        registerUser(this.state).then(res => {
+          console.log(res.text)
+        })
+      })
   }
 
   render() {
@@ -133,7 +137,9 @@ class RegistrationForm extends Component {
       <Fragment>
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            {this.state.step === 1 && <RegoStatusForm />}
+            {this.state.step === 1 && (
+              <RegoStatusForm setUserStatus={this.setUserStatus} />
+            )}
             {this.state.step === 2 && (
               <RegoProfileForm
                 handleChange={this.handleChange}
