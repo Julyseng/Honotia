@@ -73,6 +73,10 @@ class RegistrationForm extends Component {
     let selected = instance.getSelectedValues()
   }
 
+  handleGoBack = () => {
+    this.props.history.goBack()
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     // postUserInfo(this.state)
@@ -106,7 +110,7 @@ class RegistrationForm extends Component {
             /> */}
             {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
             {/* <RegoRefugeeForm /> */}
-            <FormNavControllers />
+            <FormNavControllers handleGoBack={this.handleGoBack} />
           </form>
         </div>
       </Fragment>
