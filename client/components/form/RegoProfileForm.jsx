@@ -7,7 +7,7 @@ export default function RegoStatusForm({
 }) {
   return (
     <div className='section'>
-      <div className='profile-container'>
+      <div className='profile-container hoverable'>
         <p className='center'>My Profile</p>
         <div className='file-field input-field '>
           <div className='btn w-100'>
