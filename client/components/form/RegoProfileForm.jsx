@@ -1,10 +1,12 @@
 import React from 'react'
+import FormNavControllers from './FormNavControllers'
 
 export default function RegoStatusForm({
   state,
   handleChange,
   handleSelectChange
 }) {
+  console.log(state)
   return (
     <div className='section'>
       <div className='profile-container hoverable'>
@@ -12,8 +14,14 @@ export default function RegoStatusForm({
         <div className='file-field input-field '>
           <div className='btn w-100'>
             <span>Upload</span>
-            <input type='file' />
+            <input type='file' name='profileUrl' onChange={handleChange} />
+            {/* {//if state exists show} */}
           </div>
+          <img
+            src={state.prefiewProfileUrl}
+            alt=''
+            style={{ width: '100px', height: '100px' }}
+          />
           <div className='file-path-wrapper'>
             <input className='file-path validate' type='text' />
           </div>
@@ -117,8 +125,8 @@ export default function RegoStatusForm({
             type='password'
             id='passwordConfirmRegForm'
             name='passwordConfirm'
-            value={state.userAccount.password}
-            onChange={handleChange}
+            // value={state.userAccount.password}
+            // onChange={handleChange}
           />
           <label>Confirm Password</label>
         </div>
