@@ -17,8 +17,8 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 1,
-      prefiewProfileUrl: '',
+      step: 2,
+      previewProfileUrl: null,
       userStatus: '',
       userAccount: {
         firstName: '',
@@ -69,7 +69,7 @@ class RegistrationForm extends Component {
       }
 
       reader.addEventListener('load', () => {
-        this.setState({ prefiewProfileUrl: reader.result })
+        this.setState({ previewProfileUrl: reader.result })
       })
     }
 
@@ -100,24 +100,24 @@ class RegistrationForm extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-    register(
-      {
-        username: this.state.userAccount.email,
-        password: this.state.userAccount.password
-      },
-      { baseUrl: '/api/v1' }
-    )
-      .then(() => {
-        if (isAuthenticated()) {
-          this.props.history.push('/')
-        }
-      })
-      .then(() => {
-        // this.props.dispatch(storeFormData(this.state.userAccount))
-        registerUser(this.state).then(res => {
-          console.log(res.text)
-        })
-      })
+    // register(
+    //   {
+    //     username: this.state.userAccount.email,
+    //     password: this.state.userAccount.password
+    //   },
+    //   { baseUrl: '/api/v1' }
+    // )
+    //   .then(() => {
+    //     if (isAuthenticated()) {
+    //       this.props.history.push('/')
+    //     }
+    //   })
+    //   .then(() => {
+    //     // this.props.dispatch(storeFormData(this.state.userAccount))
+    //     registerUser(this.state).then(res => {
+    //       console.log(res.text)
+    //     })
+    //   })
   }
 
   render() {
