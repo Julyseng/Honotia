@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function RegoStatusForm({
+export default function RegoProfileForm({
   state,
   handleChange,
   handleSelectChange

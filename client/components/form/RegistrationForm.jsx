@@ -3,8 +3,6 @@ import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
 import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
-import { storeFormData } from '../../actions'
-
 import RegoRefugeeForm from './RegoRefugeeForm'
 import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
@@ -17,7 +15,7 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
+      step: 3,
       previewProfileUrl: null,
       userStatus: '',
       userAccount: {
@@ -43,6 +41,15 @@ class RegistrationForm extends Component {
   }
 
   componentDidMount() {
+    this.initiateMaterialize()
+  }
+
+  componentDidUpdate() {
+    this.initiateMaterialize()
+
+  }
+
+  initiateMaterialize = () => {
     M.AutoInit()
 
     let datepicker = document.querySelectorAll('.datepicker')
