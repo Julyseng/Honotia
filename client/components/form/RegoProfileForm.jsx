@@ -1,8 +1,7 @@
 import React from 'react'
 import SelectYear from './SelectYear'
-import FormNavControllers from './FormNavControllers'
 
-export default function RegoStatusForm({
+export default function RegoProfileForm({
   state,
   handleChange,
   handleSelectChange
@@ -62,9 +61,7 @@ export default function RegoStatusForm({
           <i className='material-icons prefix form-icon'>date_range</i>
           <SelectYear name='selectYearBirth' start={-80} end={-18}/>
         </div>
-
       </div>
-      
 
       <div className='divider'></div>
 

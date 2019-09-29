@@ -6588,6 +6588,14 @@ nav {
   margin: 20px 0;
   width: 100%; }
 
+.btn-left {
+  position: absolute;
+  left: 0; }
+
+.btn-right {
+  position: absolute;
+  right: 0; }
+
 .container {
   width: 90%;
   position: relative;
@@ -6719,9 +6727,8 @@ form {
   color: #b4b4b4; }
 
 .form-navArrows-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0; }
+  padding: 20px 0;
+  position: relative; }
 
 .login-input {
   margin-bottom: 20px; }
