@@ -102,7 +102,7 @@ class RegistrationForm extends Component {
       <Fragment>
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            <RegoStatusForm />
+            {/* <RegoStatusForm /> */}
             {/* <RegoProfileForm
               handleChange={this.handleChange}
               state={this.state}

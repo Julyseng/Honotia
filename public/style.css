@@ -6696,7 +6696,9 @@ h5 {
 
 .form-container {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  min-height: 80vh;
+  align-items: center; }
 
 form {
   width: 100%;
