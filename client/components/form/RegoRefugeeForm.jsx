@@ -106,6 +106,16 @@ export default function RegoRefugeeForm() {
       </div>
 
       <div className='section'>
+        <h5>Year of arrival in NZ</h5>
+        <p>
+          <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
+              <SelectYear name='selectYearArrival' start={-80}/>
+          </div>
+        </p>
+      </div>
+
+      <div className='section'>
         <h5>Areas where I need support</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus
