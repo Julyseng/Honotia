@@ -41,10 +41,8 @@ class RegistrationForm extends Component {
   }
 
   componentDidMount() {
-    M.AutoInit()
 
-    let datepicker = document.querySelectorAll('.datepicker')
-    M.Datepicker.init(datepicker, { yearRange: [1910, 2019] })
+    M.AutoInit()
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
@@ -71,6 +69,7 @@ class RegistrationForm extends Component {
     let locationSelect = document.querySelector('.locationSelect')
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
+    // also need for languages, year of arrival, year left, year born
   }
 
   handleGoBack = () => {
@@ -102,12 +101,12 @@ class RegistrationForm extends Component {
       <Fragment>
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            <RegoStatusForm />
-            {/* <RegoProfileForm
+            {/* <RegoStatusForm /> */}
+            <RegoProfileForm
               handleChange={this.handleChange}
               state={this.state}
               handleSelectChange={this.handleSelectChange}
-            /> */}
+            />
             {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
             {/* <RegoRefugeeForm /> */}
             <FormNavControllers handleGoBack={this.handleGoBack} />

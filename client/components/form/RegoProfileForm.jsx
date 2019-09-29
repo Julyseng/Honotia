@@ -1,4 +1,5 @@
 import React from 'react'
+import SelectYear from './SelectYear'
 
 export default function RegoStatusForm({
   state,
@@ -45,7 +46,7 @@ export default function RegoStatusForm({
           <label>Last Name</label>
         </div>
 
-        <div className='input-field'>
+        {/* <div className='input-field'>
           <i className='material-icons prefix form-icon'>date_range</i>
           <input
             className='datepicker'
@@ -55,8 +56,15 @@ export default function RegoStatusForm({
             onChange={handleChange}
           />
           <label>Date of Birth</label>
+        </div> */}
+
+        <div className='input-field'>
+          <i className='material-icons prefix form-icon'>date_range</i>
+          <SelectYear name='selectYear' start={-23}/>
         </div>
+
       </div>
+      
 
       <div className='divider'></div>
 
