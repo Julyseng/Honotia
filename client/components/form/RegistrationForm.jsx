@@ -11,12 +11,14 @@ import RegoProfileForm from './RegoProfileForm'
 import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
 
-// import { postUserInfo } from '../../apiClient'
+import { registerUser } from '../../apiClient'
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      step: 1,
+      prefiewProfileUrl: '',
       userStatus: '',
       userAccount: {
         firstName: '',
@@ -24,7 +26,7 @@ class RegistrationForm extends Component {
         email: '',
         DOB: '',
         currentCity: '',
-        profileURL: '',
+        profileUrl: '',
         occupation: '',
         bio: '',
         languages: []
@@ -56,12 +58,23 @@ class RegistrationForm extends Component {
         delete support[value]
       }
       value = support
+    } else if (e.target.type === 'file') {
+      let fileUpload = e.target
+      let reader = new FileReader()
+      let file = fileUpload.files[0]
+
+      if (file) {
+        reader.readAsDataURL(file)
+        this.setState({ actualFile: file })
+      }
+
+      reader.addEventListener('load', () => {
+        this.setState({ prefiewProfileUrl: reader.result })
+      })
     }
 
     this.setState({
-      userAccount: {
-        [name]: value
-      }
+      userAccount: { ...this.state.userAccount, [name]: value }
     })
   }
 
@@ -72,28 +85,39 @@ class RegistrationForm extends Component {
     // also need for languages, year of arrival, year left, year born
   }
 
-  handleGoBack = () => {
-    this.props.history.goBack()
+  handlePrevious = () => {
+    this.setState({ step: this.state.step - 1 })
+  }
+
+  handleNext = () => {
+    if (this.state.step === 4) {
+      this.handleSubmit({ preventDefault: () => {} })
+    } else {
+      this.setState({ step: this.state.step + 1 })
+    }
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    // postUserInfo(this.state)
-    // register(
-    //   {
-    //     username: this.state.userAccount.email,
-    //     password: this.state.userAccount.password
-    //   },
-    //   { baseUrl: '/api/v1' }
-    // ).then(() => {
-    //   if (isAuthenticated()) {
-    //     this.props.history.push('/')
-    //   }
-    //   //then push form data here
-    // })
-    // .then(() => {
-    this.props.dispatch(storeFormData(this.state.userAccount))
-    // })
+
+    register(
+      {
+        username: this.state.userAccount.email,
+        password: this.state.userAccount.password
+      },
+      { baseUrl: '/api/v1' }
+    )
+      .then(() => {
+        if (isAuthenticated()) {
+          this.props.history.push('/')
+        }
+      })
+      .then(() => {
+        // this.props.dispatch(storeFormData(this.state.userAccount))
+        registerUser(this.state).then(res => {
+          console.log(res.text)
+        })
+      })
   }
 
   render() {
@@ -101,15 +125,26 @@ class RegistrationForm extends Component {
       <Fragment>
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            {/* <RegoStatusForm /> */}
-            <RegoProfileForm
-              handleChange={this.handleChange}
-              state={this.state}
-              handleSelectChange={this.handleSelectChange}
+            {this.state.step === 1 && <RegoStatusForm />}
+            {this.state.step === 2 && (
+              <RegoProfileForm
+                handleChange={this.handleChange}
+                state={this.state}
+                handleSelectChange={this.handleSelectChange}
+              />
+            )}
+            {this.state.step === 3 && (
+              <RegoBioForm
+                handleChange={this.handleChange}
+                state={this.state}
+              />
+            )}
+            {this.state.step === 4 && <RegoRefugeeForm />}
+            <FormNavControllers
+              step={this.state.step}
+              handleNext={this.handleNext}
+              handlePrevious={this.handlePrevious}
             />
-            {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
-            {/* <RegoRefugeeForm /> */}
-            <FormNavControllers handleGoBack={this.handleGoBack} />
           </form>
         </div>
       </Fragment>
