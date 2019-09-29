@@ -179,6 +179,95 @@ export default function RegoRefugeeForm() {
           </p>
         </div>
       </div>
+
+      <div className='section'>
+        <h5>Areas where I can offer support</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore alias
+          numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
+          ut.
+        </p>
+        {/* How I can support others */}
+        <div>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='healthcare'
+                // onChange={handleChange}
+              />
+              <span>Healthcare</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='education'
+                // onChange={handleChange}
+              />
+              <span>Education</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='housing'
+                // onChange={handleChange}
+              />
+              <span>Housing</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='mentor'
+                // onChange={handleChange}
+              />
+              <span>Mentor</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='employment'
+                // onChange={handleChange}
+              />
+              <span>Employment</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='socialSupport'
+                // onChange={handleChange}
+              />
+              <span>Social Support</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='transport'
+                // onChange={handleChange}
+              />
+              <span>Transport</span>
+            </label>
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
