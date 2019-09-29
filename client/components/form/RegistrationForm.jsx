@@ -8,6 +8,7 @@ import { storeFormData } from '../../actions'
 // import RefugeeRegForm from './RefugeeRegForm'
 // import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
+import FormNavControllers from './FormNavControllers'
 // import RegoBioForm from './RegoBioForm'
 
 // import { postUserInfo } from '../../apiClient'
@@ -114,6 +115,7 @@ class RegistrationForm extends Component {
                     state={this.state}
                   /> */}
             {/* </div> */}
+            <FormNavControllers />
           </form>
         </div>
         {/* </div> */}
