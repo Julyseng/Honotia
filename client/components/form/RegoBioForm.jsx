@@ -122,6 +122,11 @@ export default function RegoBioForm({
 
       <div className='section'>
         <h5>Bio</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+          suscipit quod est, quis sequi quam at totam dolor ipsum mollitia qui
+          nihil commodi. Sed officia ipsam ullam ex a eum.
+        </p>
         <div className='input-field'>
           <textarea
             id='bio'

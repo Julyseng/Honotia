@@ -5,7 +5,7 @@ import M from '../../materialize-js/bin/materialize'
 
 import { storeFormData } from '../../actions'
 
-// import RefugeeRegForm from './RefugeeRegForm'
+import RegoRefugeeForm from './RegoRefugeeForm'
 // import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
 import RegoBioForm from './RegoBioForm'
@@ -102,24 +102,18 @@ class RegistrationForm extends Component {
       <Fragment>
         {/* <div className='container'> */}
         {/* <RegoStatusForm /> */}
-        {/* <div className='row'> */}
-        {/* <div className='col m8 s12  form-container'> */}
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            {/* <div className='row'> */}
             {/* <RegoProfileForm
               handleChange={this.handleChange}
               state={this.state}
               handleSelectChange={this.handleSelectChange}
             /> */}
-            <RegoBioForm handleChange={this.handleChange} state={this.state} />
-            {/* </div> */}
+            {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
+            <RegoRefugeeForm />
             <FormNavControllers />
           </form>
         </div>
-        {/* </div> */}
-        {/* </div> */}
-        {/* <RefugeeRegForm /> */}
       </Fragment>
     )
   }

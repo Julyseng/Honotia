@@ -64,7 +64,7 @@ export default function RegoStatusForm({
             onChange={handleSelectChange}
             className='locationSelect'
           >
-            <option value='' disabled>
+            <option value='' disabled defaultValue>
               Current Location
             </option>
             <option value='Auckland'>Auckland</option>
