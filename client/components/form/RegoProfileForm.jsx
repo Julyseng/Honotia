@@ -8,7 +8,7 @@ export default function RegoStatusForm({
   return (
     <Fragment>
       <div className='row'>
-        <div className='col m3 profile-container'>
+        <div className='profile-container section'>
           <p className='center'>My Profile</p>
           <div className='file-field input-field '>
             <div className='btn w-100'>
@@ -21,10 +21,10 @@ export default function RegoStatusForm({
           </div>
         </div>
 
-        <div className='col m9'>
-          <div className='row'>
-            <div className='input-field col m6 s12'>
-              <i class='material-icons prefix'>account_circle</i>
+        <div className=''>
+          <div className='section'>
+            <div className='input-field'>
+              <i className='material-icons prefix form-icon'>account_circle</i>
               <input
                 type='text'
                 id='firstName'
@@ -34,8 +34,8 @@ export default function RegoStatusForm({
               />
               <label>First Name</label>
             </div>
-            <div className='input-field col m6 s12'>
-              <i class='material-icons prefix'>account_circle</i>
+            <div className='input-field'>
+              <i className='material-icons prefix form-icon'>account_circle</i>
               <input
                 type='text'
                 id='lastName'
@@ -45,10 +45,9 @@ export default function RegoStatusForm({
               />
               <label>Last Name</label>
             </div>
-          </div>
-          <div className='row'>
-            <div className='input-field col s12'>
-              <i class='material-icons prefix'>date_range</i>
+
+            <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
               <input
                 className='datepicker'
                 id='DOB'
@@ -58,55 +57,15 @@ export default function RegoStatusForm({
               />
               <label>Date of Birth</label>
             </div>
-          </div>
-          <div className='row'>
-            <div className='input-field col s12'>
-              <i class='material-icons prefix'>email</i>
-              <input
-                type='email'
-                id='emailRegForm'
-                name='email'
-                value={state.userAccount.email}
-                onChange={handleChange}
-              />
-              <label>Email</label>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='input-field col m6 s12'>
-              <i class='material-icons prefix'>lock</i>
-              <input
-                type='password'
-                id='passwordRegForm'
-                name='password'
-                value={state.userAccount.password}
-                onChange={handleChange}
-              />
-              <label>Password</label>
-            </div>
-            <div className='input-field col m6 s12'>
-              <i class='material-icons prefix'>lock</i>
-              <input
-                type='password'
-                id='passwordConfirmRegForm'
-                name='passwordConfirm'
-                value={state.userAccount.password}
-                onChange={handleChange}
-              />
-              <label>Confirm Password</label>
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='input-field col s12'>
-              <i class='material-icons prefix'>add_location</i>
+            <div className='input-field'>
+              <i className='material-icons prefix form-icon'>add_location</i>
               <select
                 // value={}
                 onChange={handleSelectChange}
                 className='locationSelect'
               >
-                <option value='' disabled>
-                  Choose your option
+                <option value='' disabled selected>
+                  Current Location
                 </option>
                 <option value='Auckland'>Auckland</option>
                 <option value='Christchurch'>Christchurch</option>
@@ -117,20 +76,70 @@ export default function RegoStatusForm({
                 <option value='Palmerston North'>Palmerston North</option>
                 <option value='Wellington'>Wellington</option>
               </select>
-              <label> Current location</label>
+              {/* <label> Current location</label> */}
+            </div>
+          </div>
+
+          <div className='divider'></div>
+
+          <div className='section'>
+            <h5>Login Details</h5>
+            <div className='input-field'>
+              <i className='material-icons prefix form-icon'>email</i>
+              <input
+                type='email'
+                id='emailRegForm'
+                name='email'
+                value={state.userAccount.email}
+                onChange={handleChange}
+              />
+              <label>Email</label>
+            </div>
+            <div className='input-field '>
+              <i className='material-icons prefix form-icon'>lock</i>
+              <input
+                type='password'
+                id='passwordRegForm'
+                name='password'
+                value={state.userAccount.password}
+                onChange={handleChange}
+              />
+              <label>Password</label>
+            </div>
+            <div className='input-field '>
+              <i className='material-icons prefix form-icon'>lock</i>
+              <input
+                type='password'
+                id='passwordConfirmRegForm'
+                name='passwordConfirm'
+                value={state.userAccount.password}
+                onChange={handleChange}
+              />
+              <label>Confirm Password</label>
             </div>
           </div>
         </div>
       </div>
 
-      <button
-        className='btn waves-effect waves-light'
-        name='action'
-        type='submit'
-      >
-        Next
-        <i className='material-icons right'>send</i>
-      </button>
+      <div className='form-navArrows-container'>
+        <button
+          className='btn waves-effect waves-light'
+          name='action'
+          type='submit'
+        >
+          Back
+          <i className='material-icons left'>arrow_back</i>
+        </button>
+
+        <button
+          className='btn waves-effect waves-light'
+          name='action'
+          type='submit'
+        >
+          Next
+          <i className='material-icons right'>arrow_forward</i>
+        </button>
+      </div>
     </Fragment>
   )
 }

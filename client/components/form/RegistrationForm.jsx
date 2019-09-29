@@ -97,24 +97,27 @@ class RegistrationForm extends Component {
   render() {
     return (
       <Fragment>
-        <div className='container'>
-          {/* <RegoStatusForm /> */}
-          <div className='form-container'>
-            <form onSubmit={this.handleSubmit}>
-              <div className='row'>
-                <RegoProfileForm
-                  handleChange={this.handleChange}
-                  state={this.state}
-                  handleSelectChange={this.handleSelectChange}
-                />
-                {/* <RegoBioForm
+        {/* <div className='container'> */}
+        {/* <RegoStatusForm /> */}
+        {/* <div className='row'> */}
+        {/* <div className='col m8 s12  form-container'> */}
+        <div className='form-container'>
+          <form onSubmit={this.handleSubmit}>
+            {/* <div className='row'> */}
+            <RegoProfileForm
+              handleChange={this.handleChange}
+              state={this.state}
+              handleSelectChange={this.handleSelectChange}
+            />
+            {/* <RegoBioForm
                     handleChange={this.handleChange}
                     state={this.state}
                   /> */}
-              </div>
-            </form>
-          </div>
+            {/* </div> */}
+          </form>
         </div>
+        {/* </div> */}
+        {/* </div> */}
         {/* <RefugeeRegForm /> */}
       </Fragment>
     )

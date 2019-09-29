@@ -1,7 +1,28 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-icon {
+  color: #b4b4b4;
+}
+
+.form-navArrows-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Login
 .login-input {
   margin-bottom: 20px;
 }
 
+// status form
 .status-container {
   display: flex;
   justify-content: space-around;
@@ -26,8 +47,18 @@
   }
 }
 
+// profile form
 .profile-container {
   border: 1px solid #b6b6b6;
-  padding: 20px;
-  border-radius: 20px;
+  // padding: 20px;
+  // border-radius: 50%;
+  background-color: #b4b4b4;
+  width: 190px;
+  height: 190px;
+  // margin: 0 auto 30px auto;
+  margin: 0 auto;
+}
+
+.file-path {
+  display: none;
 }
