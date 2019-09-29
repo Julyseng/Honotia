@@ -6,22 +6,26 @@ export default function RegoStatusForm({
   handleChange,
   handleSelectChange
 }) {
-  console.log(state)
   return (
     <div className='section'>
-      <div className='profile-container hoverable'>
+      <div
+        className='profile-container hoverable'
+        style={{
+          background:
+            state.previewProfileUrl &&
+            `linear-gradient(
+      rgba(153, 153, 153, 0.5),
+      rgba(141, 141, 141, 0.5)
+    ),
+    url(${state.previewProfileUrl})`
+        }}
+      >
         <p className='center'>My Profile</p>
-        <div className='file-field input-field '>
-          <div className='btn w-100'>
+        <div className='file-field input-field'>
+          <div className='btn w-100 z-10'>
             <span>Upload</span>
             <input type='file' name='profileUrl' onChange={handleChange} />
-            {/* {//if state exists show} */}
           </div>
-          <img
-            src={state.prefiewProfileUrl}
-            alt=''
-            style={{ width: '100px', height: '100px' }}
-          />
           <div className='file-path-wrapper'>
             <input className='file-path validate' type='text' />
           </div>
