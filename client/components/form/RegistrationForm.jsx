@@ -6,7 +6,7 @@ import M from '../../materialize-js/bin/materialize'
 import { storeFormData } from '../../actions'
 
 import RegoRefugeeForm from './RegoRefugeeForm'
-// import RegoStatusForm from './RegoStatusForm'
+import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
 import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
@@ -16,28 +16,27 @@ import FormNavControllers from './FormNavControllers'
 class RegistrationForm extends Component {
   constructor(props) {
     super(props)
-
-    // this.state = {
-    //   firstName: '',
-    //   lastName: '',
-    //   email: '',
-    //   password: '',
-    //   DOB: '',
-    //   location: '',
-    //   languages: '',
-    //   occupation: '',
-    //   support: {},
-    //   bio: ''
-    // }
     this.state = {
+      userStatus: '',
       userAccount: {
-        status: '',
         firstName: '',
         lastName: '',
         email: '',
         DOB: '',
-        profileURL: ''
-      }
+        currentCity: '',
+        profileURL: '',
+        occupation: '',
+        bio: '',
+        languages: []
+      },
+      refugeeDetails: {
+        countryOrigin: '',
+        yearLeft: null,
+        reasonForLeaving: [],
+        yearOfArrival: null,
+        needs: []
+      },
+      supports: []
     }
   }
 
@@ -49,9 +48,6 @@ class RegistrationForm extends Component {
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
-
-    // let select = document.querySelectorAll('select')
-    // M.FormSelect.init(select)
   }
 
   handleChange = e => {
@@ -77,6 +73,10 @@ class RegistrationForm extends Component {
     let selected = instance.getSelectedValues()
   }
 
+  handleGoBack = () => {
+    this.props.history.goBack()
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     // postUserInfo(this.state)
@@ -100,18 +100,17 @@ class RegistrationForm extends Component {
   render() {
     return (
       <Fragment>
-        {/* <div className='container'> */}
-        {/* <RegoStatusForm /> */}
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            <RegoProfileForm
+            <RegoStatusForm />
+            {/* <RegoProfileForm
               handleChange={this.handleChange}
               state={this.state}
               handleSelectChange={this.handleSelectChange}
-            />
+            /> */}
             {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
             {/* <RegoRefugeeForm /> */}
-            <FormNavControllers />
+            <FormNavControllers handleGoBack={this.handleGoBack} />
           </form>
         </div>
       </Fragment>

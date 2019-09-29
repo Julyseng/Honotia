@@ -1,26 +1,6 @@
 import React, { Fragment } from 'react'
 
 export default function RegoRefugeeForm() {
-  // handleChange = e => {
-  //   let { name, value } = e.target
-  //   // console.log(name, value)
-  //   if (e.target.type == 'checkbox') {
-  //     let need = { ...this.state.need, [value]: e.target.checked }
-  //     if (!e.target.checked) {
-  //       delete need[value]
-  //     }
-  //     value = need
-  //   }
-
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
-
-  // handleSubmit = e => {
-  //   e.preventDefault()
-  //   console.log(this.state)
-  // }
   return (
     <div className='section'>
       <div className='section'>
