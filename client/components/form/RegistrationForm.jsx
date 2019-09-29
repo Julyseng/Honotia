@@ -99,22 +99,20 @@ class RegistrationForm extends Component {
       <Fragment>
         <div className='container'>
           {/* <RegoStatusForm /> */}
-          <div className='row'>
-            <div className='col l8'>
-              <form onSubmit={this.handleSubmit}>
-                <div className='row'>
-                  <RegoProfileForm
-                    handleChange={this.handleChange}
-                    state={this.state}
-                    handleSelectChange={this.handleSelectChange}
-                  />
-                  {/* <RegoBioForm
+          <div className='form-container'>
+            <form onSubmit={this.handleSubmit}>
+              <div className='row'>
+                <RegoProfileForm
+                  handleChange={this.handleChange}
+                  state={this.state}
+                  handleSelectChange={this.handleSelectChange}
+                />
+                {/* <RegoBioForm
                     handleChange={this.handleChange}
                     state={this.state}
                   /> */}
-                </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
         {/* <RefugeeRegForm /> */}

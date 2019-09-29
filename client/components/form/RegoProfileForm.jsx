@@ -24,6 +24,7 @@ export default function RegoStatusForm({
         <div className='col m9'>
           <div className='row'>
             <div className='input-field col m6 s12'>
+              <i class='material-icons prefix'>account_circle</i>
               <input
                 type='text'
                 id='firstName'
@@ -34,6 +35,7 @@ export default function RegoStatusForm({
               <label>First Name</label>
             </div>
             <div className='input-field col m6 s12'>
+              <i class='material-icons prefix'>account_circle</i>
               <input
                 type='text'
                 id='lastName'
@@ -44,9 +46,9 @@ export default function RegoStatusForm({
               <label>Last Name</label>
             </div>
           </div>
-
           <div className='row'>
             <div className='input-field col s12'>
+              <i class='material-icons prefix'>date_range</i>
               <input
                 className='datepicker'
                 id='DOB'
@@ -57,9 +59,9 @@ export default function RegoStatusForm({
               <label>Date of Birth</label>
             </div>
           </div>
-
           <div className='row'>
-            <div className='input-field col m6 s12'>
+            <div className='input-field col s12'>
+              <i class='material-icons prefix'>email</i>
               <input
                 type='email'
                 id='emailRegForm'
@@ -69,7 +71,10 @@ export default function RegoStatusForm({
               />
               <label>Email</label>
             </div>
+          </div>
+          <div className='row'>
             <div className='input-field col m6 s12'>
+              <i class='material-icons prefix'>lock</i>
               <input
                 type='password'
                 id='passwordRegForm'
@@ -79,10 +84,22 @@ export default function RegoStatusForm({
               />
               <label>Password</label>
             </div>
+            <div className='input-field col m6 s12'>
+              <i class='material-icons prefix'>lock</i>
+              <input
+                type='password'
+                id='passwordConfirmRegForm'
+                name='passwordConfirm'
+                value={state.userAccount.password}
+                onChange={handleChange}
+              />
+              <label>Confirm Password</label>
+            </div>
           </div>
 
           <div className='row'>
             <div className='input-field col s12'>
+              <i class='material-icons prefix'>add_location</i>
               <select
                 // value={}
                 onChange={handleSelectChange}
