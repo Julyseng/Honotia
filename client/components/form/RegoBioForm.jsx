@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 export default function RegoBioForm({
   state,
@@ -6,9 +6,10 @@ export default function RegoBioForm({
   handleSelectChange
 }) {
   return (
-    <Fragment>
-      <div className='row'>
-        <div className='input-field col s6'>
+    <div className='section'>
+      <div className='section'>
+        <h5>Occupation</h5>
+        <div className='input-field'>
           <input
             type='text'
             id='occupation'
@@ -16,11 +17,13 @@ export default function RegoBioForm({
             value={state.occupation}
             onChange={handleChange}
           />
-          <label>Occupation</label>
+          <label>Occupation...</label>
         </div>
       </div>
-      <div className='row'>
-        <div className='input-field col s12'>
+
+      <div className='section'>
+        <h5>Languages</h5>
+        <div className='input-field'>
           <select
             multiple
             // value={state.userAccount.location}
@@ -28,56 +31,114 @@ export default function RegoBioForm({
             onChange={handleSelectChange}
             className='locationSelect'
           >
-            <option value='' disabled selected>
-              Choose your option
+            <option value='' disabled defaultValue>
+              Languages I speak...
             </option>
             <option value='English'>English</option>
             <option value='French'>French</option>
+            <option value='Water'>Water</option>
           </select>
-          <label>Languages I speak</label>
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <div className='row'>
-        <div className='input-field col s12'>
-          <label>
-            How I can support others
-            <div className='row'>
-              <div className='col s6'>
-                <label>
-                  <input
-                    type='checkbox'
-                    className='filled-in'
-                    id='supportHealthcare'
-                    name='support'
-                    value='healthcare'
-                    onChange={handleChange}
-                  />
-                  <span>Healthcare</span>
-                </label>
-              </div>
-              <div className='col s6'>
-                <label>
-                  <input
-                    type='checkbox'
-                    className='filled-in'
-                    id='supportEducation'
-                    name='support'
-                    value='education'
-                    onChange={handleChange}
-                  />
-                  <span>Education</span>
-                </label>
-              </div>
-            </div>
-          </label>
+          {/* <label>Languages I speak</label> */}
         </div>
       </div>
 
-      <div className='row'>
-        <div className='input-field col s12'>
+      <div className='section'>
+        <h5>Areas where I can offer support</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore alias
+          numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
+          ut.
+        </p>
+        {/* How I can support others */}
+        <div>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='healthcare'
+                onChange={handleChange}
+              />
+              <span>Healthcare</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='education'
+                onChange={handleChange}
+              />
+              <span>Education</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='housing'
+                onChange={handleChange}
+              />
+              <span>Housing</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='mentor'
+                onChange={handleChange}
+              />
+              <span>Mentor</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='employment'
+                onChange={handleChange}
+              />
+              <span>Employment</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='socialSupport'
+                onChange={handleChange}
+              />
+              <span>Social Support</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='transport'
+                onChange={handleChange}
+              />
+              <span>Transport</span>
+            </label>
+          </p>
+        </div>
+      </div>
+
+      <div className='section'>
+        <h5>Bio</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+          suscipit quod est, quis sequi quam at totam dolor ipsum mollitia qui
+          nihil commodi. Sed officia ipsam ullam ex a eum.
+        </p>
+        <div className='input-field'>
           <textarea
             id='bio'
             name='bio'
@@ -86,14 +147,9 @@ export default function RegoBioForm({
             value={state.bio}
             onChange={handleChange}
           />
-          <label htmlFor='bio'>Bio - a bit about myself</label>
+          <label htmlFor='bio'>A bit about myself...</label>
         </div>
       </div>
-
-      <button className='btn waves-effect waves-light' name='action'>
-        Next
-        <i className='material-icons right'>send</i>
-      </button>
-    </Fragment>
+    </div>
   )
 }

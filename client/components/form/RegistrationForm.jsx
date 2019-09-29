@@ -5,11 +5,11 @@ import M from '../../materialize-js/bin/materialize'
 
 import { storeFormData } from '../../actions'
 
-// import RefugeeRegForm from './RefugeeRegForm'
+import RegoRefugeeForm from './RegoRefugeeForm'
 // import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
+import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
-// import RegoBioForm from './RegoBioForm'
 
 // import { postUserInfo } from '../../apiClient'
 
@@ -47,6 +47,9 @@ class RegistrationForm extends Component {
     let datepicker = document.querySelectorAll('.datepicker')
     M.Datepicker.init(datepicker, { yearRange: [1910, 2019] })
 
+    let textNeedCount = document.querySelectorAll('.materialize-textarea')
+    M.CharacterCounter.init(textNeedCount)
+
     // let select = document.querySelectorAll('select')
     // M.FormSelect.init(select)
   }
@@ -72,7 +75,6 @@ class RegistrationForm extends Component {
     let locationSelect = document.querySelector('.locationSelect')
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
-    console.log(selected)
   }
 
   handleSubmit = e => {
@@ -100,27 +102,18 @@ class RegistrationForm extends Component {
       <Fragment>
         {/* <div className='container'> */}
         {/* <RegoStatusForm /> */}
-        {/* <div className='row'> */}
-        {/* <div className='col m8 s12  form-container'> */}
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            {/* <div className='row'> */}
             <RegoProfileForm
               handleChange={this.handleChange}
               state={this.state}
               handleSelectChange={this.handleSelectChange}
             />
-            {/* <RegoBioForm
-                    handleChange={this.handleChange}
-                    state={this.state}
-                  /> */}
-            {/* </div> */}
+            {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
+            {/* <RegoRefugeeForm /> */}
             <FormNavControllers />
           </form>
         </div>
-        {/* </div> */}
-        {/* </div> */}
-        {/* <RefugeeRegForm /> */}
       </Fragment>
     )
   }

@@ -4,7 +4,7 @@ export default function FormNavControllers() {
   return (
     <div className='form-navArrows-container'>
       <button
-        className='btn waves-effect waves-light'
+        className='btn waves-effect waves-green'
         name='action'
         type='submit'
       >
@@ -13,7 +13,7 @@ export default function FormNavControllers() {
       </button>
 
       <button
-        className='btn waves-effect waves-light'
+        className='btn waves-effect waves-green'
         name='action'
         type='submit'
       >
