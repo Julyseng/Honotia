@@ -6707,7 +6707,8 @@ form {
 
 .form-navArrows-container {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 20px 0; }
 
 .login-input {
   margin-bottom: 20px; }
@@ -6720,7 +6721,12 @@ form {
 
 .status-wrapper {
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  background-color: #f0f0e7;
+  border-radius: 10px;
+  width: 170px;
+  height: 170px;
+  margin: 30px auto; }
   .status-wrapper p {
     position: absolute;
     left: 50%;
@@ -6728,7 +6734,10 @@ form {
     transform: translate(-50%, -50%);
     text-align: center;
     margin: 0;
-    font-size: 18px; }
+    font-size: 15px; }
+  .status-wrapper .status-text {
+    border-top: 1px solid grey;
+    display: block; }
 
 .profile-container {
   padding: 20px;
