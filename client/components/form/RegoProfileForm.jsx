@@ -1,4 +1,5 @@
 import React from 'react'
+import SelectYear from './SelectYear'
 
 export default function RegoProfileForm({
   state,
@@ -58,14 +59,7 @@ export default function RegoProfileForm({
 
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>date_range</i>
-          <input
-            className='datepicker'
-            id='DOB'
-            name='DOB'
-            // value={state.userAccount.DOB}
-            onChange={handleChange}
-          />
-          <label>Date of Birth</label>
+          <SelectYear name='selectYear' start={-23} />
         </div>
       </div>
 
