@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 export default function RegoStatusForm({
   state,
@@ -6,8 +6,7 @@ export default function RegoStatusForm({
   handleSelectChange
 }) {
   return (
-    <Fragment>
-      {/* <div className='row'> */}
+    <div className='section'>
       <div className='profile-container'>
         <p className='center'>My Profile</p>
         <div className='file-field input-field '>
@@ -57,6 +56,12 @@ export default function RegoStatusForm({
           />
           <label>Date of Birth</label>
         </div>
+      </div>
+
+      <div className='divider'></div>
+
+      <div className='section'>
+        <h5>Current Location</h5>
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>add_location</i>
           <select
@@ -65,7 +70,7 @@ export default function RegoStatusForm({
             className='locationSelect'
           >
             <option value='' disabled defaultValue>
-              Current Location
+              Current Location...
             </option>
             <option value='Auckland'>Auckland</option>
             <option value='Christchurch'>Christchurch</option>
@@ -75,6 +80,7 @@ export default function RegoStatusForm({
             <option value='Nelson'>Nelson</option>
             <option value='Palmerston North'>Palmerston North</option>
             <option value='Wellington'>Wellington</option>
+            {/* <label htmlFor=''></label> */}
           </select>
         </div>
       </div>
@@ -118,6 +124,6 @@ export default function RegoStatusForm({
         </div>
       </div>
       {/* </div> */}
-    </Fragment>
+    </div>
   )
 }

@@ -104,13 +104,13 @@ class RegistrationForm extends Component {
         {/* <RegoStatusForm /> */}
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            {/* <RegoProfileForm
+            <RegoProfileForm
               handleChange={this.handleChange}
               state={this.state}
               handleSelectChange={this.handleSelectChange}
-            /> */}
+            />
             {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
-            <RegoRefugeeForm />
+            {/* <RegoRefugeeForm /> */}
             <FormNavControllers />
           </form>
         </div>

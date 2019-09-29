@@ -7,37 +7,48 @@ export default function RegoBioForm({
 }) {
   return (
     <div className='section'>
-      <div className='input-field'>
-        <input
-          type='text'
-          id='occupation'
-          name='occupation'
-          value={state.occupation}
-          onChange={handleChange}
-        />
-        <label>Occupation</label>
+      <div className='section'>
+        <h5>Occupation</h5>
+        <div className='input-field'>
+          <input
+            type='text'
+            id='occupation'
+            name='occupation'
+            value={state.occupation}
+            onChange={handleChange}
+          />
+          <label>Occupation...</label>
+        </div>
       </div>
 
-      <div className='input-field'>
-        <select
-          multiple
-          // value={state.userAccount.location}
-          // defaultValue={[]}
-          onChange={handleSelectChange}
-          className='locationSelect'
-        >
-          <option value='' disabled selected>
-            Languages I speak...
-          </option>
-          <option value='English'>English</option>
-          <option value='French'>French</option>
-          <option value='Water'>Water</option>
-        </select>
-        {/* <label>Languages I speak</label> */}
+      <div className='section'>
+        <h5>Languages</h5>
+        <div className='input-field'>
+          <select
+            multiple
+            // value={state.userAccount.location}
+            // defaultValue={[]}
+            onChange={handleSelectChange}
+            className='locationSelect'
+          >
+            <option value='' disabled defaultValue>
+              Languages I speak...
+            </option>
+            <option value='English'>English</option>
+            <option value='French'>French</option>
+            <option value='Water'>Water</option>
+          </select>
+          {/* <label>Languages I speak</label> */}
+        </div>
       </div>
 
       <div className='section'>
         <h5>Areas where I can offer support</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore alias
+          numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
+          ut.
+        </p>
         {/* How I can support others */}
         <div>
           <p>
