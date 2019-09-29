@@ -4,10 +4,8 @@ export default function SelectYear(props) {
     let start = Number(props.start) || -50
     let end = props.end || 0
     let years = []
-    console.log(start)
     
       var currentYear = new Date().getFullYear()
-      console.log(currentYear)
       var max = currentYear
       for (var year = currentYear+start ; year <= currentYear+end; year++) {
         years.push(year)

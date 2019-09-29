@@ -7,7 +7,7 @@ export default function RegoStatusForm({
   handleChange,
   handleSelectChange
 }) {
-  console.log(state)
+  // console.log(state)
   return (
     <div className='section'>
       <div className='profile-container hoverable'>
