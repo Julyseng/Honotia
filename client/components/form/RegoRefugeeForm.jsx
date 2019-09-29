@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 
+import SelectYear from './SelectYear'
+
 export default function RegoRefugeeForm() {
   return (
     <div className='section'>
@@ -15,6 +17,16 @@ export default function RegoRefugeeForm() {
           />
           <label>Country of origin...</label>
         </div>
+      </div>
+
+      <div className='section'>
+        <h5>Year of leaving</h5>
+        <p>
+          <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
+              <SelectYear name='selectYearLeft' start={-80}/>
+          </div>
+        </p>
       </div>
 
       <div className='section'>
