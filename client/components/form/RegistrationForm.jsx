@@ -1,222 +1,129 @@
 import React, { Component, Fragment } from 'react'
 import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
+import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
-import { postUserInfo } from '../../apiClient'
+import { storeFormData } from '../../actions'
+
+// import RefugeeRegForm from './RefugeeRegForm'
+// import RegoStatusForm from './RegoStatusForm'
+import RegoProfileForm from './RegoProfileForm'
+import FormNavControllers from './FormNavControllers'
+// import RegoBioForm from './RegoBioForm'
+
+// import { postUserInfo } from '../../apiClient'
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props)
 
+    // this.state = {
+    //   firstName: '',
+    //   lastName: '',
+    //   email: '',
+    //   password: '',
+    //   DOB: '',
+    //   location: '',
+    //   languages: '',
+    //   occupation: '',
+    //   support: {},
+    //   bio: ''
+    // }
     this.state = {
-      name: '',
-      email: '',
-      password: '',
-      DOB: '',
-      // languages: '',
-      // location: '',
-      occupation: '',
-      interests: '',
-      support: '',
-      bio: '',
-      value: event.target.value
+      userAccount: {
+        status: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        DOB: '',
+        profileURL: ''
+      }
     }
   }
 
   componentDidMount() {
-    // console.log(getDecodedToken())
-    let elems = document.querySelectorAll('.datepicker')
-    M.Datepicker.init(elems)
+    M.AutoInit()
 
-    let elems1 = document.querySelectorAll('.dropdown-trigger')
-    M.Dropdown.init(elems1)
+    let datepicker = document.querySelectorAll('.datepicker')
+    M.Datepicker.init(datepicker, { yearRange: [1910, 2019] })
+
+    // let select = document.querySelectorAll('select')
+    // M.FormSelect.init(select)
   }
 
   handleChange = e => {
     let { name, value } = e.target
+    if (e.target.type == 'checkbox') {
+      let support = { ...this.state.support, [value]: e.target.checked }
+      if (!e.target.checked) {
+        delete support[value]
+      }
+      value = support
+    }
+
     this.setState({
-      [name]: value
+      userAccount: {
+        [name]: value
+      }
     })
   }
 
-  handleChangeDrop = e => {
-    this.setState({
-      value: e.target.value
-    })
+  handleSelectChange = e => {
+    let locationSelect = document.querySelector('.locationSelect')
+    let instance = M.FormSelect.getInstance(locationSelect)
+    let selected = instance.getSelectedValues()
+    console.log(selected)
   }
 
   handleSubmit = e => {
     e.preventDefault()
     // postUserInfo(this.state)
-    register(
-      {
-        username: this.state.email,
-        password: this.state.password
-      },
-      { baseUrl: '/api/v1' }
-    ).then(() => {
-      if (isAuthenticated()) {
-        this.props.history.push('/')
-      }
-      //then push form data here
-    })
+    // register(
+    //   {
+    //     username: this.state.userAccount.email,
+    //     password: this.state.userAccount.password
+    //   },
+    //   { baseUrl: '/api/v1' }
+    // ).then(() => {
+    //   if (isAuthenticated()) {
+    //     this.props.history.push('/')
+    //   }
+    //   //then push form data here
+    // })
+    // .then(() => {
+    this.props.dispatch(storeFormData(this.state.userAccount))
+    // })
   }
 
   render() {
     return (
       <Fragment>
-        <div className="container">
-          <h1>Registration Form</h1>
-          <div className="row">
-            <form className="col s12" onSubmit={this.handleSubmit}>
-              <div className="row">
-                <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='firstName'
-                    name='firstName'
-                    value={this.state.firstName}
-                    onChange={this.handleChange}
-                  />
-                  <label>First Name</label>
-                </div>
-                <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='lastName'
-                    name='lastName'
-                    value={this.state.lastName}
-                    onChange={this.handleChange}
-                  />
-                  <label>Last Name</label>
-              </div>
-              <div className="row">
-                <div className="input-field col s6">
-                  <input
-                    type='email'
-                    id='email'
-                    name='email'
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                  />
-                  <label>Email</label>
-                </div>
-                <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='password'
-                    name='password'
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                  />
-                  <label>Password</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s6">
-                  <input
-                    className='datepicker'
-                    id='DOB'
-                    name='DOB'
-                    value={this.state.DOB}
-                    onChange={this.handleChange}
-                  />
-                  <label>Date of Birth</label>
-                </div>
-                <div className="input-field col s6">
-                <label>Current location
-                    <select value={this.state.value} onChange={this.handleChangeDrop}>
-                      <option value="Wellington">Wellington</option>
-                      <option value="Auckland">Auckland</option>
-                    </select>
-                  </label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s6">
-                  <label>Languages I speak
-                    <select value={this.state.value} onChange={this.handleChangeDrop}>
-                      <option value="English">English</option>
-                      <option value="French">French</option>
-                    </select>
-                  </label>
-                </div>
-                <div className="input-field col s6">
-                  <input
-                    type='text'
-                    id='occupation'
-                    name='occupation'
-                    value={this.state.occupation}
-                    onChange={this.handleChange}
-                  />
-                  <label>Occupation</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    type='text'
-                    id='interests'
-                    name='interests'
-                    value={this.state.interests}
-                    onChange={this.handleChange}
-                  />
-                  <label>Interests and talents</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <label>
-                    How I can support others
-                  <div className="row">
-                  <div className="col s6">
-                    <input
-                      type='checkbox'
-                      className='filled-in'
-                      id='support'
-                      name='support'
-                      value={this.state.support}
-                      onChange={this.handleChange}
-                    />
-                    <span>Healthcare</span>
-                  </div>
-                  <div className="col s6">
-                  <input
-                    type='checkbox'
-                    className='filled-in'
-                    id='support'
-                    name='support'
-                    value={this.state.support}
-                    onChange={this.handleChange}
-                  />
-                  <span>Education</span>
-                  </div>
-                  </div>
-                  </label>
-                </div>
-              </div>
-              <br></br>
-              <div className="row">
-                <div className="input-field col s12">
-                  <textarea
-                    id='bio'
-                    name='bio'
-                    // className='materialize-textarea'
-                    data-length='1000'
-                    value={this.state.bio}
-                    onChange={this.handleChange}
-                  />
-                  <label>Bio - a bit about myself</label>
-                </div>
-              </div>
-              <input type='submit' value='Submit' />
-              </div>
-            </form>
-          </div>
+        {/* <div className='container'> */}
+        {/* <RegoStatusForm /> */}
+        {/* <div className='row'> */}
+        {/* <div className='col m8 s12  form-container'> */}
+        <div className='form-container'>
+          <form onSubmit={this.handleSubmit}>
+            {/* <div className='row'> */}
+            <RegoProfileForm
+              handleChange={this.handleChange}
+              state={this.state}
+              handleSelectChange={this.handleSelectChange}
+            />
+            {/* <RegoBioForm
+                    handleChange={this.handleChange}
+                    state={this.state}
+                  /> */}
+            {/* </div> */}
+            <FormNavControllers />
+          </form>
         </div>
+        {/* </div> */}
+        {/* </div> */}
+        {/* <RefugeeRegForm /> */}
       </Fragment>
     )
   }
 }
 
-export default RegistrationForm
+export default connect()(RegistrationForm)
