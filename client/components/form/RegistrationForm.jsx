@@ -42,13 +42,13 @@ class RegistrationForm extends Component {
   }
 
   componentDidMount() {
-    // let datepicker = document.querySelectorAll('.datepicker')
-    // M.Datepicker.init(datepicker)
+    M.AutoInit()
+
+    let datepicker = document.querySelectorAll('.datepicker')
+    M.Datepicker.init(datepicker, { yearRange: [1910, 2019] })
 
     // let select = document.querySelectorAll('select')
     // M.FormSelect.init(select)
-
-    M.AutoInit()
   }
 
   handleChange = e => {
