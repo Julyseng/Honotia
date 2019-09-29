@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import placeHolderReducer from './placeHolderReducer'
+import formReducer from './formReducer'
 
 export default combineReducers({
-    placeHolderReducer
+    form: formReducer
 })
