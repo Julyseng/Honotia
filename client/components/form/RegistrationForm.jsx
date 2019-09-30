@@ -192,7 +192,7 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
+            {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
             <FormNavControllers
               userStatus={userDetails.status}
               step={step}
