@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { HashRouter as Router, Route } from 'react-router-dom'
+import { isAuthenticated } from 'authenticare/client'
+
+import { fetchLoggedInUser } from '../actions'
 
 import LandingPage from './LandingPage'
 import RegistrationForm from './form/RegistrationForm'
@@ -8,22 +12,55 @@ import AboutPage from './AboutPage'
 import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
 
-const App = () => {
-  return (
-    <Router>
-      <div className='container'>
-        <Route path='/' component={Navbar} />
-        <Route exact path='/' component={LandingPage} />
-        <Route path='/registration' component={RegistrationForm} />
-        <Route path='/about' component={AboutPage} />
-        <Route path='/resources' component={ResourcesPage} />
-        <Route path='/connect' component={ConnectPage} />
-        <Route path='/user-profile' component={ConnectPage} />
-      </div>
+class App extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+      currentUser: props.currentUser
+    }
+  }
 
-      <div className='bg_gradient'></div>
-    </Router>
-  )
+  componentDidMount() {
+    if (isAuthenticated()) {
+      this.props.dispatch(fetchLoggedInUser())
+    }
+  }
+
+  componentWillReceiveProps({ currentUser }) {
+    this.setState({ currentUser })
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className='container'>
+          <Route path='/' component={Navbar} />
+          <Route
+            exact
+            path='/'
+            // component={LandingPage}
+            // currentUser={this.state.currentUser}
+            render={props => (
+              <LandingPage {...props} currentUser={this.state.currentUser} />
+            )}
+          />
+          <Route path='/registration' component={RegistrationForm} />
+          <Route path='/about' component={AboutPage} />
+          <Route path='/resources' component={ResourcesPage} />
+          <Route path='/connect' component={ConnectPage} />
+          <Route path='/user-profile' component={ConnectPage} />
+        </div>
+
+        <div className='bg_gradient'></div>
+      </Router>
+    )
+  }
 }
 
-export default App
+function mapStateToProps({ currentUser }) {
+  return {
+    currentUser
+  }
+}
+
+export default connect(mapStateToProps)(App)
