@@ -69,7 +69,7 @@ class RegistrationForm extends Component {
       if (!e.target.checked) {
         delete support[value]
       }
-      value = support 
+      value = support
       console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
@@ -78,7 +78,6 @@ class RegistrationForm extends Component {
       // }
       // value = needs
       // console.log(value)
-
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -165,7 +164,7 @@ class RegistrationForm extends Component {
       handlePrevious,
       state
     } = this
-    const { step } = this.state
+    const { step, userStatus } = this.state
 
     return (
       <Fragment>
@@ -182,8 +181,9 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && <RegoRefugeeForm />}
+            {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
             <FormNavControllers
+              status={status}
               step={step}
               handleNext={handleNext}
               handlePrevious={handlePrevious}
