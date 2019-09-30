@@ -2,11 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { isAuthenticated } from 'authenticare/client'
 
-export default function LandingPage() {
+export default function LandingPage({ currentUser }) {
+  // const { firstName } = currentUser
+  console.log(currentUser.firstName)
   return (
     <div className='landingPage-container'>
       <div className='center-align'>
-        <h2>Kia Ora {isAuthenticated() && 'name'}!</h2>
+        <h2>Kia Ora {isAuthenticated() && currentUser.firstName}!</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
 
