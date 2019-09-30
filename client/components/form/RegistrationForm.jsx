@@ -24,9 +24,7 @@ class RegistrationForm extends Component {
         DOB: '',
         currentCity: '',
         occupation: '',
-        bio: '',
-        profileUrl: '',
-        supports: []
+        bio: ''
       },
       refugeeDetails: {
         countryOrigin: '',
@@ -40,7 +38,8 @@ class RegistrationForm extends Component {
       languages: [],
       supports: [],
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      actualFile: undefined
     }
   }
 
@@ -67,7 +66,6 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
-    // console.log(value)
     if (e.target.type == 'checkbox') {
       let supports = { ...this.state.supports, [value]: e.target.checked }
       if (!e.target.checked) {
@@ -112,18 +110,21 @@ class RegistrationForm extends Component {
     }
   }
 
-  handleSelectChange = e => {
+  handleSelectChangeLocation = e => {
     let locationSelect = document.querySelector('.locationSelect')
     let locationInstance = M.FormSelect.getInstance(locationSelect)
     let selected = locationInstance.getSelectedValues()
-    // this.setState({ userAccount: {currentCity: selected}})
+    this.setState({ userDetails: {...this.state.userDetails, currentCity: selected}})
     console.log(selected)
-       
-    // let languageSelect = document.querySelector('.languageSelect')
-    // let languageInstance = M.FormSelect.getInstance(languageSelect)
-    // let languageSelected = languageInstance.getSelectedValues()
-    // console.log(languageSelected)
+
     // also need for languages, year of arrival, year left, year born
+  }
+
+  handleSelectChangeLanguage = e => {           
+    let languageSelect = document.querySelector('.languageSelect')
+    let languageInstance = M.FormSelect.getInstance(languageSelect)
+    let languageSelected = languageInstance.getSelectedValues()
+    console.log(languageSelected)
   }
   
   handlePrevious = e => {
@@ -167,9 +168,9 @@ class RegistrationForm extends Component {
           refugee: this.state.refugeeDetails,
           needs: this.state.needs,
           languages: this.state.languages,
-          supports: this.state.supports
+          supports: this.state.supports,
+          actualFile: this.state.actualFile
         }).then(res => {
-          // console.log(res.text)
           this.props.history.push('/')
         })
       })
@@ -186,7 +187,7 @@ class RegistrationForm extends Component {
       handleSubmit,
       setUserStatus,
       handleChange,
-      handleSelectChange,
+      handleSelectChangeLocation,
       handleNext,
       handlePrevious,
       state
@@ -203,7 +204,7 @@ class RegistrationForm extends Component {
               <RegoProfileForm
                 handleChange={handleChange}
                 state={state}
-                handleSelectChange={handleSelectChange}
+                handleSelectChangeLocation={handleSelectChangeLocation}
               />
             )}
             {step === 3 && (

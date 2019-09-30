@@ -12,10 +12,8 @@ export default function SelectYear(props) {
     }
           
     return (
-        <div className="input-field">
-            <select name={props.name} value={props.value}>
-                {years.reverse().map((year, i) => <option key={i}>{year}</option>)}
-            </select>
-        </div>
+        <select name={props.name} value={props.value}>
+            {years.reverse().map((year, i) => <option key={i}>{year}</option>)}
+        </select>
     )
 }

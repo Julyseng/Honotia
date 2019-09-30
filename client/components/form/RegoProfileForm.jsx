@@ -4,7 +4,7 @@ import SelectYear from './SelectYear'
 export default function RegoProfileForm({
   state,
   handleChange,
-  handleSelectChange
+  handleSelectChangeLocation
 }) {
   return (
     <div className='section'>
@@ -73,7 +73,7 @@ export default function RegoProfileForm({
           <select
             name="currentCity"
             // value={state.userDetails.currentCity}
-            onChange={handleSelectChange}
+            onChange={handleSelectChangeLocation}
             className='locationSelect'
           >
             <option value='' disabled defaultValue>
