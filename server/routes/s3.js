@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const aws = require('aws-sdk')
 const multer = require('multer')

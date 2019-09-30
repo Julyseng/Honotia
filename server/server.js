@@ -12,6 +12,6 @@ server.use(express.urlencoded({ extended: true }))
 
 server.use('/api/v1/user', userRoutes)
 server.use('/api/v1/', authRouthes)
-server.use('/s3', s3)
+server.use('/api/v1/s3', s3)
 
 module.exports = server

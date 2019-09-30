@@ -2,20 +2,25 @@ import React from 'react'
 
 export default function ConnectProfile({ profile }) {
   return (
-    <a href='#' class='card'>
-      <div class='card-image'>
+    <div className='grid-card z-depth-1 hoverable'>
+      <div className='grid-card-image'>
         <img src={profile.profileImg} alt='' />
       </div>
-      <article class='card__content'>
-        <h2 class='card__title'>{profile.firstName}</h2>
-        <div class='card__body'>
-          <p>{profile.bio}</p>
+      <article className='grid-card-content'>
+        <p className='grid-card-title'>{profile.firstName}</p>
+        <div className='grid-card-body'>
+          <p className='b-font'>{profile.bio}</p>
         </div>
-        <div class='card__footer'>
-          <span class='tag'>{profile.currentCity}</span>
-          <span class='tag'>{profile.occupation}</span>
+        <div className='grid-card-footer'>
+          <span className='tag'>{profile.currentCity}</span>
+          <span className='tag'>{profile.occupation}</span>
         </div>
       </article>
-    </a>
+    </div>
   )
 }
+
+
+
+
+

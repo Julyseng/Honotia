@@ -1,12 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import SelectYear from './SelectYear'
 
 export default function RegoRefugeeForm({
   state,
   handleChange,
-  handleSelectChange
+  handleSelectChangeLeaving,
+  handleSelectChangeArrival
 }) {
+  console.log(state)
   return (
     <div className='section'>
       <div className='section'>
@@ -14,10 +16,10 @@ export default function RegoRefugeeForm({
         <div className='input-field'>
           <input
             type='text'
-            id='originCountry'
-            name='originCountry'
-            // value={this.state.originCountry}
-            // onChange={this.handleChange}
+            id='countryOrigin'
+            name='countryOrigin'
+            value={state.countryOrigin}
+            onChange={handleChange}
           />
           <label>Country of origin...</label>
         </div>
@@ -25,10 +27,14 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of leaving</h5>
-        <div className='input-field'>
-          <i className='material-icons prefix form-icon'>date_range</i>
-          <SelectYear name='selectYearLeft' start={-80} />
-        </div>
+          <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
+              <SelectYear 
+              name='yearLeft' start={-80} 
+              function={handleSelectChangeLeaving}
+              class={'leavingSelect'}
+              name={'leavingSelect'}/>
+          </div>
       </div>
 
       <div className='section'>
@@ -42,9 +48,9 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='reasonForLeaving'
                 value='conflict'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>War or conflict</span>
             </label>
@@ -53,9 +59,9 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='reasonForLeaving'
                 value='religious'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Religious persecution</span>
             </label>
@@ -64,9 +70,9 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='reasonForLeaving'
                 value='political'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Political persecution</span>
             </label>
@@ -75,9 +81,9 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='reasonForLeaving'
                 value='humanRights'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Human rights violations</span>
             </label>
@@ -86,9 +92,9 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='reasonForLeaving'
                 value='economic'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Economic reasons</span>
             </label>
@@ -97,9 +103,9 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='reasonForLeaving'
                 value='climate'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Climate change</span>
             </label>
@@ -109,10 +115,13 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of arrival in NZ</h5>
-        <div className='input-field'>
-          <i className='material-icons prefix form-icon'>date_range</i>
-          <SelectYear name='selectYearArrival' start={-80} />
-        </div>
+          <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
+              <SelectYear 
+              name='yearOfArrival' start={-80}
+              function={handleSelectChangeArrival} className='arrivalSelect' 
+              name='selectYearArrival'/>
+          </div>
       </div>
 
       <div className='section'>
@@ -126,7 +135,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='healthcare'
                 onChange={handleChange}
               />
@@ -137,7 +146,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='education'
                 onChange={handleChange}
               />
@@ -148,7 +157,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='housing'
                 onChange={handleChange}
               />
@@ -159,7 +168,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='mentor'
                 onChange={handleChange}
               />
@@ -170,7 +179,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='employment'
                 onChange={handleChange}
               />
@@ -181,7 +190,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='socialSupport'
                 onChange={handleChange}
               />
@@ -192,7 +201,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='needs'
                 value='transport'
                 onChange={handleChange}
               />
@@ -215,7 +224,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='healthcare'
                 onChange={handleChange}
               />
@@ -226,7 +235,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='education'
                 onChange={handleChange}
               />
@@ -237,7 +246,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='housing'
                 onChange={handleChange}
               />
@@ -248,7 +257,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='mentor'
                 onChange={handleChange}
               />
@@ -259,7 +268,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='employment'
                 onChange={handleChange}
               />
@@ -270,7 +279,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='socialSupport'
                 onChange={handleChange}
               />
@@ -281,7 +290,7 @@ export default function RegoRefugeeForm({
             <label>
               <input
                 type='checkbox'
-                name='support'
+                name='supports'
                 value='transport'
                 onChange={handleChange}
               />
