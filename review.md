@@ -1,8 +1,8 @@
 - woah, where are the tests?
 - unused or failing tests need to be skipped or removed
-[x] '/s3' routes should be put under the /api/v1 prefix
-[x] move the require('dotenv').config() from each route to the index.js
-[x] remove console.log in line 10 of apiClient
+- [x] '/s3' routes should be put under the /api/v1 prefix
+- [x] move the require('dotenv').config() from each route to the index.js
+- [x] remove console.log in line 10 of apiClient
 - if action and reducers aren't being used then move them out of master until they are don
 - I would move all the page components into their own folder
 - html in navbar is feeling a little large, I would consider refactoring out a couple of small components
