@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function FormNavControllers({
-  status,
+  userStatus,
   step,
   handlePrevious,
   handleNext
@@ -25,7 +25,7 @@ export default function FormNavControllers({
         type='submit'
         onClick={handleNext}
       >
-        {step === 4 ? 'Submit' : 'Next'}
+        {step === 4 || (step === 3 && userStatus === 'AL') ? 'Submit' : 'Next'}
         <i className='material-icons right'>arrow_forward</i>
       </button>
       {/* )} */}
