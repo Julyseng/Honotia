@@ -30,36 +30,7 @@ export default function AboutPage() {
       <br />
       <br />
 
-      <div className='box-wrapper'>
-        <div className='about-box'>
-          <h4>Vision</h4>
-          <p>
-            To connect, educate and empower refugees and people of New Zealand
-          </p>
-          <img className='logos' src="./vision.png" alt="value" />
-        </div>
-
-        <div className='about-box'>
-          <h4>Mission</h4>
-          <p>
-            Creating a cohesive community where everyone can learn from each other’s
-            stories and support each other.
-        </p>
-          <img className='logos' src="./mission.png" alt="value" />
-
-        </div>
-
-        <div className='about-box'>
-          <h4>Core Values</h4>
-          <ul>
-            <li>Respect</li>
-            <li>Humility</li>
-            <li>Open minded</li>
-          </ul>
-          <img className='logos' src="./value.png" alt="value" />
-
-        </div>
-      </div>
+      
 
       <section className="block-content t-block-teal l-block-spacing">
         <div className="l-contained">
@@ -109,6 +80,37 @@ export default function AboutPage() {
         </div>
 
       </section>
+
+      <div className='box-wrapper'>
+        <div className='about-box'>
+          <h4>Vision</h4>
+          <p>
+            To connect, educate and empower refugees and people of New Zealand
+          </p>
+          <img className='logos' src="./vision.png" alt="value" />
+        </div>
+
+        <div className='about-box'>
+          <h4>Mission</h4>
+          <p>
+            Creating a cohesive community where everyone can learn from each other’s
+            stories and support each other.
+        </p>
+          <img className='logos' src="./mission.png" alt="value" />
+
+        </div>
+
+        <div className='about-box'>
+          <h4>Core Values</h4>
+          <ul>
+            <li>Respect</li>
+            <li>Humility</li>
+            <li>Open minded</li>
+          </ul>
+          <img className='logos' src="./value.png" alt="value" />
+
+        </div>
+      </div>
 
     </div >
   )
