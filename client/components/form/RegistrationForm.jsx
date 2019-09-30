@@ -63,12 +63,22 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
+    console.log(value)
     if (e.target.type == 'checkbox') {
       let support = { ...this.state.support, [value]: e.target.checked }
       if (!e.target.checked) {
         delete support[value]
       }
-      value = support
+      value = support 
+      console.log(value)
+
+      // let needs = { ...this.state.needs, [value]: e.target.checked }
+      // if (!e.target.checked) {
+      //   delete needs[value]
+      // }
+      // value = needs
+      // console.log(value)
+
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
