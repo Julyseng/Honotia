@@ -14,7 +14,7 @@ export default class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 3,
+      step: 1,
       previewProfileUrl: null,
       userDetails: {
         status: '',
