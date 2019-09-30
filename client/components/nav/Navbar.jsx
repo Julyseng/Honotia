@@ -62,13 +62,10 @@ export default class Nav extends Component {
                 <Link to='/resources' className='exclusive-menuItem'>
                   Resources
                 </Link>
-                {/* <Link to='/connect' className='exclusive-menuItem'>
+                <Link to='/connect' className='exclusive-menuItem'>
                   Connect
-                </Link> */}
+                </Link>
               </IfAuthenticated>
-              <Link to='/connect' className='exclusive-menuItem'>
-                Connect
-              </Link>
             </div>
             <div className='adminBtns-wrapper'>
               <IfAuthenticated>
