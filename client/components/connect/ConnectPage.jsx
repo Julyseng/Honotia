@@ -12,7 +12,7 @@ class ConnectPage extends Component {
   render() {
     const { profiles } = this.props
     return (
-      <div>
+      <div className='grid'>
         {profiles.map((profile, i) => (
           <ConnectProfile key={i} profile={profile} />
         ))}
