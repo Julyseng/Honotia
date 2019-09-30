@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
+import { register, isAuthenticated } from 'authenticare/client'
 import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
@@ -66,21 +66,15 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
-    let { name, value } = e.target
-    if (e.target.type == 'checkbox') {
-      let support = { ...this.state.support, [value]: e.target.checked }
-      if (!e.target.checked) {
+    let { name, value, type, checked } = e.target
+
+    if (type == 'checkbox') {
+      let support = { ...this.state.support, [value]: checked }
+      if (!checked) {
         delete support[value]
       }
       value = support
-
-      // let needs = { ...this.state.needs, [value]: e.target.checked }
-      // if (!e.target.checked) {
-      //   delete needs[value]
-      // }
-      // value = needs
-      // console.log(value)
-    } else if (e.target.type === 'file') {
+    } else if (type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
       let file = fileUpload.files[0]
@@ -93,10 +87,10 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'password') {
-      this.setState({ password: e.target.value })
-    } else if (e.target.name === 'confirmPassword') {
-      this.setState({ confirmPassword: e.target.value })
+    } else if (name === 'password') {
+      this.setState({ password: value })
+    } else if (name === 'confirmPassword') {
+      this.setState({ confirmPassword: value })
     }
     this.formValidation(e)
 
@@ -106,12 +100,11 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChange = e => {
-    let locationSelect = document.querySelector('.locationSelect')
+    let locationSelect = e.target
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
 
     this.setState({ ...this.state.userDetails, currentCity: selected })
-    // also need for languages, year of arrival, year left, year born
   }
 
   handlePrevious = e => {
