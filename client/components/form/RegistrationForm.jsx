@@ -3,8 +3,6 @@ import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
 import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
-import { storeFormData } from '../../actions'
-
 import RegoRefugeeForm from './RegoRefugeeForm'
 import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
@@ -18,7 +16,7 @@ class RegistrationForm extends Component {
     super(props)
     this.state = {
       step: 1,
-      prefiewProfileUrl: '',
+      previewProfileUrl: null,
       userStatus: '',
       userAccount: {
         firstName: '',
@@ -38,28 +36,48 @@ class RegistrationForm extends Component {
         yearOfArrival: null,
         needs: []
       },
-      supports: []
+      supports: [],
+      password: '',
+      confirmPassword: ''
     }
   }
 
   componentDidMount() {
-    M.AutoInit()
+    this.initiateMaterialize()
+  }
 
-    let datepicker = document.querySelectorAll('.datepicker')
-    M.Datepicker.init(datepicker, { yearRange: [1910, 2019] })
+  componentDidUpdate() {
+    this.initiateMaterialize()
+  }
+
+  initiateMaterialize = () => {
+    M.AutoInit()
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
   }
 
+  setUserStatus = userStatus => {
+    this.setState({ userStatus })
+  }
+
   handleChange = e => {
     let { name, value } = e.target
+    console.log(value)
     if (e.target.type == 'checkbox') {
       let support = { ...this.state.support, [value]: e.target.checked }
       if (!e.target.checked) {
         delete support[value]
       }
       value = support
+      console.log(value)
+
+      // let needs = { ...this.state.needs, [value]: e.target.checked }
+      // if (!e.target.checked) {
+      //   delete needs[value]
+      // }
+      // value = needs
+      // console.log(value)
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -71,8 +89,12 @@ class RegistrationForm extends Component {
       }
 
       reader.addEventListener('load', () => {
-        this.setState({ prefiewProfileUrl: reader.result })
+        this.setState({ previewProfileUrl: reader.result })
       })
+    } else if (e.target.name === 'password') {
+      this.setState({ password: e.target.value })
+    } else if (e.target.name === 'confirmPassword') {
+      this.setState({ confirmPassword: e.target.value })
     }
 
     this.setState({
@@ -84,13 +106,19 @@ class RegistrationForm extends Component {
     let locationSelect = document.querySelector('.locationSelect')
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
+    // also need for languages, year of arrival, year left, year born
   }
 
-  handlePrevious = () => {
+  handlePrevious = e => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
     this.setState({ step: this.state.step - 1 })
   }
 
-  handleNext = () => {
+  handleNext = e => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
+    this.formValidation()
     if (this.state.step === 4) {
       this.handleSubmit({ preventDefault: () => {} })
     } else {
@@ -104,7 +132,7 @@ class RegistrationForm extends Component {
     register(
       {
         username: this.state.userAccount.email,
-        password: this.state.userAccount.password
+        password: this.state.password
       },
       { baseUrl: '/api/v1' }
     )
@@ -114,37 +142,51 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        // this.props.dispatch(storeFormData(this.state.userAccount))
         registerUser(this.state).then(res => {
           console.log(res.text)
         })
       })
   }
 
+  formValidation = () => {
+    if (this.state.password != this.state.confirmPassword) {
+      return console.log('password does not match')
+    }
+  }
+
   render() {
+    const {
+      handleSubmit,
+      setUserStatus,
+      handleChange,
+      handleSelectChange,
+      handleNext,
+      handlePrevious,
+      state
+    } = this
+    const { step, userStatus } = this.state
+
     return (
       <Fragment>
         <div className='form-container'>
-          <form onSubmit={this.handleSubmit}>
-            {this.state.step === 1 && <RegoStatusForm />}
-            {this.state.step === 2 && (
+          <form onSubmit={handleSubmit}>
+            {step === 1 && <RegoStatusForm setUserStatus={setUserStatus} />}
+            {step === 2 && (
               <RegoProfileForm
-                handleChange={this.handleChange}
-                state={this.state}
-                handleSelectChange={this.handleSelectChange}
+                handleChange={handleChange}
+                state={state}
+                handleSelectChange={handleSelectChange}
               />
             )}
-            {this.state.step === 3 && (
-              <RegoBioForm
-                handleChange={this.handleChange}
-                state={this.state}
-              />
+            {step === 3 && (
+              <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {this.state.step === 4 && <RegoRefugeeForm />}
+            {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
             <FormNavControllers
-              step={this.state.step}
-              handleNext={this.handleNext}
-              handlePrevious={this.handlePrevious}
+              status={status}
+              step={step}
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
             />
           </form>
         </div>

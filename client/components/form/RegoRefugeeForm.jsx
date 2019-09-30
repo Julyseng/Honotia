@@ -1,6 +1,12 @@
 import React, { Fragment } from 'react'
 
-export default function RegoRefugeeForm() {
+import SelectYear from './SelectYear'
+
+export default function RegoRefugeeForm({
+  state,
+  handleChange,
+  handleSelectChange
+}) {
   return (
     <div className='section'>
       <div className='section'>
@@ -15,6 +21,16 @@ export default function RegoRefugeeForm() {
           />
           <label>Country of origin...</label>
         </div>
+      </div>
+
+      <div className='section'>
+        <h5>Year of leaving</h5>
+        <p>
+          <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
+              <SelectYear name='selectYearLeft' start={-80}/>
+          </div>
+        </p>
       </div>
 
       <div className='section'>
@@ -94,6 +110,16 @@ export default function RegoRefugeeForm() {
       </div>
 
       <div className='section'>
+        <h5>Year of arrival in NZ</h5>
+        <p>
+          <div className='input-field'>
+              <i className='material-icons prefix form-icon'>date_range</i>
+              <SelectYear name='selectYearArrival' start={-80}/>
+          </div>
+        </p>
+      </div>
+
+      <div className='section'>
         <h5>Areas where I need support</h5>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus
@@ -106,7 +132,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='healthcare'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Healthcare</span>
             </label>
@@ -117,7 +143,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='education'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Education</span>
             </label>
@@ -128,7 +154,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='housing'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Housing</span>
             </label>
@@ -139,7 +165,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='mentor'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Mentor</span>
             </label>
@@ -150,7 +176,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='employment'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Employment</span>
             </label>
@@ -161,7 +187,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='socialSupport'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Social Support</span>
             </label>
@@ -172,7 +198,96 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='transport'
-                // onChange={handleChange}
+                onChange={handleChange}
+              />
+              <span>Transport</span>
+            </label>
+          </p>
+        </div>
+      </div>
+
+      <div className='section'>
+        <h5>Areas where I can offer support</h5>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore alias
+          numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
+          ut.
+        </p>
+        {/* How I can support others */}
+        <div>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='healthcare'
+                onChange={handleChange}
+              />
+              <span>Healthcare</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='education'
+                onChange={handleChange}
+              />
+              <span>Education</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='housing'
+                onChange={handleChange}
+              />
+              <span>Housing</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='mentor'
+                onChange={handleChange}
+              />
+              <span>Mentor</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='employment'
+                onChange={handleChange}
+              />
+              <span>Employment</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='socialSupport'
+                onChange={handleChange}
+              />
+              <span>Social Support</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type='checkbox'
+                name='support'
+                value='transport'
+                onChange={handleChange}
               />
               <span>Transport</span>
             </label>
