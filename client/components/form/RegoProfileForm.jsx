@@ -112,7 +112,7 @@ export default function RegoProfileForm({
             type='password'
             id='passwordRegForm'
             name='password'
-            value={state.userAccount.password}
+            value={state.password}
             onChange={handleChange}
           />
           <label>Password</label>
@@ -122,9 +122,9 @@ export default function RegoProfileForm({
           <input
             type='password'
             id='passwordConfirmRegForm'
-            name='passwordConfirm'
-            // value={state.userAccount.password}
-            // onChange={handleChange}
+            name='confirmPassword'
+            value={state.confirmPassword}
+            onChange={handleChange}
           />
           <label>Confirm Password</label>
         </div>
