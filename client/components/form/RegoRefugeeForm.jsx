@@ -30,10 +30,10 @@ export default function RegoRefugeeForm({
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
               <SelectYear 
-              onChange={handleSelectChangeLeaving}
-              name='yearLeft' 
-              start={-80} 
-              className='leavingSelect'/>
+              name='yearLeft' start={-80} 
+              function={handleSelectChangeLeaving}
+              class={'leavingSelect'}
+              name={'leavingSelect'}/>
           </div>
       </div>
 
@@ -118,9 +118,9 @@ export default function RegoRefugeeForm({
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
               <SelectYear 
-              onChange={handleSelectChangeArrival} className='arrivalSelect' 
-              name='selectYearArrival' 
-              start={-80}/>
+              name='yearOfArrival' start={-80}
+              function={handleSelectChangeArrival} className='arrivalSelect' 
+              name='selectYearArrival'/>
           </div>
       </div>
 

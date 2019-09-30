@@ -112,7 +112,7 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChangeAge = e => {
-    let ageSelect = document.querySelector('.ageSelect')
+    let ageSelect = e.target
     let ageInstance = M.FormSelect.getInstance(ageSelect)
     let ageSelected = ageInstance.getSelectedValues()
     this.setState({ userDetails: {...this.setState.userDetails, DOB: ageSelected}})
@@ -120,7 +120,7 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChangeLocation = e => {
-    let locationSelect = document.querySelector('.locationSelect')
+    let locationSelect = e.target
     let locationInstance = M.FormSelect.getInstance(locationSelect)
     let locationSelected = locationInstance.getSelectedValues()
     this.setState({ userDetails: {...this.state.userDetails, currentCity: locationSelected}})
@@ -128,7 +128,7 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChangeLanguage = e => {           
-    let languageSelect = document.querySelector('.languageSelect')
+    let languageSelect = e.target
     let languageInstance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = languageInstance.getSelectedValues()
     this.setState({ languages: languageSelected})
@@ -136,7 +136,7 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChangeLeaving = e => {
-    let leavingSelect = document.querySelector('.leavingSelect')
+    let leavingSelect = e.target
     let leavingInstance = M.FormSelect.getInstance(leavingSelect)
     let leavingSelected = leavingInstance.getSelectedValues()
     console.log(leavingSelected)
@@ -144,7 +144,7 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChangeArrival = e => {
-    let arrivalSelect = document.querySelector('.arrivalSelect')
+    let arrivalSelect = e.target
     let arrivalInstance = M.FormSelect.getInstance(arrivalSelect)
     let arrivalSelected = arrivalInstance.getSelectedValues()
     this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearOfArrival: arrivalSelected}})

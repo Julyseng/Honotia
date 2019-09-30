@@ -62,8 +62,11 @@ export default function RegoProfileForm({
           <i className='material-icons prefix form-icon'>date_range</i>
           <SelectYear 
           name='DOB' start={-80} end={-18}
-          onChange={handleSelectChangeAge}
-          className='ageSelect'/>
+          function={handleSelectChangeAge}
+          class={'ageSelect'}
+          // value={state.userDetails.DOB}
+          name={'ageSelect'}
+          />
         </div>
       </div>
 
