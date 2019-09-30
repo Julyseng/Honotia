@@ -8,6 +8,6 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTable('language')
+    return knex.schema.dropTable('languages')
   
 };

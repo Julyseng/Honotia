@@ -1,137 +1,193 @@
 import React, { Component, Fragment } from 'react'
-import { postUserInfo } from '../../apiClient'
+import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
+import { connect } from 'react-redux'
+import M from '../../materialize-js/bin/materialize'
+
+import RegoRefugeeForm from './RegoRefugeeForm'
+import RegoStatusForm from './RegoStatusForm'
+import RegoProfileForm from './RegoProfileForm'
+import RegoBioForm from './RegoBioForm'
+import FormNavControllers from './FormNavControllers'
+
+import { registerUser } from '../../apiClient'
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
-      name: '',
-      age: 18,
-      languages: '',
-      location: '',
-      occupation: '',
-      interests: '',
-      support: '',
-      email: ''
+      step: 1,
+      previewProfileUrl: null,
+      userStatus: '',
+      userAccount: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        DOB: '',
+        currentCity: '',
+        profileUrl: '',
+        occupation: '',
+        bio: '',
+        languages: []
+      },
+      refugeeDetails: {
+        countryOrigin: '',
+        yearLeft: null,
+        reasonForLeaving: [],
+        yearOfArrival: null,
+        needs: []
+      },
+      supports: [],
+      password: '',
+      confirmPassword: ''
     }
+  }
+
+  componentDidMount() {
+    this.initiateMaterialize()
+  }
+
+  componentDidUpdate() {
+    this.initiateMaterialize()
+  }
+
+  initiateMaterialize = () => {
+    M.AutoInit()
+
+    let textNeedCount = document.querySelectorAll('.materialize-textarea')
+    M.CharacterCounter.init(textNeedCount)
+  }
+
+  setUserStatus = userStatus => {
+    this.setState({ userStatus })
   }
 
   handleChange = e => {
     let { name, value } = e.target
+    console.log(value)
+    if (e.target.type == 'checkbox') {
+      let support = { ...this.state.support, [value]: e.target.checked }
+      if (!e.target.checked) {
+        delete support[value]
+      }
+      value = support
+      console.log(value)
+
+      // let needs = { ...this.state.needs, [value]: e.target.checked }
+      // if (!e.target.checked) {
+      //   delete needs[value]
+      // }
+      // value = needs
+      // console.log(value)
+    } else if (e.target.type === 'file') {
+      let fileUpload = e.target
+      let reader = new FileReader()
+      let file = fileUpload.files[0]
+
+      if (file) {
+        reader.readAsDataURL(file)
+        this.setState({ actualFile: file })
+      }
+
+      reader.addEventListener('load', () => {
+        this.setState({ previewProfileUrl: reader.result })
+      })
+    } else if (e.target.name === 'password') {
+      this.setState({ password: e.target.value })
+    } else if (e.target.name === 'confirmPassword') {
+      this.setState({ confirmPassword: e.target.value })
+    }
+
     this.setState({
-      [name]: value
+      userAccount: { ...this.state.userAccount, [name]: value }
     })
+  }
+
+  handleSelectChange = e => {
+    let locationSelect = document.querySelector('.locationSelect')
+    let instance = M.FormSelect.getInstance(locationSelect)
+    let selected = instance.getSelectedValues()
+    // also need for languages, year of arrival, year left, year born
+  }
+
+  handlePrevious = e => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
+    this.setState({ step: this.state.step - 1 })
+  }
+
+  handleNext = e => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
+    this.formValidation()
+    if (this.state.step === 4) {
+      this.handleSubmit({ preventDefault: () => {} })
+    } else {
+      this.setState({ step: this.state.step + 1 })
+    }
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    postUserInfo(this.state)
+
+    register(
+      {
+        username: this.state.userAccount.email,
+        password: this.state.password
+      },
+      { baseUrl: '/api/v1' }
+    )
+      .then(() => {
+        if (isAuthenticated()) {
+          this.props.history.push('/')
+        }
+      })
+      .then(() => {
+        registerUser(this.state).then(res => {
+          console.log(res.text)
+        })
+      })
+  }
+
+  formValidation = () => {
+    if (this.state.password != this.state.confirmPassword) {
+      return console.log('password does not match')
+    }
   }
 
   render() {
+    const {
+      handleSubmit,
+      setUserStatus,
+      handleChange,
+      handleSelectChange,
+      handleNext,
+      handlePrevious,
+      state
+    } = this
+    const { step, userStatus } = this.state
+
     return (
       <Fragment>
-        <h1>Registration Form</h1>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <label>
-                Name:
-                <input
-                  type='text'
-                  id='name'
-                  name='name'
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Age:
-                <input
-                  type='number'
-                  id='age'
-                  name='age'
-                  value={this.state.age}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Languages:
-                <input
-                  type='text'
-                  id='languages'
-                  name='languages'
-                  value={this.state.languages}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Current location:
-                <input
-                  type='text'
-                  id='location'
-                  name='location'
-                  value={this.state.location}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Occupation:
-                <input
-                  type='text'
-                  id='occupation'
-                  name='occupation'
-                  value={this.state.occupation}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Interests and talents:
-                <input
-                  type='text'
-                  id='interests'
-                  name='interests'
-                  value={this.state.interests}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                How I can support others:
-                <input
-                  type='text'
-                  id='support'
-                  name='support'
-                  value={this.state.support}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Email:
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            <input type='submit' value='Submit' />
+        <div className='form-container'>
+          <form onSubmit={handleSubmit}>
+            {step === 1 && <RegoStatusForm setUserStatus={setUserStatus} />}
+            {step === 2 && (
+              <RegoProfileForm
+                handleChange={handleChange}
+                state={state}
+                handleSelectChange={handleSelectChange}
+              />
+            )}
+            {step === 3 && (
+              <RegoBioForm handleChange={handleChange} state={state} />
+            )}
+            {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
+            <FormNavControllers
+              status={status}
+              step={step}
+              handleNext={handleNext}
+              handlePrevious={handlePrevious}
+            />
           </form>
         </div>
       </Fragment>
@@ -139,4 +195,4 @@ class RegistrationForm extends Component {
   }
 }
 
-export default RegistrationForm
+export default connect()(RegistrationForm)

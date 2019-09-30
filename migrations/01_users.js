@@ -2,16 +2,16 @@
 exports.up = function(knex) {
     return knex.schema.createTable('users', t => {
         t.increments('id')
-        t.string('first_name')
-        t.string('last_name')
-        t.date('birthday')
-        t.string('current_city')
+        t.string('firstName')
+        t.string('lastName')
+        t.date('dob')
+        t.string('currentCity')
         t.string('occupation')
-        t.string('interests')
         t.string('email')
-        t.string('password')
+        t.string('hash')
         t.string('bio')
-        t.string('user_status')
+        t.string('userStatus')
+        t.string('profileImg')
     })
 };
 
