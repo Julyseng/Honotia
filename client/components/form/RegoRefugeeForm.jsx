@@ -7,7 +7,7 @@ export default function RegoRefugeeForm({
   handleChange,
   handleSelectChange
 }) {
-  console.log(state)
+
   return (
     <div className='section'>
       <div className='section'>
@@ -42,72 +42,7 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='reasonForLeaving'
-                value='conflict'
-                onChange={handleChange}
-              />
-              <span>War or conflict</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='reasonForLeaving'
-                value='religious'
-                onChange={handleChange}
-              />
-              <span>Religious persecution</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='reasonForLeaving'
-                value='political'
-                onChange={handleChange}
-              />
-              <span>Political persecution</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='reasonForLeaving'
-                value='humanRights'
-                onChange={handleChange}
-              />
-              <span>Human rights violations</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='reasonForLeaving'
-                value='economic'
-                onChange={handleChange}
-              />
-              <span>Economic reasons</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='reasonForLeaving'
-                value='climate'
-                onChange={handleChange}
-              />
-              <span>Climate change</span>
-            </label>
-          </p>
+          <ReasonsForLeaving handleChange={(e)=> handleChange(e, 'refugeeDetails')} />
         </div>
       </div>
 
@@ -299,3 +234,28 @@ export default function RegoRefugeeForm({
     </div>
   )
 }
+
+function ReasonsForLeaving({handleChange}) {
+  var reasonsLeaving = {
+    conflict: 'War or conflict',
+    religious: 'Religious persecution',
+    political: 'Political persecution',
+    humanRights: 'Human rights violations',
+    economic: 'Economic reasons',
+    climate: 'Climate change'}
+
+  return Object.keys(reasonsLeaving).map(key => {
+    let reason = reasonsLeaving[key]
+    return <p key={key}>
+            <label>
+              <input
+                type='checkbox'
+                name='reasonForLeaving'
+                value={key}
+                onChange={handleChange}
+              />
+              <span>{reason}</span>
+            </label>
+          </p>
+  })
+}  

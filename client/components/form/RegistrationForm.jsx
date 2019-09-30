@@ -65,16 +65,18 @@ class RegistrationForm extends Component {
     })
   }
 
-  handleChange = e => {
+  handleChange = (e, section) => {
     // let { name, value, type, checked } = e.target
 
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
-      let supports = { ...this.state.supports, [value]: e.target.checked }
+      console.log(name)
+      let existingState = section ? this.state[section][name] : this.state[name]
+      let options = { ...existingState, [value]: e.target.checked }
       if (!e.target.checked) {
-        delete supports[value]
+        delete options[value]
       }
-      // value = supports
+      value = options
       console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
@@ -125,6 +127,14 @@ class RegistrationForm extends Component {
     } else if (e.target.name === 'yearOfArrival') {
       this.setState ({  refugeeDetails : {...this.state.userDetails, yearOfArrival: e.target.value}})
     } 
+    if (section){
+      this.setState({
+        [section]: {
+          ...this.state[section], 
+          [name]: value
+        }
+      })
+    }
     console.log(e.target.name, value)
 
   }
