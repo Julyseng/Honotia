@@ -38,7 +38,8 @@ class RegistrationForm extends Component {
       supports: [],
       password: '',
       confirmPassword: '',
-      actualFile: undefined
+      actualFile: undefined,
+      errorMessage: ''
     }
   }
 
@@ -48,6 +49,7 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
+    M.updateTextFields()
   }
 
   initiateMaterialize = () => {
@@ -64,7 +66,7 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
-    this.formValidation()
+    this.formValidation(e)
 
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
@@ -160,10 +162,25 @@ class RegistrationForm extends Component {
       })
   }
 
-  formValidation = () => {
-    if (this.state.password != this.state.confirmPassword) {
-      let passwordInputs = document.querySelectorAll('input[type="password"]')
-      passwordInputs.forEach(input => input.classList.add('invalid'))
+  formValidation = e => {
+    switch (e.target.name) {
+      case 'password':
+      case 'confirmPassword':
+        const { password, confirmPassword } = this.state
+        if (password != confirmPassword) {
+          let passwordInputs = document.querySelectorAll(
+            'input[type="password"]'
+          )
+          passwordInputs.forEach(input => input.classList.add('invalid'))
+
+          this.setState({ errorMessage: 'Please make sure that the passwords' })
+        }
+      case 'Papayas':
+        console.log('Mangoes and papayas are $2.79 a pound.')
+        // expected output: "Mangoes and papayas are $2.79 a pound."
+        break
+      default:
+        console.log('Sorry, we are out of ' + expr + '.')
     }
   }
 

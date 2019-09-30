@@ -43,7 +43,7 @@ export default function RegoProfileForm({
             value={state.userDetails.firstName}
             onChange={handleChange}
           />
-          <label>First Name</label>
+          <label htmlFor='firstName'>First Name</label>
         </div>
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>account_circle</i>
@@ -54,7 +54,7 @@ export default function RegoProfileForm({
             value={state.userDetails.lastName}
             onChange={handleChange}
           />
-          <label>Last Name</label>
+          <label htmlFor='lastName'>Last Name</label>
         </div>
 
         <div className='input-field'>
@@ -97,36 +97,36 @@ export default function RegoProfileForm({
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>email</i>
           <input
-            className='validate'
+            // className='validate'
             type='email'
-            id='emailRegForm'
+            id='regoEmail'
             name='email'
             value={state.userDetails.email}
             onChange={handleChange}
           />
-          <label>Email</label>
+          <label htmlFor='regoEmail'>Email</label>
         </div>
         <div className='input-field '>
           <i className='material-icons prefix form-icon'>lock</i>
           <input
             type='password'
-            id='passwordRegForm'
+            id='regoPassword'
             name='password'
             value={state.password}
             onChange={handleChange}
           />
-          <label>Password</label>
+          <label htmlFor='regoPassword'>Password</label>
         </div>
         <div className='input-field '>
           <i className='material-icons prefix form-icon'>lock</i>
           <input
             type='password'
-            id='passwordConfirmRegForm'
+            id='confirmPassword'
             name='confirmPassword'
             value={state.confirmPassword}
             onChange={handleChange}
           />
-          <label>Confirm Password</label>
+          <label htmlFor='confirmPassword'>Confirm Password</label>
         </div>
       </div>
       {/* </div> */}
