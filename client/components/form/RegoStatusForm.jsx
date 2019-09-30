@@ -1,24 +1,27 @@
 import React from 'react'
-import circle from '../../../public/1.png'
-import square from '../../../public/2.png'
-import triangle from '../../../public/3.png'
 
 export default function RegoStatusForm() {
   return (
-    <div>
-      <p>I am a(n)...</p>
+    <div className='section'>
+      <h5>My current status...</h5>
       <div className='status-container'>
-        <div className='status-wrapper'>
-          <img src={circle} alt='' />
-          <p>Newly arrived refugee</p>
+        <div className='status-wrapper z-depth-2 hoverable'>
+          <p>
+            Newly arrived refugee
+            <span className='status-text'>I would like help</span>
+          </p>
         </div>
-        <div className='status-wrapper'>
-          <img src={square} alt='' />
-          <p>Former Refugee</p>
+        <div className='status-wrapper z-depth-2 hoverable'>
+          <p>
+            Former Refugee
+            <span className='status-text'>I can help</span>
+          </p>
         </div>
-        <div className='status-wrapper'>
-          <img src={triangle} alt='' />
-          <p>Ally</p>
+        <div className='status-wrapper z-depth-2 hoverable'>
+          <p>
+            Ally
+            <span className='status-text'>I can help</span>
+          </p>
         </div>
       </div>
     </div>

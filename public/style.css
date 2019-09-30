@@ -6602,6 +6602,14 @@ nav {
   background: linear-gradient(0deg, #fffdd7 0%, rgba(0, 212, 255, 0) 90%);
   z-index: -1; }
 
+.landingPage-container {
+  min-height: 80vh;
+  padding: 30px 0; }
+
+.landing-img {
+  width: 100%;
+  max-width: 500px; }
+
 .login-container {
   width: 300px;
   background-color: #ffffff;
@@ -6696,7 +6704,9 @@ h5 {
 
 .form-container {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  min-height: 80vh;
+  align-items: center; }
 
 form {
   width: 100%;
@@ -6707,20 +6717,24 @@ form {
 
 .form-navArrows-container {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 20px 0; }
 
 .login-input {
   margin-bottom: 20px; }
 
 .status-container {
   display: flex;
-  justify-content: space-around; }
-  .status-container img {
-    width: 220px; }
+  justify-content: space-between;
+  margin: 80px 0; }
 
 .status-wrapper {
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  background-color: #f0f0e7;
+  border-radius: 10px;
+  width: 170px;
+  height: 170px; }
   .status-wrapper p {
     position: absolute;
     left: 50%;
@@ -6728,7 +6742,10 @@ form {
     transform: translate(-50%, -50%);
     text-align: center;
     margin: 0;
-    font-size: 18px; }
+    font-size: 15px; }
+  .status-wrapper .status-text {
+    border-top: 1px solid grey;
+    display: block; }
 
 .profile-container {
   padding: 20px;

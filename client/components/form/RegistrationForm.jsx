@@ -6,38 +6,39 @@ import M from '../../materialize-js/bin/materialize'
 import { storeFormData } from '../../actions'
 
 import RegoRefugeeForm from './RegoRefugeeForm'
-// import RegoStatusForm from './RegoStatusForm'
+import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
 import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
 
-// import { postUserInfo } from '../../apiClient'
+import { registerUser } from '../../apiClient'
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props)
-
-    // this.state = {
-    //   firstName: '',
-    //   lastName: '',
-    //   email: '',
-    //   password: '',
-    //   DOB: '',
-    //   location: '',
-    //   languages: '',
-    //   occupation: '',
-    //   support: {},
-    //   bio: ''
-    // }
     this.state = {
+      step: 1,
+      prefiewProfileUrl: '',
+      userStatus: '',
       userAccount: {
-        status: '',
         firstName: '',
         lastName: '',
         email: '',
         DOB: '',
-        profileURL: ''
-      }
+        currentCity: '',
+        profileUrl: '',
+        occupation: '',
+        bio: '',
+        languages: []
+      },
+      refugeeDetails: {
+        countryOrigin: '',
+        yearLeft: null,
+        reasonForLeaving: [],
+        yearOfArrival: null,
+        needs: []
+      },
+      supports: []
     }
   }
 
@@ -49,9 +50,6 @@ class RegistrationForm extends Component {
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
-
-    // let select = document.querySelectorAll('select')
-    // M.FormSelect.init(select)
   }
 
   handleChange = e => {
@@ -62,12 +60,23 @@ class RegistrationForm extends Component {
         delete support[value]
       }
       value = support
+    } else if (e.target.type === 'file') {
+      let fileUpload = e.target
+      let reader = new FileReader()
+      let file = fileUpload.files[0]
+
+      if (file) {
+        reader.readAsDataURL(file)
+        this.setState({ actualFile: file })
+      }
+
+      reader.addEventListener('load', () => {
+        this.setState({ prefiewProfileUrl: reader.result })
+      })
     }
 
     this.setState({
-      userAccount: {
-        [name]: value
-      }
+      userAccount: { ...this.state.userAccount, [name]: value }
     })
   }
 
@@ -77,41 +86,66 @@ class RegistrationForm extends Component {
     let selected = instance.getSelectedValues()
   }
 
+  handlePrevious = () => {
+    this.setState({ step: this.state.step - 1 })
+  }
+
+  handleNext = () => {
+    if (this.state.step === 4) {
+      this.handleSubmit({ preventDefault: () => {} })
+    } else {
+      this.setState({ step: this.state.step + 1 })
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault()
-    // postUserInfo(this.state)
-    // register(
-    //   {
-    //     username: this.state.userAccount.email,
-    //     password: this.state.userAccount.password
-    //   },
-    //   { baseUrl: '/api/v1' }
-    // ).then(() => {
-    //   if (isAuthenticated()) {
-    //     this.props.history.push('/')
-    //   }
-    //   //then push form data here
-    // })
-    // .then(() => {
-    this.props.dispatch(storeFormData(this.state.userAccount))
-    // })
+
+    register(
+      {
+        username: this.state.userAccount.email,
+        password: this.state.userAccount.password
+      },
+      { baseUrl: '/api/v1' }
+    )
+      .then(() => {
+        if (isAuthenticated()) {
+          this.props.history.push('/')
+        }
+      })
+      .then(() => {
+        // this.props.dispatch(storeFormData(this.state.userAccount))
+        registerUser(this.state).then(res => {
+          console.log(res.text)
+        })
+      })
   }
 
   render() {
     return (
       <Fragment>
-        {/* <div className='container'> */}
-        {/* <RegoStatusForm /> */}
         <div className='form-container'>
           <form onSubmit={this.handleSubmit}>
-            <RegoProfileForm
-              handleChange={this.handleChange}
-              state={this.state}
-              handleSelectChange={this.handleSelectChange}
+            {this.state.step === 1 && <RegoStatusForm />}
+            {this.state.step === 2 && (
+              <RegoProfileForm
+                handleChange={this.handleChange}
+                state={this.state}
+                handleSelectChange={this.handleSelectChange}
+              />
+            )}
+            {this.state.step === 3 && (
+              <RegoBioForm
+                handleChange={this.handleChange}
+                state={this.state}
+              />
+            )}
+            {this.state.step === 4 && <RegoRefugeeForm />}
+            <FormNavControllers
+              step={this.state.step}
+              handleNext={this.handleNext}
+              handlePrevious={this.handlePrevious}
             />
-            {/* <RegoBioForm handleChange={this.handleChange} state={this.state} /> */}
-            {/* <RegoRefugeeForm /> */}
-            <FormNavControllers />
           </form>
         </div>
       </Fragment>
