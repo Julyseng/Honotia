@@ -33,20 +33,17 @@ var upload = multer({
 
 const router = express.Router()
 
-// router.post('/upload', tokenDecoder, (req, res, next) => {
-//   next('route')
-// })
-
 router.post(
   '/upload',
   [tokenDecoder, upload.single('profileImg', 3)],
   (req, res) => {
     let conn = req.app.connection
+
     db.saveProfileUrl(req.user.id, req.file.location, conn)
       .then(() => {
-        res.send()
+        res.status(201).send()
       })
-      .catch(e => console.log(e))
+      .catch(e => console.log(e.message))
   }
 )
 

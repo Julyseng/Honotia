@@ -2,10 +2,9 @@ import request from 'superagent'
 import { getAuthorizationHeader } from 'authenticare/client'
 
 export function registerUser(data) {
-  console.log(data)
   return request
     .put('/api/v1/user/register-user-details')
-    .set(getAuthorizationHeader()) //sends token to server. from server i can use decodetoken to get the user id
+    .set(getAuthorizationHeader())
     .send(data)
     .then(() => {
       console.log(data)
@@ -17,12 +16,11 @@ export function registerUser(data) {
     })
 }
 
-function registerProfileImg(profileUrl) {
-  console.log(profileUrl)
+function registerProfileImg(profileFile) {
   return request
     .post('/s3/upload')
     .set(getAuthorizationHeader())
-    .attach('profileImg', profileUrl)
+    .attach('profileImg', profileFile)
     .catch(e => {
       console.log(e)
     })

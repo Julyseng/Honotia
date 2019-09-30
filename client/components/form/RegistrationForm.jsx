@@ -24,8 +24,7 @@ class RegistrationForm extends Component {
         DOB: '',
         currentCity: '',
         occupation: '',
-        bio: '',
-        profileUrl: ''
+        bio: ''
       },
       refugeeDetails: {
         countryOrigin: '',
