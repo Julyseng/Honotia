@@ -119,7 +119,10 @@ class RegistrationForm extends Component {
     e.preventDefault()
     window.scrollTo(0, 0)
     this.formValidation()
-    if (this.state.step === 4) {
+    if (
+      this.state.step === 4 ||
+      (this.state.step === 3 && this.state.userStatus === 'AL')
+    ) {
       this.handleSubmit({ preventDefault: () => {} })
     } else {
       this.setState({ step: this.state.step + 1 })
@@ -183,7 +186,7 @@ class RegistrationForm extends Component {
             )}
             {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
             <FormNavControllers
-              status={status}
+              userStatus={userStatus}
               step={step}
               handleNext={handleNext}
               handlePrevious={handlePrevious}
