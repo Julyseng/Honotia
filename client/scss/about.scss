@@ -40,6 +40,7 @@
     width: 70px;
     height: 70px;
 }
+
 //css timeline
 @import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,900);
 $fontstack_heading: "Merriweather", sans-serif;
@@ -100,7 +101,7 @@ block-content p {
 h1, h2, h3 {
 
 	font-family: $fontstack_heading;
-	font-weight:900;
+	font-weight:250;
 
 }
 p {
@@ -179,10 +180,10 @@ p {
 	color:#fff;
 }
 .t-block-teal h3 {
-	color:#034944;
+	color: black;
 }
 .t-block-teal p {
-	color:#034944;
+	color: black;
 }
 //list animation 
 //scale in the circle, follwoed by the list item
@@ -203,7 +204,7 @@ p {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
-	background: none repeat scroll 0% 0% #02aa9d;
+	background: none repeat scroll 0% 0% #f57171;
 	border: 5px solid #fff;
   animation:revealScaleUp 0.75s 0s ease both 1;
 }
