@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import SelectYear from './SelectYear'
 
 export default function RegoRefugeeForm({
   state,
   handleChange,
-  handleSelectChange
 }) {
+  console.log(state)
   return (
     <div className='section'>
       <div className='section'>
@@ -16,8 +16,8 @@ export default function RegoRefugeeForm({
             type='text'
             id='originCountry'
             name='originCountry'
-            // value={this.state.originCountry}
-            // onChange={this.handleChange}
+            value={state.refugeeDetails.countryOrigin}
+            onChange={handleChange}
           />
           <label>Country of origin...</label>
         </div>
@@ -25,12 +25,10 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of leaving</h5>
-        <p>
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
               <SelectYear name='selectYearLeft' start={-80}/>
           </div>
-        </p>
       </div>
 
       <div className='section'>
@@ -46,7 +44,7 @@ export default function RegoRefugeeForm({
                 type='checkbox'
                 name='support'
                 value='conflict'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>War or conflict</span>
             </label>
@@ -57,7 +55,7 @@ export default function RegoRefugeeForm({
                 type='checkbox'
                 name='support'
                 value='religious'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Religious persecution</span>
             </label>
@@ -68,7 +66,7 @@ export default function RegoRefugeeForm({
                 type='checkbox'
                 name='support'
                 value='political'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Political persecution</span>
             </label>
@@ -79,7 +77,7 @@ export default function RegoRefugeeForm({
                 type='checkbox'
                 name='support'
                 value='humanRights'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Human rights violations</span>
             </label>
@@ -90,7 +88,7 @@ export default function RegoRefugeeForm({
                 type='checkbox'
                 name='support'
                 value='economic'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Economic reasons</span>
             </label>
@@ -101,7 +99,7 @@ export default function RegoRefugeeForm({
                 type='checkbox'
                 name='support'
                 value='climate'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Climate change</span>
             </label>
@@ -111,12 +109,10 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of arrival in NZ</h5>
-        <p>
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
               <SelectYear name='selectYearArrival' start={-80}/>
           </div>
-        </p>
       </div>
 
       <div className='section'>

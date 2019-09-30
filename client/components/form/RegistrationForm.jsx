@@ -107,6 +107,8 @@ class RegistrationForm extends Component {
     let locationSelect = document.querySelector('.locationSelect')
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
+    this.setState({ userAccount: {currentCity: selected}})
+    console.log(selected)
     // also need for languages, year of arrival, year left, year born
   }
 
@@ -167,6 +169,7 @@ class RegistrationForm extends Component {
     } = this
     const { step } = this.state
 
+    console.log(this.state)
     return (
       <Fragment>
         <div className='form-container'>
@@ -182,7 +185,11 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && <RegoRefugeeForm />}
+            {step === 4 && (
+              <RegoRefugeeForm 
+              handleChange={handleChange}
+              state={state}
+            />)}
             <FormNavControllers
               step={step}
               handleNext={handleNext}

@@ -71,7 +71,7 @@ export default function RegoProfileForm({
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>add_location</i>
           <select
-            // value={}
+            // value={state.userAccount.currentCity}
             onChange={handleSelectChange}
             className='locationSelect'
           >
