@@ -27,7 +27,6 @@ const initialState = {
 }
 
 export default function form(state = initialState, action) {
-  console.log(action.type)
   switch (action.type) {
     case SEND_USER_ACCOUNT:
       return { ...state, userAccount: action.userAccountData }
