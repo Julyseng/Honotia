@@ -95,42 +95,44 @@ class RegistrationForm extends Component {
         this.setState({ previewProfileUrl: reader.result })
       })
     } else if (e.target.name === 'password') {
-      this.setState({ password: e.target.value })
+      this.setState({password: e.target.value })
     } else if (e.target.name === 'confirmPassword') {
       this.setState({ confirmPassword: e.target.value })
     } else if (e.target.name === 'languages') {
       this.setState({ languages: e.target.value})
     } else if (e.target.name === 'firstName') {
-      this.setState ({ firstName: e.target.value})
+      this.setState ({  userDetails : {...this.state.userDetails, firstName: e.target.value}})
     } else if (e.target.name === 'lastName') {
-      this.setState ({ lastName: e.target.value})
-    } else if (e.target.name === 'DOB') {
-      this.setState ({ DOB: e.target.value})
+      this.setState ({  userDetails : {...this.state.userDetails, lastName: e.target.value}})
+    }else if (e.target.name === 'DOB') {
+      this.setState ({  userDetails : {...this.state.userDetails, DOB: e.target.value}})
     } else if (e.target.name === 'email') {
-      this.setState ({ email: e.target.value})
+      this.setState ({  userDetails : {...this.state.userDetails, email: e.target.value}})
     } else if (e.target.name === 'currentCity') {
-      this.setState ({ currentCity: e.target.value})
+      this.setState ({  userDetails : {...this.state.userDetails, currentCity: e.target.value}})
     } else if (e.target.name === 'occupation') {
-      this.setState ({ occupation: e.target.value})
+      this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
     } else if (e.target.name === 'bio') {
-      this.setState ({ bio: e.target.value})
+      this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
     } else if (e.target.name === 'countryOrigin') {
-      this.setState ({ countryOrigin: e.target.value})
+      this.setState ({  refugeeDetails : {...this.state.userDetails, countryOrigin: e.target.value}})
     } else if (e.target.name === 'yearLeft') {
-      this.setState ({ yearLeft: e.target.value})
+      this.setState ({  refugeeDetails : {...this.state.userDetails, yearLeft: e.target.value}})
+    } else if (e.target.name === 'reasonForLeaving') {
+      this.setState ({  refugeeDetails : {...this.state.userDetails, reasonForLeaving: e.target.value}})
     } else if (e.target.name === 'yearOfArrival') {
-      this.setState ({ yearOfArrival: e.target.value})
+      this.setState ({  refugeeDetails : {...this.state.userDetails, yearOfArrival: e.target.value}})
     } 
-    // console.log(e.target.name, [name])
+    console.log(e.target.name, value)
 
-    this.setState({
-      userDetails: { ...this.state.userDetails, [name]: value }
-    })
-    if(this.state.step === 4) {
-      this.setState({
-        refugeeDetails: { ...this.state.refugeeDetails, [name]: value }
-      })
-    }
+    // this.setState({
+    //   userDetails: { ...this.state.userDetails, [name]: value }
+    // })
+    // if(this.state.step === 4) {
+    //   this.setState({
+    //     refugeeDetails: { ...this.state.refugeeDetails, [name]: value }
+    //   })
+    // }
   }
 
   handleSelectChangeAge = e => {
@@ -259,7 +261,8 @@ class RegistrationForm extends Component {
               />
             )}
             {step === 3 && (
-              <RegoBioForm 
+              <RegoBioForm
+              handleChange={handleChange} 
               handleSelectChangeLanguage={handleSelectChangeLanguage} 
               state={state} />
             )}

@@ -7,6 +7,7 @@ export default function RegoProfileForm({
   handleSelectChangeAge,
   handleSelectChangeLocation,
 }) {
+  console.log(state.userDetails.firstName)
   return (
     <div className='section'>
       <div
