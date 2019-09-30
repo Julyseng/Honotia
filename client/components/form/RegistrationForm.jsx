@@ -117,8 +117,6 @@ class RegistrationForm extends Component {
     let locationSelected = locationInstance.getSelectedValues()
     this.setState({ userDetails: {...this.state.userDetails, currentCity: locationSelected}})
     console.log(locationSelected)
-
-    // also need for year of arrival, year left, year born
   }
 
   handleSelectChangeLanguage = e => {           
@@ -129,12 +127,20 @@ class RegistrationForm extends Component {
     console.log(languageSelected)
   }
 
+  handleSelectChangeLeaving = e => {
+    let leavingSelect = document.querySelector('.leavingSelect')
+    let leavingInstance = M.FormSelect.getInstance(leavingSelect)
+    let leavingSelected = leavingInstance.getSelectedValues()
+    console.log(leavingSelected)
+    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearLeft: leavingSelected} })
+  }
+
   handleSelectChangeArrival = e => {
     let arrivalSelect = document.querySelector('.arrivalSelect')
-    let arrivalInstance = M.FormSelect.getInstanc(arrivalSelect)
+    let arrivalInstance = M.FormSelect.getInstance(arrivalSelect)
     let arrivalSelected = arrivalInstance.getSelectedValues()
     this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearOfArrival: arrivalSelected}})
-
+    console.log(arrivalSelected)
   }
   
   handlePrevious = e => {
@@ -199,6 +205,7 @@ class RegistrationForm extends Component {
       handleChange,
       handleSelectChangeLocation,
       handleSelectChangeLanguage,
+      handleSelectChangeLeaving,
       handleSelectChangeArrival,
       handleNext,
       handlePrevious,
@@ -220,11 +227,14 @@ class RegistrationForm extends Component {
               />
             )}
             {step === 3 && (
-              <RegoBioForm handleSelectChangeLanguage={handleSelectChangeLanguage} state={state} />
+              <RegoBioForm 
+              handleSelectChangeLanguage={handleSelectChangeLanguage} 
+              state={state} />
             )}
             {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
+              handleSelectChangeLeaving={handleSelectChangeLeaving}
               handleSelectChangeArrival={handleSelectChangeArrival}
               state={state}
             />)}
