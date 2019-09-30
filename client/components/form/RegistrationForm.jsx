@@ -111,6 +111,14 @@ class RegistrationForm extends Component {
     }
   }
 
+  handleSelectChangeAge = e => {
+    let ageSelect = document.querySelector('.ageSelect')
+    let ageInstance = M.FormSelect.getInstance(ageSelect)
+    let ageSelected = ageInstance.getSelectedValues()
+    this.setState({ userDetails: {...this.setState.userDetails, DOB: ageSelected}})
+    console.log(ageSelected)
+  }
+
   handleSelectChangeLocation = e => {
     let locationSelect = document.querySelector('.locationSelect')
     let locationInstance = M.FormSelect.getInstance(locationSelect)
@@ -203,6 +211,7 @@ class RegistrationForm extends Component {
       handleSubmit,
       setUserStatus,
       handleChange,
+      handleSelectChangeAge,
       handleSelectChangeLocation,
       handleSelectChangeLanguage,
       handleSelectChangeLeaving,
@@ -223,6 +232,7 @@ class RegistrationForm extends Component {
               <RegoProfileForm
                 handleChange={handleChange}
                 state={state}
+                handleSelectChangeAge={handleSelectChangeAge}
                 handleSelectChangeLocation={handleSelectChangeLocation}
               />
             )}

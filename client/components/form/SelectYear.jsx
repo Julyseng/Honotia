@@ -10,9 +10,9 @@ export default function SelectYear(props) {
     for (var year = currentYear+start ; year <= currentYear+end; year++) {
     years.push(year)
     }
-          
     return (
-        <select name={props.name} value={props.value}>
+        <select 
+        name={props.name} value={props.value}>
             {years.reverse().map((year, i) => <option key={i}>{year}</option>)}
         </select>
     )

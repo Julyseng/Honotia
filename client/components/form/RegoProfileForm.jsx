@@ -4,7 +4,8 @@ import SelectYear from './SelectYear'
 export default function RegoProfileForm({
   state,
   handleChange,
-  handleSelectChangeLocation
+  handleSelectChangeAge,
+  handleSelectChangeLocation,
 }) {
   return (
     <div className='section'>
@@ -60,7 +61,9 @@ export default function RegoProfileForm({
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>date_range</i>
           <SelectYear 
-          name='DOB' start={-80} end={-18}/>
+          name='DOB' start={-80} end={-18}
+          onChange={handleSelectChangeAge}
+          className='ageSelect'/>
         </div>
       </div>
 
@@ -72,7 +75,6 @@ export default function RegoProfileForm({
           <i className='material-icons prefix form-icon'>add_location</i>
           <select
             name="currentCity"
-            // value={state.userDetails.currentCity}
             onChange={handleSelectChangeLocation}
             className='locationSelect'
           >
@@ -87,7 +89,6 @@ export default function RegoProfileForm({
             <option value='Nelson'>Nelson</option>
             <option value='Palmerston North'>Palmerston North</option>
             <option value='Wellington'>Wellington</option>
-            {/* <label htmlFor=''></label> */}
           </select>
         </div>
       </div>
