@@ -7,10 +7,8 @@ export function registerUser(data) {
     .set(getAuthorizationHeader())
     .send(data)
     .then(() => {
-      console.log(data)
       return registerProfileImg(data.actualFile)
     })
-    .then(res => console.log(res.body))
     .catch(e => {
       console.log(e)
     })
@@ -18,7 +16,7 @@ export function registerUser(data) {
 
 function registerProfileImg(profileFile) {
   return request
-    .post('/s3/upload')
+    .post('/api/v1/s3/upload')
     .set(getAuthorizationHeader())
     .attach('profileImg', profileFile)
     .catch(e => {
