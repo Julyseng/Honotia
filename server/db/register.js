@@ -24,7 +24,7 @@ function registerUser(userId, userData, connection) {
     })
 }
 
-function saveProfileUrl(userId, profileImg, connection) {
+function registerProfileUrl(userId, profileImg, connection) {
   return connection('users')
     .where('id', userId)
     .update({ profileImg })
@@ -46,5 +46,5 @@ module.exports = {
   registerUser,
   registerLanguage,
   registerRefugee,
-  saveProfileUrl
+  registerProfileUrl
 }

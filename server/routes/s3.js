@@ -8,7 +8,7 @@ const { getTokenDecoder } = require('authenticare/server')
 
 const tokenDecoder = getTokenDecoder(false)
 
-const db = require('../db/db')
+const db = require('../db/register')
 
 var s3 = new aws.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -39,7 +39,7 @@ router.post(
   (req, res) => {
     let conn = req.app.connection
 
-    db.saveProfileUrl(req.user.id, req.file.location, conn)
+    db.registerProfileUrl(req.user.id, req.file.location, conn)
       .then(() => {
         res.status(201).send()
       })

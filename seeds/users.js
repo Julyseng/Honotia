@@ -15,6 +15,7 @@ exports.seed = function(knex) {
           email: 'zawaki@gmail.com',
           bio: 'Hi I am zawaki from Iran. Excited to be here in NZ.',
           status: 'Newly arrived Refugee',
+          hash: '66',
           profileImg:
             'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
@@ -28,6 +29,7 @@ exports.seed = function(knex) {
           email: 'yahya_78@gmail.com',
           bio: 'Father of two children.',
           status: 'Newly arrived Refugee',
+          hash: '55',
           profileImg:
             'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
@@ -41,6 +43,7 @@ exports.seed = function(knex) {
           email: 'kyikyi112@hotmail.com',
           bio: 'Lover of nature and reader.',
           status: 'former refugee',
+          hash: '44',
           profileImg:
             'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
@@ -54,6 +57,7 @@ exports.seed = function(knex) {
           email: 'wazithla007@yahoo.com',
           bio: 'Always love to get to know new people and being on the sky',
           status: 'Ally',
+          hash: '33',
           profileImg:
             'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
@@ -68,6 +72,7 @@ exports.seed = function(knex) {
           bio:
             'Always up for a good yarn. My friends say I am a good listener too.',
           status: 'Former Refugee',
+          hash: '11',
           profileImg:
             'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         },
@@ -81,6 +86,7 @@ exports.seed = function(knex) {
           email: 'samaryyes@gmail.com',
           bio: 'History is faacinating!',
           status: 'Ally',
+          hash: '22',
           profileImg:
             'https://www.meme-arsenal.com/memes/6461043e803d5765fc4c65b1726a3488.jpg'
         }

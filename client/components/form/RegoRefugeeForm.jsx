@@ -25,12 +25,10 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of leaving</h5>
-        <p>
-          <div className='input-field'>
-              <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear name='selectYearLeft' start={-80}/>
-          </div>
-        </p>
+        <div className='input-field'>
+          <i className='material-icons prefix form-icon'>date_range</i>
+          <SelectYear name='selectYearLeft' start={-80} />
+        </div>
       </div>
 
       <div className='section'>
@@ -111,12 +109,10 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of arrival in NZ</h5>
-        <p>
-          <div className='input-field'>
-              <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear name='selectYearArrival' start={-80}/>
-          </div>
-        </p>
+        <div className='input-field'>
+          <i className='material-icons prefix form-icon'>date_range</i>
+          <SelectYear name='selectYearArrival' start={-80} />
+        </div>
       </div>
 
       <div className='section'>
