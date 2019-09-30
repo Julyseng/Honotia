@@ -27,11 +27,6 @@ export default function AboutPage() {
         continued support and build your network of people.
       </p>
       <br />
-      <br />
-      <br />
-
-      
-
       <section className="block-content t-block-teal l-block-spacing">
         <div className="l-contained">
           <header className="heading-group">
@@ -43,8 +38,8 @@ export default function AboutPage() {
                 <h3> Step 1:</h3>
 
                 <p>
-                Choose your status. If you are a newly arrived refugee, your status
-                can be updated later too.
+                  Choose your status. If you are a newly arrived refugee, your status
+                  can be updated later too.
 								</p>
               </div>
             </li>
@@ -53,7 +48,7 @@ export default function AboutPage() {
                 <h3> Step 2:</h3>
 
                 <p>
-                  Register on the page to fill out your details and let other people know 
+                  Register on the page to fill out your details and let other people know
                   abit about yourself
 								</p>
               </div>
@@ -62,7 +57,7 @@ export default function AboutPage() {
               <div className="content">
                 <h3> Step 3: </h3>
                 <p>
-                  View your profile and profiles to learn about other user on the 
+                  View your profile and profiles to learn about other user on the
                   page.
 								</p>
               </div>

@@ -2,19 +2,26 @@ import request from 'superagent'
 import { getAuthorizationHeader } from 'authenticare/client'
 
 export function registerUser(data) {
-  console.log(data)
-  let call = request
+  return request
+    .put('/api/v1/user/register-user-details')
+    .set(getAuthorizationHeader())
+    .send(data)
+    .then(() => {
+      console.log(data)
+      return registerProfileImg(data.actualFile)
+    })
+    .then(res => console.log(res.body))
+    .catch(e => {
+      console.log(e)
+    })
+}
+
+function registerProfileImg(profileFile) {
+  return request
     .post('/s3/upload')
-    .set(getAuthorizationHeader()) //sends token to server. from server i can use decodetoken to get the user id
-    .attach('profileImg', data.actualFile)
-
-  for (let key in data.userDetails) {
-    call.field(`userDetails[${key}]`, data.userDetails[key])
-  }
-  // call.field('thing', {hi: 'hi'}) not this way
-  call.catch(e => {
-    console.log(e)
-  })
-
-  return call
+    .set(getAuthorizationHeader())
+    .attach('profileImg', profileFile)
+    .catch(e => {
+      console.log(e)
+    })
 }
