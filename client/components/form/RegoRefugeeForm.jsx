@@ -11,7 +11,7 @@ const reasonsForLeaving = {
   economic: 'Economic reasons',
   climate: 'Climate change'}
 
-const needsAndSupports = {
+export const needsAndSupports = {
   healthcare: 'Healthcare',
   education: 'Education',
   housing: 'Housing',

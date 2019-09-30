@@ -15,7 +15,7 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
+      step: 3,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -110,12 +110,6 @@ class RegistrationForm extends Component {
       this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
     } else if (e.target.name === 'bio') {
       this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
-    } else if (e.target.name === 'countryOrigin') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, countryOrigin: e.target.value}})
-    } else if (e.target.name === 'yearLeft') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, yearLeft: e.target.value}})
-    } else if (e.target.name === 'yearOfArrival') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, yearOfArrival: e.target.value}})
     } 
     if (section){
       this.setState({
