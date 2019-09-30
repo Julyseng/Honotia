@@ -38,8 +38,6 @@ class App extends Component {
           <Route
             exact
             path='/'
-            // component={LandingPage}
-            // currentUser={this.state.currentUser}
             render={props => (
               <LandingPage {...props} currentUser={this.state.currentUser} />
             )}
