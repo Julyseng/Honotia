@@ -7,10 +7,8 @@ export function registerUser(data) {
     .set(getAuthorizationHeader())
     .send(data)
     .then(() => {
-      console.log(data)
       return registerProfileImg(data.actualFile)
     })
-    .then(res => console.log(res.body))
     .catch(e => {
       console.log(e)
     })

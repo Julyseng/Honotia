@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
+import { register, isAuthenticated } from 'authenticare/client'
 import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
@@ -38,7 +38,8 @@ class RegistrationForm extends Component {
       supports: [],
       password: '',
       confirmPassword: '',
-      actualFile: undefined
+      actualFile: undefined,
+      errorMessage: null
     }
   }
 
@@ -48,6 +49,7 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
+    M.updateTextFields()
   }
 
   initiateMaterialize = () => {
@@ -64,7 +66,7 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
-    this.formValidation()
+    // let { name, value, type, checked } = e.target
 
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
@@ -125,14 +127,6 @@ class RegistrationForm extends Component {
     } 
     console.log(e.target.name, value)
 
-    // this.setState({
-    //   userDetails: { ...this.state.userDetails, [name]: value }
-    // })
-    // if(this.state.step === 4) {
-    //   this.setState({
-    //     refugeeDetails: { ...this.state.refugeeDetails, [name]: value }
-    //   })
-    // }
   }
 
   handleSelectChangeAge = e => {
@@ -223,10 +217,18 @@ class RegistrationForm extends Component {
       })
   }
 
-  formValidation = () => {
-    if (this.state.password != this.state.confirmPassword) {
-      let passwordInputs = document.querySelectorAll('input[type="password"]')
-      passwordInputs.forEach(input => input.classList.add('invalid'))
+  formValidation = e => {
+    switch (e.target.name) {
+      case 'password':
+      case 'confirmPassword':
+        const { password, confirmPassword } = this.state
+        if (password != confirmPassword) {
+          e.target.classList.add('invalid')
+          this.setState({ errorMessage: 'Password does not match' })
+        }
+        break
+      default:
+        this.setState({ errorMessage: null })
     }
   }
 
@@ -244,7 +246,7 @@ class RegistrationForm extends Component {
       handlePrevious,
       state
     } = this
-    const { step, userDetails } = this.state
+    const { step, userDetails, errorMessage } = this.state
 
     console.log(this.state)
     return (
@@ -273,6 +275,7 @@ class RegistrationForm extends Component {
               handleSelectChangeArrival={handleSelectChangeArrival}
               state={state}
             />)}
+            {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}
               step={step}

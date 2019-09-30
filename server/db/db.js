@@ -1,7 +1,33 @@
-function registerUser(userId, { firstName, lastName }, connection) {
+function registerUser(userId, userData, connection) {
+  const {
+    firstName,
+    lastName,
+    DOB,
+    currentCity,
+    occupation,
+    email,
+    bio,
+    status
+  } = userData
+
   return connection('users')
     .where('id', userId)
-    .update({ firstName, lastName })
+    .update({
+      firstName,
+      lastName,
+      DOB,
+      currentCity,
+      occupation,
+      email,
+      bio,
+      status
+    })
+}
+
+function saveProfileUrl(userId, profileImg, connection) {
+  return connection('users')
+    .where('id', userId)
+    .update({ profileImg })
 }
 
 function registerLanguage(userId, languageId, connection) {
@@ -15,12 +41,6 @@ function registerRefugee(refugeeDetails, connection) {
 function registerNeed() {}
 
 function registerSupport() {}
-
-function saveProfileUrl(userId, profileImg, connection) {
-  return connection('users')
-    .where('id', userId)
-    .update({ profileImg })
-}
 
 module.exports = {
   registerUser,
