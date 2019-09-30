@@ -6,6 +6,7 @@ import { needsAndSupports } from './RegoRefugeeForm'
 export default function RegoBioForm({
   state,
   handleChange,
+  updateUserDetails,
   handleSelectChangeLanguage
 }) {
   return (
@@ -18,7 +19,7 @@ export default function RegoBioForm({
             id='occupation'
             name='occupation'
             value={state.occupation}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
           <label>Occupation...</label>
         </div>
@@ -71,7 +72,7 @@ export default function RegoBioForm({
             className='materialize-textarea'
             data-length='1000'
             value={state.bio}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
           <label htmlFor='bio'>A bit about myself...</label>
         </div>

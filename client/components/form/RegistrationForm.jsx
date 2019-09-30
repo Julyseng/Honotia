@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { register, isAuthenticated } from 'authenticare/client'
-import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
 import RegoRefugeeForm from './RegoRefugeeForm'
@@ -11,7 +10,7 @@ import FormNavControllers from './FormNavControllers'
 
 import { registerUser } from '../../apiClient'
 
-class RegistrationForm extends Component {
+export default class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -74,7 +73,6 @@ class RegistrationForm extends Component {
   }
 
   handleChange = (e, section) => {
-    // let { name, value, type, checked } = e.target
 
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
@@ -87,12 +85,6 @@ class RegistrationForm extends Component {
       value = options
       console.log(value)
 
-      // let needs = { ...this.state.needs, [value]: e.target.checked }
-      // if (!e.target.checked) {
-      //   delete needs[value]
-      // }
-      // value = needs
-      // console.log(value)
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -106,10 +98,10 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'occupation') {
-      this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
-    } else if (e.target.name === 'bio') {
-      this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
+    // } else if (e.target.name === 'occupation') {
+    //   this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
+    // } else if (e.target.name === 'bio') {
+    //   this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
     } 
     if (section){
       this.setState({
@@ -128,15 +120,11 @@ class RegistrationForm extends Component {
 
   }
 
-  // handleSimpleSelect = (e) => {
-  //   this.setState({ [e.target.name]: [e.target.value]})
-  // }
   handleSelectChangeLanguage = e => {           
     let languageSelect = e.target
     let languageInstance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = languageInstance.getSelectedValues()
     this.setState({ languages: languageSelected})
-    console.log(languageSelected)
   }
  
   handlePrevious = e => {
@@ -203,6 +191,7 @@ class RegistrationForm extends Component {
   }
 
   render() {
+
     const {
       handleSubmit,
       setUserStatus,
@@ -216,7 +205,6 @@ class RegistrationForm extends Component {
     } = this
     const { step, userDetails, errorMessage } = this.state
 
-    console.log(this.state)
     return (
       <Fragment>
         <div className='form-container'>
@@ -233,6 +221,7 @@ class RegistrationForm extends Component {
               <RegoBioForm
               handleChange={handleChange} 
               handleSelectChangeLanguage={handleSelectChangeLanguage} 
+              updateUserDetails={updateUserDetails}
               state={state} />
             )}
             {step === 4 && userDetails.status != 'AL' && (
@@ -254,5 +243,3 @@ class RegistrationForm extends Component {
     )
   }
 }
-
-export default connect()(RegistrationForm)
