@@ -1,27 +1,31 @@
 import React from 'react'
-import FormNavControllers from './FormNavControllers'
+import SelectYear from './SelectYear'
 
-export default function RegoStatusForm({
+export default function RegoProfileForm({
   state,
   handleChange,
   handleSelectChange
 }) {
-  console.log(state)
   return (
     <div className='section'>
-      <div className='profile-container hoverable'>
+      <div
+        className='profile-container hoverable'
+        style={{
+          background:
+            state.previewProfileUrl &&
+            `linear-gradient(
+      rgba(153, 153, 153, 0.5),
+      rgba(141, 141, 141, 0.5)
+    ),
+    url(${state.previewProfileUrl})`
+        }}
+      >
         <p className='center'>My Profile</p>
-        <div className='file-field input-field '>
-          <div className='btn w-100'>
+        <div className='file-field input-field'>
+          <div className='btn w-100 z-10'>
             <span>Upload</span>
             <input type='file' name='profileUrl' onChange={handleChange} />
-            {/* {//if state exists show} */}
           </div>
-          <img
-            src={state.prefiewProfileUrl}
-            alt=''
-            style={{ width: '100px', height: '100px' }}
-          />
           <div className='file-path-wrapper'>
             <input className='file-path validate' type='text' />
           </div>
@@ -55,14 +59,8 @@ export default function RegoStatusForm({
 
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>date_range</i>
-          <input
-            className='datepicker'
-            id='DOB'
-            name='DOB'
-            // value={state.userAccount.DOB}
-            onChange={handleChange}
-          />
-          <label>Date of Birth</label>
+          <SelectYear 
+          name='selectYearBirth' start={-80} end={-18}/>
         </div>
       </div>
 
@@ -114,7 +112,7 @@ export default function RegoStatusForm({
             type='password'
             id='passwordRegForm'
             name='password'
-            value={state.userAccount.password}
+            value={state.password}
             onChange={handleChange}
           />
           <label>Password</label>
@@ -124,9 +122,9 @@ export default function RegoStatusForm({
           <input
             type='password'
             id='passwordConfirmRegForm'
-            name='passwordConfirm'
-            // value={state.userAccount.password}
-            // onChange={handleChange}
+            name='confirmPassword'
+            value={state.confirmPassword}
+            onChange={handleChange}
           />
           <label>Confirm Password</label>
         </div>
