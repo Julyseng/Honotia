@@ -122,8 +122,6 @@ class RegistrationForm extends Component {
       this.setState ({  refugeeDetails : {...this.state.userDetails, countryOrigin: e.target.value}})
     } else if (e.target.name === 'yearLeft') {
       this.setState ({  refugeeDetails : {...this.state.userDetails, yearLeft: e.target.value}})
-    } else if (e.target.name === 'reasonForLeaving') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, reasonForLeaving: e.target.value}})
     } else if (e.target.name === 'yearOfArrival') {
       this.setState ({  refugeeDetails : {...this.state.userDetails, yearOfArrival: e.target.value}})
     } 
@@ -133,6 +131,11 @@ class RegistrationForm extends Component {
           ...this.state[section], 
           [name]: value
         }
+      })
+    }
+    else {
+      this.setState({
+        [name]: value
       })
     }
     console.log(e.target.name, value)

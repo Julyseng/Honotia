@@ -2,6 +2,24 @@ import React from 'react'
 
 import SelectYear from './SelectYear'
 
+const reasonsForLeaving = {
+  conflict: 'War or conflict',
+  religious: 'Religious persecution',
+  political: 'Political persecution',
+  humanRights: 'Human rights violations',
+  economic: 'Economic reasons',
+  climate: 'Climate change'}
+
+const needsAndSupports = {
+  healthcare: 'Healthcare',
+  education: 'Education',
+  housing: 'Housing',
+  mentor: 'Mentor',
+  employment: 'Employment',
+  socialSupport: 'Social Support',
+  transport: 'Transport'
+}
+
 export default function RegoRefugeeForm({
   state,
   handleChange,
@@ -42,7 +60,8 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-          <ReasonsForLeaving handleChange={(e)=> handleChange(e, 'refugeeDetails')} />
+          <CheckboxList options = {reasonsForLeaving}name="reasonForLeaving"
+          handleChange={(e)=> handleChange(e, 'refugeeDetails')} />
         </div>
       </div>
 
@@ -63,83 +82,8 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='healthcare'
-                onChange={handleChange}
-              />
-              <span>Healthcare</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='education'
-                onChange={handleChange}
-              />
-              <span>Education</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='housing'
-                onChange={handleChange}
-              />
-              <span>Housing</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='mentor'
-                onChange={handleChange}
-              />
-              <span>Mentor</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='employment'
-                onChange={handleChange}
-              />
-              <span>Employment</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='socialSupport'
-                onChange={handleChange}
-              />
-              <span>Social Support</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='needs'
-                value='transport'
-                onChange={handleChange}
-              />
-              <span>Transport</span>
-            </label>
-          </p>
+        <CheckboxList options = {needsAndSupports}   name="needs"
+          handleChange={handleChange} />
         </div>
       </div>
 
@@ -152,109 +96,28 @@ export default function RegoRefugeeForm({
         </p>
         {/* How I can support others */}
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='healthcare'
-                onChange={handleChange}
-              />
-              <span>Healthcare</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='education'
-                onChange={handleChange}
-              />
-              <span>Education</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='housing'
-                onChange={handleChange}
-              />
-              <span>Housing</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='mentor'
-                onChange={handleChange}
-              />
-              <span>Mentor</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='employment'
-                onChange={handleChange}
-              />
-              <span>Employment</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='socialSupport'
-                onChange={handleChange}
-              />
-              <span>Social Support</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='supports'
-                value='transport'
-                onChange={handleChange}
-              />
-              <span>Transport</span>
-            </label>
-          </p>
+        <CheckboxList options = {needsAndSupports}    
+          name="supports"
+          handleChange={handleChange} />
         </div>
       </div>
     </div>
   )
 }
 
-function ReasonsForLeaving({handleChange}) {
-  var reasonsLeaving = {
-    conflict: 'War or conflict',
-    religious: 'Religious persecution',
-    political: 'Political persecution',
-    humanRights: 'Human rights violations',
-    economic: 'Economic reasons',
-    climate: 'Climate change'}
-
-  return Object.keys(reasonsLeaving).map(key => {
-    let reason = reasonsLeaving[key]
+function CheckboxList({handleChange, name, options}) {
+  
+  return Object.keys(options).map(key => {
+    let text = options[key]
     return <p key={key}>
             <label>
               <input
                 type='checkbox'
-                name='reasonForLeaving'
+                name={name}
                 value={key}
                 onChange={handleChange}
               />
-              <span>{reason}</span>
+              <span>{text}</span>
             </label>
           </p>
   })
