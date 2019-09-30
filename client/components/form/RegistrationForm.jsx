@@ -137,7 +137,7 @@ class RegistrationForm extends Component {
 
     register(
       {
-        username: this.state.userAccount.email,
+        username: this.state.userDetails.email,
         password: this.state.password
       },
       { baseUrl: '/api/v1' }
@@ -148,8 +148,15 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        registerUser(this.state).then(res => {
-          console.log(res.text)
+        registerUser({
+          user: this.state.userDetails,
+          refugee: this.state.refugeeDetails,
+          needs: this.state.needs,
+          languages: this.state.languages,
+          supports: this.state.supports
+        }).then(res => {
+          // console.log(res.text)
+          this.props.history.push('/')
         })
       })
   }
@@ -188,7 +195,7 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && userStatus != 'AL' && (
+            {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
               state={state}
