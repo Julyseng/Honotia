@@ -24,7 +24,7 @@ export default function AboutPage() {
       <h4 className='quotation'>  because of violence or persecution.”  </h4>
 
       <h4 className='about-h3'> Honotia means </h4>
-      <h4 className='quotation'> “the action of connection in Te Reo Maori” </h4>
+      <h4 className='quotation'> “the action of connection” </h4>
 
 
 
@@ -34,6 +34,9 @@ export default function AboutPage() {
           <p>
             To connect, educate and empower refugees and people of New Zealand
           </p>
+          <img className='logos' src="./vision.png" alt="value" />
+
+
         </div>
 
         <div className='about-box'>
@@ -42,6 +45,8 @@ export default function AboutPage() {
             Creating a cohesive community where everyone can learn from each other’s
             stories and support each other.
         </p>
+          <img className='logos' src="./mission.png" alt="value" />
+
         </div>
 
         <div className='about-box'>
@@ -51,14 +56,22 @@ export default function AboutPage() {
             <li>Humility</li>
             <li>Open minded</li>
           </ul>
+          <img className='logos' src="./value.png" alt="value" />
+
         </div>
       </div>
 
       <h4>Register now and start making connection</h4>
       <ul>
         <li> Step 1. Choose a status </li>
+        <br/>
+        <br/>
         <li> Step 2. Fill out a form </li>
+        <br/>
+        <br/>
         <li> Step 3. View profiles </li>
+        <br/>
+        <br/>
         <li> Step 4. Connect </li>
       </ul>
 
