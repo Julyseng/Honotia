@@ -17,7 +17,7 @@ export default function RegoBioForm({
             value={state.occupation}
             onChange={handleChange}
           />
-          <label>Occupation...</label>
+          <label htmlFor='occupation'>Occupation...</label>
         </div>
       </div>
 

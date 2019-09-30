@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
+import { register, isAuthenticated } from 'authenticare/client'
 import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
@@ -15,13 +15,14 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 1,
+      step: 2,
       previewProfileUrl: null,
       userDetails: {
         status: '',
         firstName: '',
         lastName: '',
         DOB: '',
+        email: '',
         currentCity: '',
         occupation: '',
         bio: ''
@@ -37,7 +38,8 @@ class RegistrationForm extends Component {
       supports: [],
       password: '',
       confirmPassword: '',
-      actualFile: undefined
+      actualFile: undefined,
+      errorMessage: null
     }
   }
 
@@ -47,6 +49,7 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
+    M.updateTextFields()
   }
 
   initiateMaterialize = () => {
@@ -63,21 +66,15 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
-    let { name, value } = e.target
-    if (e.target.type == 'checkbox') {
-      let support = { ...this.state.support, [value]: e.target.checked }
-      if (!e.target.checked) {
+    let { name, value, type, checked } = e.target
+
+    if (type == 'checkbox') {
+      let support = { ...this.state.support, [value]: checked }
+      if (!checked) {
         delete support[value]
       }
       value = support
-
-      // let needs = { ...this.state.needs, [value]: e.target.checked }
-      // if (!e.target.checked) {
-      //   delete needs[value]
-      // }
-      // value = needs
-      // console.log(value)
-    } else if (e.target.type === 'file') {
+    } else if (type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
       let file = fileUpload.files[0]
@@ -90,23 +87,24 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'password') {
-      this.setState({ password: e.target.value })
-    } else if (e.target.name === 'confirmPassword') {
-      this.setState({ confirmPassword: e.target.value })
+    } else if (name === 'password') {
+      this.setState({ password: value })
+    } else if (name === 'confirmPassword') {
+      this.setState({ confirmPassword: value })
     }
+    this.formValidation(e)
+
     this.setState({
       userDetails: { ...this.state.userDetails, [name]: value }
     })
   }
 
   handleSelectChange = e => {
-    let locationSelect = document.querySelector('.locationSelect')
+    let locationSelect = e.target
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
 
     this.setState({ ...this.state.userDetails, currentCity: selected })
-    // also need for languages, year of arrival, year left, year born
   }
 
   handlePrevious = e => {
@@ -118,7 +116,6 @@ class RegistrationForm extends Component {
   handleNext = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
-    this.formValidation()
     if (
       this.state.step === 4 ||
       (this.state.step === 3 && this.state.userDetails.status === 'AL')
@@ -158,9 +155,18 @@ class RegistrationForm extends Component {
       })
   }
 
-  formValidation = () => {
-    if (this.state.password != this.state.confirmPassword) {
-      return console.log('password does not match')
+  formValidation = e => {
+    switch (e.target.name) {
+      case 'password':
+      case 'confirmPassword':
+        const { password, confirmPassword } = this.state
+        if (password != confirmPassword) {
+          e.target.classList.add('invalid')
+          this.setState({ errorMessage: 'Password does not match' })
+        }
+        break
+      default:
+        this.setState({ errorMessage: null })
     }
   }
 
@@ -174,7 +180,7 @@ class RegistrationForm extends Component {
       handlePrevious,
       state
     } = this
-    const { step, userDetails } = this.state
+    const { step, userDetails, errorMessage } = this.state
 
     return (
       <Fragment>
@@ -192,6 +198,7 @@ class RegistrationForm extends Component {
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
             {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
+            {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}
               step={step}

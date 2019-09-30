@@ -6691,6 +6691,9 @@ h5 {
 .z-10 {
   z-index: 10; }
 
+.display-b {
+  display: block; }
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -6724,12 +6727,18 @@ form {
   width: 100%;
   max-width: 580px; }
 
+.errorMessage {
+  color: #cc3636; }
+
 .form-icon {
   color: #b4b4b4; }
 
 .form-navArrows-container {
   padding: 20px 0;
   position: relative; }
+
+.input-field .helper-text {
+  display: none; }
 
 .login-input {
   margin-bottom: 20px; }
