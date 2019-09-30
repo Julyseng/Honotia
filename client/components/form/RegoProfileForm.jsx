@@ -97,6 +97,7 @@ export default function RegoProfileForm({
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>email</i>
           <input
+            className='validate'
             type='email'
             id='emailRegForm'
             name='email'
