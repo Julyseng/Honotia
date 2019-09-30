@@ -39,7 +39,7 @@ class RegistrationForm extends Component {
       password: '',
       confirmPassword: '',
       actualFile: undefined,
-      errorMessage: ''
+      errorMessage: null
     }
   }
 
@@ -66,8 +66,6 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
-    this.formValidation(e)
-
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
       let support = { ...this.state.support, [value]: e.target.checked }
@@ -100,6 +98,8 @@ class RegistrationForm extends Component {
     } else if (e.target.name === 'confirmPassword') {
       this.setState({ confirmPassword: e.target.value })
     }
+    this.formValidation(e)
+
     this.setState({
       userDetails: { ...this.state.userDetails, [name]: value }
     })
@@ -168,19 +168,12 @@ class RegistrationForm extends Component {
       case 'confirmPassword':
         const { password, confirmPassword } = this.state
         if (password != confirmPassword) {
-          let passwordInputs = document.querySelectorAll(
-            'input[type="password"]'
-          )
-          passwordInputs.forEach(input => input.classList.add('invalid'))
-
-          this.setState({ errorMessage: 'Please make sure that the passwords' })
+          e.target.classList.add('invalid')
+          this.setState({ errorMessage: 'Password does not match' })
         }
-      case 'Papayas':
-        console.log('Mangoes and papayas are $2.79 a pound.')
-        // expected output: "Mangoes and papayas are $2.79 a pound."
         break
       default:
-        console.log('Sorry, we are out of ' + expr + '.')
+        this.setState({ errorMessage: null })
     }
   }
 
@@ -194,7 +187,7 @@ class RegistrationForm extends Component {
       handlePrevious,
       state
     } = this
-    const { step, userDetails } = this.state
+    const { step, userDetails, errorMessage } = this.state
 
     return (
       <Fragment>
@@ -212,6 +205,7 @@ class RegistrationForm extends Component {
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
             {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
+            {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}
               step={step}

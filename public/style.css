@@ -6726,6 +6726,9 @@ form {
   width: 100%;
   max-width: 580px; }
 
+.errorMessage {
+  color: #cc3636; }
+
 .form-icon {
   color: #b4b4b4; }
 
