@@ -73,7 +73,7 @@ class RegistrationForm extends Component {
         delete supports[value]
       }
       value = supports
-      // console.log(value)
+      console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
       // if (!e.target.checked) {
@@ -98,6 +98,28 @@ class RegistrationForm extends Component {
       this.setState({ password: e.target.value })
     } else if (e.target.name === 'confirmPassword') {
       this.setState({ confirmPassword: e.target.value })
+    } else if (e.target.name === 'languages') {
+      this.setState({ languages: e.target.value})
+    } else if (e.target.name === 'firstName') {
+      this.setState ({ firstName: e.target.value})
+    } else if (e.target.name === 'lastName') {
+      this.setState ({ lastName: e.target.value})
+    } else if (e.target.name === 'DOB') {
+      this.setState ({ DOB: e.target.value})
+    } else if (e.target.name === 'email') {
+      this.setState ({ email: e.target.value})
+    } else if (e.target.name === 'currentCity') {
+      this.setState ({ currentCity: e.target.value})
+    } else if (e.target.name === 'occupation') {
+      this.setState ({ occupation: e.target.value})
+    } else if (e.target.name === 'bio') {
+      this.setState ({ bio: e.target.value})
+    } else if (e.target.name === 'countryOrigin') {
+      this.setState ({ countryOrigin: e.target.value})
+    } else if (e.target.name === 'yearLeft') {
+      this.setState ({ yearLeft: e.target.value})
+    } else if (e.target.name === 'yearOfArrival') {
+      this.setState ({ yearOfArrival: e.target.value})
     } 
     // console.log(e.target.name, [name])
 
