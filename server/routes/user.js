@@ -3,15 +3,34 @@ const router = express.Router()
 const { getTokenDecoder } = require('authenticare/server')
 
 const tokenDecoder = getTokenDecoder(false)
-const db = require('../db/db')
+const { registerUser, registerLanguage } = require('../db/register')
+const { getUserProfiles, getCurrentUserProfile } = require('../db/fetch')
+
+router.get('/profiles', tokenDecoder, (req, res) => {
+  let conn = req.app.connection
+  let userId = req.user.id
+
+  getUserProfiles(userId, conn).then(profiles => {
+    res.status(201).send(profiles)
+  })
+})
+
+router.get('/current', tokenDecoder, (req, res) => {
+  let conn = req.app.connection
+  let userId = req.user.id
+
+  getCurrentUserProfile(userId, conn).then(user => {
+    res.status(201).send(user)
+  })
+})
 
 router.put('/register-user-details', tokenDecoder, (req, res) => {
   let conn = req.app.connection
   let userId = req.user.id
   let { user } = req.body
-  db.registerUser(userId, user, conn)
+  registerUser(userId, user, conn)
     .then(() => {
-      db.registerLanguage(userId, languageId)
+      registerLanguage(userId, languageId)
     })
     .then(() => {
       res.status(201).send()

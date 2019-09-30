@@ -7,6 +7,7 @@ exports.up = function(knex) {
     t.string('currentCity')
     t.string('occupation')
     t.string('email')
+    t.string('hash')
     t.string('bio')
     t.string('status')
     t.string('profileImg')
