@@ -15,13 +15,14 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 1,
+      step: 2,
       previewProfileUrl: null,
       userDetails: {
         status: '',
         firstName: '',
         lastName: '',
         DOB: '',
+        email: '',
         currentCity: '',
         occupation: '',
         bio: ''
@@ -65,6 +66,8 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
+    this.formValidation()
+
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
       let supports = { ...this.state.supports, [value]: e.target.checked }
@@ -136,7 +139,6 @@ class RegistrationForm extends Component {
   handleNext = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
-    this.formValidation()
     if (
       this.state.step === 4 ||
       (this.state.step === 3 && this.state.userDetails.status === 'AL')
@@ -178,7 +180,8 @@ class RegistrationForm extends Component {
 
   formValidation = () => {
     if (this.state.password != this.state.confirmPassword) {
-      return console.log('password does not match')
+      let passwordInputs = document.querySelectorAll('input[type="password"]')
+      passwordInputs.forEach(input => input.classList.add('invalid'))
     }
   }
 
