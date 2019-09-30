@@ -15,7 +15,7 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 4,
+      step: 2,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -106,16 +106,6 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'firstName') {
-      this.setState ({  userDetails : {...this.state.userDetails, firstName: e.target.value}})
-    } else if (e.target.name === 'lastName') {
-      this.setState ({  userDetails : {...this.state.userDetails, lastName: e.target.value}})
-    }else if (e.target.name === 'DOB') {
-      this.setState ({  userDetails : {...this.state.userDetails, DOB: e.target.value}})
-    } else if (e.target.name === 'email') {
-      this.setState ({  userDetails : {...this.state.userDetails, email: e.target.value}})
-    } else if (e.target.name === 'currentCity') {
-      this.setState ({  userDetails : {...this.state.userDetails, currentCity: e.target.value}})
     } else if (e.target.name === 'occupation') {
       this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
     } else if (e.target.name === 'bio') {
@@ -142,10 +132,6 @@ class RegistrationForm extends Component {
     }
     console.log(e.target.name, value)
 
-  }
-
-  handleSelectChange = (e, section = "userDetails") => {
-    this.setState({ [section]: {...this.state[section], [e.target.name]: e.target.value}})
   }
 
   // handleSimpleSelect = (e) => {
@@ -227,8 +213,8 @@ class RegistrationForm extends Component {
       handleSubmit,
       setUserStatus,
       handleChange,
-      handleSelectChange,
       handleSelectChangeLanguage,
+      updateUserDetails,      
       updateRefugeeDetails,
       handleNext,
       handlePrevious,
@@ -245,8 +231,8 @@ class RegistrationForm extends Component {
             {step === 2 && (
               <RegoProfileForm
                 handleChange={handleChange}
+                updateUserDetails={updateUserDetails}
                 state={state}
-                handleSelectChange={handleSelectChange}
               />
             )}
             {step === 3 && (

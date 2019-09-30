@@ -4,9 +4,8 @@ import SelectYear from './SelectYear'
 export default function RegoProfileForm({
   state,
   handleChange,
-  handleSelectChange,
+  updateUserDetails
 }) {
-  console.log(state.userDetails.firstName)
   return (
     <div className='section'>
       <div
@@ -42,7 +41,7 @@ export default function RegoProfileForm({
             id='firstName'
             name='firstName'
             value={state.userDetails.firstName}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
           <label htmlFor='firstName'>First Name</label>
         </div>
@@ -53,7 +52,7 @@ export default function RegoProfileForm({
             id='lastName'
             name='lastName'
             value={state.userDetails.lastName}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
           <label htmlFor='lastName'>Last Name</label>
         </div>
@@ -62,10 +61,8 @@ export default function RegoProfileForm({
           <i className='material-icons prefix form-icon'>date_range</i>
           <SelectYear 
           name='DOB' start={-80} end={-18}
-          function={handleSelectChange}
+          function={updateUserDetails}
           class={'ageSelect'}
-          // value={state.userDetails.DOB}
-          name={'ageSelect'}
           />
         </div>
       </div>
@@ -78,7 +75,7 @@ export default function RegoProfileForm({
           <i className='material-icons prefix form-icon'>add_location</i>
           <select
             name="currentCity"
-            onChange={handleSelectChange}
+            onChange={updateUserDetails}
             className='locationSelect'
           >
             <option value='' disabled defaultValue>
@@ -107,7 +104,7 @@ export default function RegoProfileForm({
             id='regoEmail'
             name='email'
             value={state.userDetails.email}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
           <label htmlFor='regoEmail'>Email</label>
         </div>
@@ -134,7 +131,6 @@ export default function RegoProfileForm({
           <label htmlFor='confirmPassword'>Confirm Password</label>
         </div>
       </div>
-      {/* </div> */}
     </div>
   )
 }
