@@ -3,18 +3,25 @@ import { getAuthorizationHeader } from 'authenticare/client'
 
 export function registerUser(data) {
   console.log(data)
-  let call = request
+  return (
+    request
+      .post('/api/v1/user/register')
+      .set(getAuthorizationHeader()) //sends token to server. from server i can use decodetoken to get the user id
+      .send(data)
+      // .then(() => {
+      //   registerProfileImg(data.profileUrl)
+      // })
+      .catch(e => {
+        console.log(e)
+      })
+  )
+}
+
+function registerProfileImg(profileUrl) {
+  return request
     .post('/s3/upload')
-    .set(getAuthorizationHeader()) //sends token to server. from server i can use decodetoken to get the user id
-    .attach('profileImg', data.actualFile)
-
-  for (let key in data.userDetails) {
-    call.field(`userDetails[${key}]`, data.userDetails[key])
-  }
-  // call.field('thing', {hi: 'hi'}) not this way
-  call.catch(e => {
-    console.log(e)
-  })
-
-  return call
+    .attach('profileImg', profileUrl)
+    .catch(e => {
+      console.log(e)
+    })
 }

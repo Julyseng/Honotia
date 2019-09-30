@@ -1,16 +1,25 @@
-function postUserInfoDb(data, connection) {
-  return connection('tableName').insert({
-    name: data.name,
-    age: data.age,
-    languages: data.languages,
-    location: data.location,
-    occupation: data.occupation,
-    interests: data.interests,
-    support: data.support,
-    email: data.email
-  })
+function registerUser(userId, userDetails, connection) {
+  return connection('users')
+    .where('id', userId)
+    .insert({
+      userDetails
+    })
 }
 
+function registerLanguage(userId, languageId, connection) {
+  return connection('languages').insert('user_id', userId)
+}
+
+function registerRefugee(refugeeDetails, connection) {
+  return connection('refugees').insert(refugeeDetails)
+}
+
+function registerNeed() {}
+
+function registerSupport() {}
+
 module.exports = {
-  postUserInfoDb
+  registerUser,
+  registerLanguage,
+  registerRefugee
 }
