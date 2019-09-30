@@ -26,7 +26,7 @@ export default function RegoBioForm({
         <div className='input-field'>
           <select
             multiple
-            // value={state.userAccount.location}
+            // value={state.languages}
             // defaultValue={[]}
             onChange={handleSelectChange}
             className='locationSelect'

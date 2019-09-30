@@ -96,8 +96,8 @@ class RegistrationForm extends Component {
       this.setState({ password: e.target.value })
     } else if (e.target.name === 'confirmPassword') {
       this.setState({ confirmPassword: e.target.value })
-    }
-
+    } 
+    console.log(e.target.name, [name])
     this.setState({
       userDetails: { ...this.state.userDetails, [name]: value }
     })

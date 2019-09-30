@@ -16,7 +16,7 @@ export default function RegoRefugeeForm({
             type='text'
             id='countryOrigin'
             name='countryOrigin'
-            value={state.refugeeDetails.countryOrigin}
+            value={state.countryOrigin}
             onChange={handleChange}
           />
           <label>Country of origin...</label>
