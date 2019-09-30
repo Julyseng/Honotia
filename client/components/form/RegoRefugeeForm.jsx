@@ -2,7 +2,11 @@ import React, { Fragment } from 'react'
 
 import SelectYear from './SelectYear'
 
-export default function RegoRefugeeForm() {
+export default function RegoRefugeeForm({
+  state,
+  handleChange,
+  handleSelectChange
+}) {
   return (
     <div className='section'>
       <div className='section'>
@@ -128,7 +132,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='healthcare'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Healthcare</span>
             </label>
@@ -139,7 +143,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='education'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Education</span>
             </label>
@@ -150,7 +154,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='housing'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Housing</span>
             </label>
@@ -161,7 +165,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='mentor'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Mentor</span>
             </label>
@@ -172,7 +176,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='employment'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Employment</span>
             </label>
@@ -183,7 +187,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='socialSupport'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Social Support</span>
             </label>
@@ -194,7 +198,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='transport'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Transport</span>
             </label>
@@ -217,7 +221,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='healthcare'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Healthcare</span>
             </label>
@@ -228,7 +232,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='education'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Education</span>
             </label>
@@ -239,7 +243,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='housing'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Housing</span>
             </label>
@@ -250,7 +254,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='mentor'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Mentor</span>
             </label>
@@ -261,7 +265,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='employment'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Employment</span>
             </label>
@@ -272,7 +276,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='socialSupport'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Social Support</span>
             </label>
@@ -283,7 +287,7 @@ export default function RegoRefugeeForm() {
                 type='checkbox'
                 name='support'
                 value='transport'
-                // onChange={handleChange}
+                onChange={handleChange}
               />
               <span>Transport</span>
             </label>
