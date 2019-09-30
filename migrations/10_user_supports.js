@@ -4,7 +4,6 @@ exports.up = function(knex) {
         t.integer('user_id').references('users.id')
         t.string('supports_id').references('supports.id')
     })
-  
 };
 
 exports.down = function(knex) {
