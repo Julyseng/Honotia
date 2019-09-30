@@ -20,7 +20,6 @@ router.get('/current', tokenDecoder, (req, res) => {
   let userId = req.user.id
 
   getCurrentUserProfile(userId, conn).then(user => {
-    console.log(user)
     res.status(201).send(user)
   })
 })
