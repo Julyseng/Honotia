@@ -95,7 +95,6 @@ export default function RegoRefugeeForm({
           numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
           ut.
         </p>
-        {/* How I can support others */}
         <div>
         <CheckboxList options = {needsAndSupports}    
           name="supports"
