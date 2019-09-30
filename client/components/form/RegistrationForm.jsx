@@ -37,7 +37,8 @@ class RegistrationForm extends Component {
       languages: [],
       supports: [],
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      actualFile: undefined
     }
   }
 
@@ -64,14 +65,12 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
-    console.log(value)
     if (e.target.type == 'checkbox') {
       let support = { ...this.state.support, [value]: e.target.checked }
       if (!e.target.checked) {
         delete support[value]
       }
       value = support
-      console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
       // if (!e.target.checked) {
@@ -97,7 +96,6 @@ class RegistrationForm extends Component {
     } else if (e.target.name === 'confirmPassword') {
       this.setState({ confirmPassword: e.target.value })
     }
-
     this.setState({
       userDetails: { ...this.state.userDetails, [name]: value }
     })
@@ -107,6 +105,8 @@ class RegistrationForm extends Component {
     let locationSelect = document.querySelector('.locationSelect')
     let instance = M.FormSelect.getInstance(locationSelect)
     let selected = instance.getSelectedValues()
+
+    this.setState({ ...this.state.userDetails, currentCity: selected })
     // also need for languages, year of arrival, year left, year born
   }
 
@@ -135,7 +135,7 @@ class RegistrationForm extends Component {
 
     register(
       {
-        username: this.state.userAccount.email,
+        username: this.state.userDetails.email,
         password: this.state.password
       },
       { baseUrl: '/api/v1' }
@@ -146,8 +146,15 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        registerUser(this.state).then(res => {
-          console.log(res.text)
+        registerUser({
+          user: this.state.userDetails,
+          refugee: this.state.refugeeDetails,
+          needs: this.state.needs,
+          languages: this.state.languages,
+          supports: this.state.supports,
+          actualFile: this.state.actualFile
+        }).then(res => {
+          this.props.history.push('/')
         })
       })
   }
@@ -185,7 +192,7 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
+            {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
             <FormNavControllers
               userStatus={userDetails.status}
               step={step}
