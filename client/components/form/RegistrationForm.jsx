@@ -32,8 +32,6 @@ class RegistrationForm extends Component {
         yearLeft: null,
         reasonForLeaving: [],
         yearOfArrival: null,
-        needs: [],
-        supports: []
       },
       needs: [],
       languages: [],
@@ -116,18 +114,27 @@ class RegistrationForm extends Component {
   handleSelectChangeLocation = e => {
     let locationSelect = document.querySelector('.locationSelect')
     let locationInstance = M.FormSelect.getInstance(locationSelect)
-    let selected = locationInstance.getSelectedValues()
-    this.setState({ userDetails: {...this.state.userDetails, currentCity: selected}})
-    console.log(selected)
+    let locationSelected = locationInstance.getSelectedValues()
+    this.setState({ userDetails: {...this.state.userDetails, currentCity: locationSelected}})
+    console.log(locationSelected)
 
-    // also need for languages, year of arrival, year left, year born
+    // also need for year of arrival, year left, year born
   }
 
   handleSelectChangeLanguage = e => {           
     let languageSelect = document.querySelector('.languageSelect')
     let languageInstance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = languageInstance.getSelectedValues()
+    this.setState({ languages: languageSelected})
     console.log(languageSelected)
+  }
+
+  handleSelectChangeArrival = e => {
+    let arrivalSelect = document.querySelector('.arrivalSelect')
+    let arrivalInstance = M.FormSelect.getInstanc(arrivalSelect)
+    let arrivalSelected = arrivalInstance.getSelectedValues()
+    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearOfArrival: arrivalSelected}})
+
   }
   
   handlePrevious = e => {
@@ -191,6 +198,8 @@ class RegistrationForm extends Component {
       setUserStatus,
       handleChange,
       handleSelectChangeLocation,
+      handleSelectChangeLanguage,
+      handleSelectChangeArrival,
       handleNext,
       handlePrevious,
       state
@@ -211,11 +220,12 @@ class RegistrationForm extends Component {
               />
             )}
             {step === 3 && (
-              <RegoBioForm handleChange={handleChange} state={state} />
+              <RegoBioForm handleSelectChangeLanguage={handleSelectChangeLanguage} state={state} />
             )}
             {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
+              handleSelectChangeArrival={handleSelectChangeArrival}
               state={state}
             />)}
             <FormNavControllers

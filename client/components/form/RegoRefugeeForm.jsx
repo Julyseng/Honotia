@@ -5,6 +5,7 @@ import SelectYear from './SelectYear'
 export default function RegoRefugeeForm({
   state,
   handleChange,
+  handleSelectChangeArrival
 }) {
   console.log(state)
   return (
@@ -111,7 +112,10 @@ export default function RegoRefugeeForm({
         <h5>Year of arrival in NZ</h5>
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear name='selectYearArrival' start={-80}/>
+              <SelectYear 
+              onChange={handleSelectChangeArrival} className="arrivalSelect" 
+              name='selectYearArrival' 
+              start={-80}/>
           </div>
       </div>
 

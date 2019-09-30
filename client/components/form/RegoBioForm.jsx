@@ -3,7 +3,7 @@ import React from 'react'
 export default function RegoBioForm({
   state,
   handleChange,
-  handleSelectChange
+  handleSelectChangeLanguage
 }) {
   return (
     <div className='section'>
@@ -29,7 +29,7 @@ export default function RegoBioForm({
             name="languages"
             // value={state.languages}
             // defaultValue={[]}
-            onChange={handleSelectChange}
+            onChange={handleSelectChangeLanguage}
             className='languageSelect'
           >
             <option value='' disabled defaultValue>
