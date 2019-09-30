@@ -31,7 +31,7 @@ class RegistrationForm extends Component {
         countryOrigin: '',
         yearLeft: null,
         reasonForLeaving: [],
-        yearOfArrival: null
+        yearOfArrival: null,
       },
       needs: [],
       languages: [],
@@ -66,15 +66,24 @@ class RegistrationForm extends Component {
   }
 
   handleChange = e => {
-    let { name, value, type, checked } = e.target
+    // let { name, value, type, checked } = e.target
 
-    if (type == 'checkbox') {
-      let support = { ...this.state.support, [value]: checked }
-      if (!checked) {
-        delete support[value]
+    let { name, value } = e.target
+    if (e.target.type == 'checkbox') {
+      let supports = { ...this.state.supports, [value]: e.target.checked }
+      if (!e.target.checked) {
+        delete supports[value]
       }
-      value = support
-    } else if (type === 'file') {
+      value = supports
+      console.log(value)
+
+      // let needs = { ...this.state.needs, [value]: e.target.checked }
+      // if (!e.target.checked) {
+      //   delete needs[value]
+      // }
+      // value = needs
+      // console.log(value)
+    } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
       let file = fileUpload.files[0]
@@ -87,26 +96,79 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (name === 'password') {
-      this.setState({ password: value })
-    } else if (name === 'confirmPassword') {
-      this.setState({ confirmPassword: value })
-    }
-    this.formValidation(e)
+    } else if (e.target.name === 'password') {
+      this.setState({password: e.target.value })
+    } else if (e.target.name === 'confirmPassword') {
+      this.setState({ confirmPassword: e.target.value })
+    } else if (e.target.name === 'languages') {
+      this.setState({ languages: e.target.value})
+    } else if (e.target.name === 'firstName') {
+      this.setState ({  userDetails : {...this.state.userDetails, firstName: e.target.value}})
+    } else if (e.target.name === 'lastName') {
+      this.setState ({  userDetails : {...this.state.userDetails, lastName: e.target.value}})
+    }else if (e.target.name === 'DOB') {
+      this.setState ({  userDetails : {...this.state.userDetails, DOB: e.target.value}})
+    } else if (e.target.name === 'email') {
+      this.setState ({  userDetails : {...this.state.userDetails, email: e.target.value}})
+    } else if (e.target.name === 'currentCity') {
+      this.setState ({  userDetails : {...this.state.userDetails, currentCity: e.target.value}})
+    } else if (e.target.name === 'occupation') {
+      this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
+    } else if (e.target.name === 'bio') {
+      this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
+    } else if (e.target.name === 'countryOrigin') {
+      this.setState ({  refugeeDetails : {...this.state.userDetails, countryOrigin: e.target.value}})
+    } else if (e.target.name === 'yearLeft') {
+      this.setState ({  refugeeDetails : {...this.state.userDetails, yearLeft: e.target.value}})
+    } else if (e.target.name === 'reasonForLeaving') {
+      this.setState ({  refugeeDetails : {...this.state.userDetails, reasonForLeaving: e.target.value}})
+    } else if (e.target.name === 'yearOfArrival') {
+      this.setState ({  refugeeDetails : {...this.state.userDetails, yearOfArrival: e.target.value}})
+    } 
+    console.log(e.target.name, value)
 
-    this.setState({
-      userDetails: { ...this.state.userDetails, [name]: value }
-    })
   }
 
-  handleSelectChange = e => {
+  handleSelectChangeAge = e => {
+    let ageSelect = e.target
+    let ageInstance = M.FormSelect.getInstance(ageSelect)
+    let ageSelected = ageInstance.getSelectedValues()
+    this.setState({ userDetails: {...this.setState.userDetails, DOB: ageSelected}})
+    console.log(ageSelected)
+  }
+
+  handleSelectChangeLocation = e => {
     let locationSelect = e.target
-    let instance = M.FormSelect.getInstance(locationSelect)
-    let selected = instance.getSelectedValues()
-
-    this.setState({ ...this.state.userDetails, currentCity: selected })
+    let locationInstance = M.FormSelect.getInstance(locationSelect)
+    let locationSelected = locationInstance.getSelectedValues()
+    this.setState({ userDetails: {...this.state.userDetails, currentCity: locationSelected}})
+    console.log(locationSelected)
   }
 
+  handleSelectChangeLanguage = e => {           
+    let languageSelect = e.target
+    let languageInstance = M.FormSelect.getInstance(languageSelect)
+    let languageSelected = languageInstance.getSelectedValues()
+    this.setState({ languages: languageSelected})
+    console.log(languageSelected)
+  }
+
+  handleSelectChangeLeaving = e => {
+    let leavingSelect = e.target
+    let leavingInstance = M.FormSelect.getInstance(leavingSelect)
+    let leavingSelected = leavingInstance.getSelectedValues()
+    console.log(leavingSelected)
+    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearLeft: leavingSelected} })
+  }
+
+  handleSelectChangeArrival = e => {
+    let arrivalSelect = e.target
+    let arrivalInstance = M.FormSelect.getInstance(arrivalSelect)
+    let arrivalSelected = arrivalInstance.getSelectedValues()
+    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearOfArrival: arrivalSelected}})
+    console.log(arrivalSelected)
+  }
+  
   handlePrevious = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
@@ -175,13 +237,18 @@ class RegistrationForm extends Component {
       handleSubmit,
       setUserStatus,
       handleChange,
-      handleSelectChange,
+      handleSelectChangeAge,
+      handleSelectChangeLocation,
+      handleSelectChangeLanguage,
+      handleSelectChangeLeaving,
+      handleSelectChangeArrival,
       handleNext,
       handlePrevious,
       state
     } = this
     const { step, userDetails, errorMessage } = this.state
 
+    console.log(this.state)
     return (
       <Fragment>
         <div className='form-container'>
@@ -191,13 +258,23 @@ class RegistrationForm extends Component {
               <RegoProfileForm
                 handleChange={handleChange}
                 state={state}
-                handleSelectChange={handleSelectChange}
+                handleSelectChangeAge={handleSelectChangeAge}
+                handleSelectChangeLocation={handleSelectChangeLocation}
               />
             )}
             {step === 3 && (
-              <RegoBioForm handleChange={handleChange} state={state} />
+              <RegoBioForm
+              handleChange={handleChange} 
+              handleSelectChangeLanguage={handleSelectChangeLanguage} 
+              state={state} />
             )}
-            {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
+            {step === 4 && userDetails.status != 'AL' && (
+              <RegoRefugeeForm 
+              handleChange={handleChange}
+              handleSelectChangeLeaving={handleSelectChangeLeaving}
+              handleSelectChangeArrival={handleSelectChangeArrival}
+              state={state}
+            />)}
             {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}

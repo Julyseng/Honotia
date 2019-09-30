@@ -3,7 +3,7 @@ import React from 'react'
 export default function RegoBioForm({
   state,
   handleChange,
-  handleSelectChange
+  handleSelectChangeLanguage
 }) {
   return (
     <div className='section'>
@@ -26,10 +26,11 @@ export default function RegoBioForm({
         <div className='input-field'>
           <select
             multiple
-            // value={state.userAccount.location}
+            name="languages"
+            // value={state.languages}
             // defaultValue={[]}
-            onChange={handleSelectChange}
-            className='locationSelect'
+            onChange={handleSelectChangeLanguage}
+            className='languageSelect'
           >
             <option value='' disabled defaultValue>
               Languages I speak...
