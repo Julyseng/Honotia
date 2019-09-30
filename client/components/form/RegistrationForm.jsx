@@ -17,25 +17,24 @@ class RegistrationForm extends Component {
     this.state = {
       step: 1,
       previewProfileUrl: null,
-      userStatus: '',
-      userAccount: {
+      userDetails: {
+        status: '',
         firstName: '',
         lastName: '',
-        email: '',
         DOB: '',
         currentCity: '',
-        profileUrl: '',
         occupation: '',
         bio: '',
-        languages: []
+        profileUrl: ''
       },
       refugeeDetails: {
         countryOrigin: '',
         yearLeft: null,
         reasonForLeaving: [],
-        yearOfArrival: null,
-        needs: []
+        yearOfArrival: null
       },
+      needs: [],
+      languages: [],
       supports: [],
       password: '',
       confirmPassword: ''
@@ -57,8 +56,10 @@ class RegistrationForm extends Component {
     M.CharacterCounter.init(textNeedCount)
   }
 
-  setUserStatus = userStatus => {
-    this.setState({ userStatus })
+  setUserStatus = status => {
+    this.setState({
+      userDetails: { ...this.state.userDetails, status }
+    })
   }
 
   handleChange = e => {
@@ -98,7 +99,7 @@ class RegistrationForm extends Component {
     }
 
     this.setState({
-      userAccount: { ...this.state.userAccount, [name]: value }
+      userDetails: { ...this.state.userDetails, [name]: value }
     })
   }
 
@@ -119,7 +120,10 @@ class RegistrationForm extends Component {
     e.preventDefault()
     window.scrollTo(0, 0)
     this.formValidation()
-    if (this.state.step === 4) {
+    if (
+      this.state.step === 4 ||
+      (this.state.step === 3 && this.state.userDetails.status === 'AL')
+    ) {
       this.handleSubmit({ preventDefault: () => {} })
     } else {
       this.setState({ step: this.state.step + 1 })
@@ -131,7 +135,7 @@ class RegistrationForm extends Component {
 
     register(
       {
-        username: this.state.userAccount.email,
+        username: this.state.userDetails.email,
         password: this.state.password
       },
       { baseUrl: '/api/v1' }
@@ -142,8 +146,15 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        registerUser(this.state).then(res => {
-          console.log(res.text)
+        registerUser({
+          user: this.state.userDetails,
+          refugee: this.state.refugeeDetails,
+          needs: this.state.needs,
+          languages: this.state.languages,
+          supports: this.state.supports
+        }).then(res => {
+          // console.log(res.text)
+          this.props.history.push('/')
         })
       })
   }
@@ -164,7 +175,7 @@ class RegistrationForm extends Component {
       handlePrevious,
       state
     } = this
-    const { step, userStatus } = this.state
+    const { step, userDetails } = this.state
 
     return (
       <Fragment>
@@ -181,9 +192,9 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && userStatus != 'AL' && <RegoRefugeeForm />}
+            {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
             <FormNavControllers
-              status={status}
+              userStatus={userDetails.status}
               step={step}
               handleNext={handleNext}
               handlePrevious={handlePrevious}

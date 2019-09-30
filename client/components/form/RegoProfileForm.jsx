@@ -40,7 +40,7 @@ export default function RegoProfileForm({
             type='text'
             id='firstName'
             name='firstName'
-            value={state.userAccount.firstName}
+            value={state.userDetails.firstName}
             onChange={handleChange}
           />
           <label>First Name</label>
@@ -51,7 +51,7 @@ export default function RegoProfileForm({
             type='text'
             id='lastName'
             name='lastName'
-            value={state.userAccount.lastName}
+            value={state.userDetails.lastName}
             onChange={handleChange}
           />
           <label>Last Name</label>
@@ -101,7 +101,7 @@ export default function RegoProfileForm({
             type='email'
             id='emailRegForm'
             name='email'
-            value={state.userAccount.email}
+            value={state.userDetails.email}
             onChange={handleChange}
           />
           <label>Email</label>

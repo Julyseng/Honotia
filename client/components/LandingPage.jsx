@@ -40,7 +40,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {isAuthenticated() && (
+      {!isAuthenticated() && (
         <Link
           to='/registration'
           className='waves-effect waves-light btn-large btn-register'
