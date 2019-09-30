@@ -15,7 +15,7 @@ class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
+      step: 4,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -74,7 +74,7 @@ class RegistrationForm extends Component {
       if (!e.target.checked) {
         delete supports[value]
       }
-      value = supports
+      // value = supports
       console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
@@ -129,22 +129,13 @@ class RegistrationForm extends Component {
 
   }
 
-  handleSelectChangeAge = e => {
-    let ageSelect = e.target
-    let ageInstance = M.FormSelect.getInstance(ageSelect)
-    let ageSelected = ageInstance.getSelectedValues()
-    this.setState({ userDetails: {...this.setState.userDetails, DOB: ageSelected}})
-    console.log(ageSelected)
+  handleSelectChange = (e, section = "userDetails") => {
+    this.setState({ [section]: {...this.state[section], [e.target.name]: e.target.value}})
   }
 
-  handleSelectChangeLocation = e => {
-    let locationSelect = e.target
-    let locationInstance = M.FormSelect.getInstance(locationSelect)
-    let locationSelected = locationInstance.getSelectedValues()
-    this.setState({ userDetails: {...this.state.userDetails, currentCity: locationSelected}})
-    console.log(locationSelected)
-  }
-
+  // handleSimpleSelect = (e) => {
+  //   this.setState({ [e.target.name]: [e.target.value]})
+  // }
   handleSelectChangeLanguage = e => {           
     let languageSelect = e.target
     let languageInstance = M.FormSelect.getInstance(languageSelect)
@@ -152,23 +143,7 @@ class RegistrationForm extends Component {
     this.setState({ languages: languageSelected})
     console.log(languageSelected)
   }
-
-  handleSelectChangeLeaving = e => {
-    let leavingSelect = e.target
-    let leavingInstance = M.FormSelect.getInstance(leavingSelect)
-    let leavingSelected = leavingInstance.getSelectedValues()
-    console.log(leavingSelected)
-    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearLeft: leavingSelected} })
-  }
-
-  handleSelectChangeArrival = e => {
-    let arrivalSelect = e.target
-    let arrivalInstance = M.FormSelect.getInstance(arrivalSelect)
-    let arrivalSelected = arrivalInstance.getSelectedValues()
-    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearOfArrival: arrivalSelected}})
-    console.log(arrivalSelected)
-  }
-  
+ 
   handlePrevious = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
@@ -237,11 +212,8 @@ class RegistrationForm extends Component {
       handleSubmit,
       setUserStatus,
       handleChange,
-      handleSelectChangeAge,
-      handleSelectChangeLocation,
+      handleSelectChange,
       handleSelectChangeLanguage,
-      handleSelectChangeLeaving,
-      handleSelectChangeArrival,
       handleNext,
       handlePrevious,
       state
@@ -258,8 +230,7 @@ class RegistrationForm extends Component {
               <RegoProfileForm
                 handleChange={handleChange}
                 state={state}
-                handleSelectChangeAge={handleSelectChangeAge}
-                handleSelectChangeLocation={handleSelectChangeLocation}
+                handleSelectChange={handleSelectChange}
               />
             )}
             {step === 3 && (
@@ -271,8 +242,7 @@ class RegistrationForm extends Component {
             {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
-              handleSelectChangeLeaving={handleSelectChangeLeaving}
-              handleSelectChangeArrival={handleSelectChangeArrival}
+              handleSelectChange={handleSelectChange}
               state={state}
             />)}
             {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
