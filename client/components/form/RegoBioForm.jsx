@@ -1,8 +1,12 @@
 import React from 'react'
+import CheckboxList from './CheckboxList'
+
+import { needsAndSupports } from './RegoRefugeeForm'
 
 export default function RegoBioForm({
   state,
   handleChange,
+  updateUserDetails,
   handleSelectChangeLanguage
 }) {
   return (
@@ -15,9 +19,9 @@ export default function RegoBioForm({
             id='occupation'
             name='occupation'
             value={state.occupation}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
-          <label htmlFor='occupation'>Occupation...</label>
+          <label>Occupation...</label>
         </div>
       </div>
 
@@ -27,8 +31,6 @@ export default function RegoBioForm({
           <select
             multiple
             name="languages"
-            // value={state.languages}
-            // defaultValue={[]}
             onChange={handleSelectChangeLanguage}
             className='languageSelect'
           >
@@ -39,7 +41,6 @@ export default function RegoBioForm({
             <option value='French'>French</option>
             <option value='Water'>Water</option>
           </select>
-          {/* <label>Languages I speak</label> */}
         </div>
       </div>
 
@@ -50,85 +51,10 @@ export default function RegoBioForm({
           numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
           ut.
         </p>
-        {/* How I can support others */}
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='healthcare'
-                onChange={handleChange}
-              />
-              <span>Healthcare</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='education'
-                onChange={handleChange}
-              />
-              <span>Education</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='housing'
-                onChange={handleChange}
-              />
-              <span>Housing</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='mentor'
-                onChange={handleChange}
-              />
-              <span>Mentor</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='employment'
-                onChange={handleChange}
-              />
-              <span>Employment</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='socialSupport'
-                onChange={handleChange}
-              />
-              <span>Social Support</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='transport'
-                onChange={handleChange}
-              />
-              <span>Transport</span>
-            </label>
-          </p>
+          <CheckboxList options = {needsAndSupports}    
+            name="supports"
+            handleChange={handleChange} />
         </div>
       </div>
 
@@ -146,7 +72,7 @@ export default function RegoBioForm({
             className='materialize-textarea'
             data-length='1000'
             value={state.bio}
-            onChange={handleChange}
+            onChange={updateUserDetails}
           />
           <label htmlFor='bio'>A bit about myself...</label>
         </div>

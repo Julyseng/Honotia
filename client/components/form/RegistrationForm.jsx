@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { register, isAuthenticated } from 'authenticare/client'
-import { connect } from 'react-redux'
 import M from '../../materialize-js/bin/materialize'
 
 import RegoRefugeeForm from './RegoRefugeeForm'
@@ -11,11 +10,11 @@ import FormNavControllers from './FormNavControllers'
 
 import { registerUser } from '../../apiClient'
 
-class RegistrationForm extends Component {
+export default class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
+      step: 3,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -65,24 +64,27 @@ class RegistrationForm extends Component {
     })
   }
 
-  handleChange = e => {
-    // let { name, value, type, checked } = e.target
+  updateUserDetails = (e) => {
+    this.handleChange(e, 'userDetails') 
+  }
+
+  updateRefugeeDetails = (e) => {
+    this.handleChange(e, 'refugeeDetails') 
+  }
+
+  handleChange = (e, section) => {
 
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
-      let supports = { ...this.state.supports, [value]: e.target.checked }
+      console.log(name)
+      let existingState = section ? this.state[section][name] : this.state[name]
+      let options = { ...existingState, [value]: e.target.checked }
       if (!e.target.checked) {
-        delete supports[value]
+        delete options[value]
       }
-      value = supports
+      value = options
       console.log(value)
 
-      // let needs = { ...this.state.needs, [value]: e.target.checked }
-      // if (!e.target.checked) {
-      //   delete needs[value]
-      // }
-      // value = needs
-      // console.log(value)
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -96,53 +98,26 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'password') {
-      this.setState({password: e.target.value })
-    } else if (e.target.name === 'confirmPassword') {
-      this.setState({ confirmPassword: e.target.value })
-    } else if (e.target.name === 'languages') {
-      this.setState({ languages: e.target.value})
-    } else if (e.target.name === 'firstName') {
-      this.setState ({  userDetails : {...this.state.userDetails, firstName: e.target.value}})
-    } else if (e.target.name === 'lastName') {
-      this.setState ({  userDetails : {...this.state.userDetails, lastName: e.target.value}})
-    }else if (e.target.name === 'DOB') {
-      this.setState ({  userDetails : {...this.state.userDetails, DOB: e.target.value}})
-    } else if (e.target.name === 'email') {
-      this.setState ({  userDetails : {...this.state.userDetails, email: e.target.value}})
-    } else if (e.target.name === 'currentCity') {
-      this.setState ({  userDetails : {...this.state.userDetails, currentCity: e.target.value}})
-    } else if (e.target.name === 'occupation') {
-      this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
-    } else if (e.target.name === 'bio') {
-      this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
-    } else if (e.target.name === 'countryOrigin') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, countryOrigin: e.target.value}})
-    } else if (e.target.name === 'yearLeft') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, yearLeft: e.target.value}})
-    } else if (e.target.name === 'reasonForLeaving') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, reasonForLeaving: e.target.value}})
-    } else if (e.target.name === 'yearOfArrival') {
-      this.setState ({  refugeeDetails : {...this.state.userDetails, yearOfArrival: e.target.value}})
+    // } else if (e.target.name === 'occupation') {
+    //   this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
+    // } else if (e.target.name === 'bio') {
+    //   this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
     } 
+    if (section){
+      this.setState({
+        [section]: {
+          ...this.state[section], 
+          [name]: value
+        }
+      })
+    }
+    else {
+      this.setState({
+        [name]: value
+      })
+    }
     console.log(e.target.name, value)
 
-  }
-
-  handleSelectChangeAge = e => {
-    let ageSelect = e.target
-    let ageInstance = M.FormSelect.getInstance(ageSelect)
-    let ageSelected = ageInstance.getSelectedValues()
-    this.setState({ userDetails: {...this.setState.userDetails, DOB: ageSelected}})
-    console.log(ageSelected)
-  }
-
-  handleSelectChangeLocation = e => {
-    let locationSelect = e.target
-    let locationInstance = M.FormSelect.getInstance(locationSelect)
-    let locationSelected = locationInstance.getSelectedValues()
-    this.setState({ userDetails: {...this.state.userDetails, currentCity: locationSelected}})
-    console.log(locationSelected)
   }
 
   handleSelectChangeLanguage = e => {           
@@ -150,25 +125,8 @@ class RegistrationForm extends Component {
     let languageInstance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = languageInstance.getSelectedValues()
     this.setState({ languages: languageSelected})
-    console.log(languageSelected)
   }
-
-  handleSelectChangeLeaving = e => {
-    let leavingSelect = e.target
-    let leavingInstance = M.FormSelect.getInstance(leavingSelect)
-    let leavingSelected = leavingInstance.getSelectedValues()
-    console.log(leavingSelected)
-    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearLeft: leavingSelected} })
-  }
-
-  handleSelectChangeArrival = e => {
-    let arrivalSelect = e.target
-    let arrivalInstance = M.FormSelect.getInstance(arrivalSelect)
-    let arrivalSelected = arrivalInstance.getSelectedValues()
-    this.setState({ refugeeDetails: {...this.state.refugeeDetails, yearOfArrival: arrivalSelected}})
-    console.log(arrivalSelected)
-  }
-  
+ 
   handlePrevious = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
@@ -233,22 +191,20 @@ class RegistrationForm extends Component {
   }
 
   render() {
+
     const {
       handleSubmit,
       setUserStatus,
       handleChange,
-      handleSelectChangeAge,
-      handleSelectChangeLocation,
       handleSelectChangeLanguage,
-      handleSelectChangeLeaving,
-      handleSelectChangeArrival,
+      updateUserDetails,      
+      updateRefugeeDetails,
       handleNext,
       handlePrevious,
       state
     } = this
     const { step, userDetails, errorMessage } = this.state
 
-    console.log(this.state)
     return (
       <Fragment>
         <div className='form-container'>
@@ -257,22 +213,21 @@ class RegistrationForm extends Component {
             {step === 2 && (
               <RegoProfileForm
                 handleChange={handleChange}
+                updateUserDetails={updateUserDetails}
                 state={state}
-                handleSelectChangeAge={handleSelectChangeAge}
-                handleSelectChangeLocation={handleSelectChangeLocation}
               />
             )}
             {step === 3 && (
               <RegoBioForm
               handleChange={handleChange} 
               handleSelectChangeLanguage={handleSelectChangeLanguage} 
+              updateUserDetails={updateUserDetails}
               state={state} />
             )}
             {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
-              handleSelectChangeLeaving={handleSelectChangeLeaving}
-              handleSelectChangeArrival={handleSelectChangeArrival}
+              updateRefugeeDetails={updateRefugeeDetails}
               state={state}
             />)}
             {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
@@ -288,5 +243,3 @@ class RegistrationForm extends Component {
     )
   }
 }
-
-export default connect()(RegistrationForm)
