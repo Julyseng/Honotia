@@ -30,7 +30,7 @@ export default class RegistrationForm extends Component {
         countryOrigin: '',
         yearLeft: null,
         reasonForLeaving: [],
-        yearOfArrival: null,
+        yearOfArrival: null
       },
       needs: [],
       languages: [],
@@ -64,16 +64,15 @@ export default class RegistrationForm extends Component {
     })
   }
 
-  updateUserDetails = (e) => {
-    this.handleChange(e, 'userDetails') 
+  updateUserDetails = e => {
+    this.handleChange(e, 'userDetails')
   }
 
-  updateRefugeeDetails = (e) => {
-    this.handleChange(e, 'refugeeDetails') 
+  updateRefugeeDetails = e => {
+    this.handleChange(e, 'refugeeDetails')
   }
 
   handleChange = (e, section) => {
-
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
       console.log(name)
@@ -84,7 +83,6 @@ export default class RegistrationForm extends Component {
       }
       value = options
       console.log(value)
-
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -98,35 +96,33 @@ export default class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    // } else if (e.target.name === 'occupation') {
-    //   this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
-    // } else if (e.target.name === 'bio') {
-    //   this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
-    } 
-    if (section){
+      // } else if (e.target.name === 'occupation') {
+      //   this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
+      // } else if (e.target.name === 'bio') {
+      //   this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
+    }
+    if (section) {
       this.setState({
         [section]: {
-          ...this.state[section], 
+          ...this.state[section],
           [name]: value
         }
       })
-    }
-    else {
+    } else {
       this.setState({
         [name]: value
       })
     }
     console.log(e.target.name, value)
-
   }
 
-  handleSelectChangeLanguage = e => {           
+  handleSelectChangeLanguage = e => {
     let languageSelect = e.target
     let languageInstance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = languageInstance.getSelectedValues()
-    this.setState({ languages: languageSelected})
+    this.setState({ languages: languageSelected })
   }
- 
+
   handlePrevious = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
@@ -191,13 +187,12 @@ export default class RegistrationForm extends Component {
   }
 
   render() {
-
     const {
       handleSubmit,
       setUserStatus,
       handleChange,
       handleSelectChangeLanguage,
-      updateUserDetails,      
+      updateUserDetails,
       updateRefugeeDetails,
       handleNext,
       handlePrevious,
@@ -219,17 +214,19 @@ export default class RegistrationForm extends Component {
             )}
             {step === 3 && (
               <RegoBioForm
-              handleChange={handleChange} 
-              handleSelectChangeLanguage={handleSelectChangeLanguage} 
-              updateUserDetails={updateUserDetails}
-              state={state} />
+                handleChange={handleChange}
+                handleSelectChangeLanguage={handleSelectChangeLanguage}
+                updateUserDetails={updateUserDetails}
+                state={state}
+              />
             )}
             {step === 4 && userDetails.status != 'AL' && (
-              <RegoRefugeeForm 
-              handleChange={handleChange}
-              updateRefugeeDetails={updateRefugeeDetails}
-              state={state}
-            />)}
+              <RegoRefugeeForm
+                handleChange={handleChange}
+                updateRefugeeDetails={updateRefugeeDetails}
+                state={state}
+              />
+            )}
             {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}
