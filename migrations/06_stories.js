@@ -3,6 +3,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('stories', t => {
         t.increments('id').primary()
         t.integer('user_id')
+        t.string('title')
         t.timestamp('dateCreated').defaultTo(knex.fn.now())
         t.text('story')
     })
