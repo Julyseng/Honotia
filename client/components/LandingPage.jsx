@@ -6,7 +6,7 @@ export default function LandingPage() {
   return (
     <div className='landingPage-container'>
       <div className='center-align'>
-        <h2>Kia Ora!</h2>
+        <h2>Kia Ora {isAuthenticated() && 'name'}!</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
 
@@ -40,12 +40,14 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <Link
-        to='/registration'
-        className='waves-effect waves-light btn-large btn-register'
-      >
-        Register
-      </Link>
+      {!isAuthenticated() && (
+        <Link
+          to='/registration'
+          className='waves-effect waves-light btn-large btn-register'
+        >
+          Register
+        </Link>
+      )}
     </div>
   )
 }

@@ -17,25 +17,24 @@ class RegistrationForm extends Component {
     this.state = {
       step: 1,
       previewProfileUrl: null,
-      userStatus: '',
-      userAccount: {
+      userDetails: {
+        status: '',
         firstName: '',
         lastName: '',
-        email: '',
         DOB: '',
         currentCity: '',
-        profileUrl: '',
         occupation: '',
         bio: '',
-        languages: []
+        profileUrl: ''
       },
       refugeeDetails: {
         countryOrigin: '',
         yearLeft: null,
         reasonForLeaving: [],
-        yearOfArrival: null,
-        needs: []
+        yearOfArrival: null
       },
+      needs: [],
+      languages: [],
       supports: [],
       password: '',
       confirmPassword: ''
@@ -57,8 +56,10 @@ class RegistrationForm extends Component {
     M.CharacterCounter.init(textNeedCount)
   }
 
-  setUserStatus = userStatus => {
-    this.setState({ userStatus })
+  setUserStatus = status => {
+    this.setState({
+      userDetails: { ...this.state.userDetails, status }
+    })
   }
 
   handleChange = e => {
@@ -69,7 +70,7 @@ class RegistrationForm extends Component {
       if (!e.target.checked) {
         delete support[value]
       }
-      value = support 
+      value = support
       console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
@@ -78,7 +79,6 @@ class RegistrationForm extends Component {
       // }
       // value = needs
       // console.log(value)
-
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -99,7 +99,7 @@ class RegistrationForm extends Component {
     }
 
     this.setState({
-      userAccount: { ...this.state.userAccount, [name]: value }
+      userDetails: { ...this.state.userDetails, [name]: value }
     })
   }
 
@@ -122,7 +122,10 @@ class RegistrationForm extends Component {
     e.preventDefault()
     window.scrollTo(0, 0)
     this.formValidation()
-    if (this.state.step === 4) {
+    if (
+      this.state.step === 4 ||
+      (this.state.step === 3 && this.state.userDetails.status === 'AL')
+    ) {
       this.handleSubmit({ preventDefault: () => {} })
     } else {
       this.setState({ step: this.state.step + 1 })
@@ -167,7 +170,7 @@ class RegistrationForm extends Component {
       handlePrevious,
       state
     } = this
-    const { step } = this.state
+    const { step, userDetails } = this.state
 
     console.log(this.state)
     return (
@@ -185,12 +188,13 @@ class RegistrationForm extends Component {
             {step === 3 && (
               <RegoBioForm handleChange={handleChange} state={state} />
             )}
-            {step === 4 && (
+            {step === 4 && userStatus != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
               state={state}
             />)}
             <FormNavControllers
+              userStatus={userDetails.status}
               step={step}
               handleNext={handleNext}
               handlePrevious={handlePrevious}
