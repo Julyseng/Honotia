@@ -6,7 +6,7 @@ import RegistrationForm from './form/RegistrationForm'
 import Navbar from './nav/Navbar'
 import AboutPage from './AboutPage'
 import ResourcesPage from './ResourcesPage'
-import ConnectPage from './ConnectPage'
+import ConnectPage from './connect/ConnectPage'
 
 const App = () => {
   return (
