@@ -26,10 +26,11 @@ export default function RegoBioForm({
         <div className='input-field'>
           <select
             multiple
+            name="languages"
             // value={state.languages}
             // defaultValue={[]}
             onChange={handleSelectChange}
-            className='locationSelect'
+            className='languageSelect'
           >
             <option value='' disabled defaultValue>
               Languages I speak...

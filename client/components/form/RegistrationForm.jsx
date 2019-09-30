@@ -25,13 +25,16 @@ class RegistrationForm extends Component {
         currentCity: '',
         occupation: '',
         bio: '',
-        profileUrl: ''
+        profileUrl: '',
+        supports: []
       },
       refugeeDetails: {
         countryOrigin: '',
         yearLeft: null,
         reasonForLeaving: [],
-        yearOfArrival: null
+        yearOfArrival: null,
+        needs: [],
+        supports: []
       },
       needs: [],
       languages: [],
@@ -64,14 +67,14 @@ class RegistrationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target
-    console.log(value)
+    // console.log(value)
     if (e.target.type == 'checkbox') {
-      let support = { ...this.state.support, [value]: e.target.checked }
+      let supports = { ...this.state.supports, [value]: e.target.checked }
       if (!e.target.checked) {
-        delete support[value]
+        delete supports[value]
       }
-      value = support
-      console.log(value)
+      value = supports
+      // console.log(value)
 
       // let needs = { ...this.state.needs, [value]: e.target.checked }
       // if (!e.target.checked) {
@@ -97,21 +100,32 @@ class RegistrationForm extends Component {
     } else if (e.target.name === 'confirmPassword') {
       this.setState({ confirmPassword: e.target.value })
     } 
-    console.log(e.target.name, [name])
+    // console.log(e.target.name, [name])
+
     this.setState({
       userDetails: { ...this.state.userDetails, [name]: value }
     })
+    if(this.state.step === 4) {
+      this.setState({
+        refugeeDetails: { ...this.state.refugeeDetails, [name]: value }
+      })
+    }
   }
 
   handleSelectChange = e => {
     let locationSelect = document.querySelector('.locationSelect')
-    let instance = M.FormSelect.getInstance(locationSelect)
-    let selected = instance.getSelectedValues()
-    this.setState({ userAccount: {currentCity: selected}})
+    let locationInstance = M.FormSelect.getInstance(locationSelect)
+    let selected = locationInstance.getSelectedValues()
+    // this.setState({ userAccount: {currentCity: selected}})
     console.log(selected)
+       
+    // let languageSelect = document.querySelector('.languageSelect')
+    // let languageInstance = M.FormSelect.getInstance(languageSelect)
+    // let languageSelected = languageInstance.getSelectedValues()
+    // console.log(languageSelected)
     // also need for languages, year of arrival, year left, year born
   }
-
+  
   handlePrevious = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
