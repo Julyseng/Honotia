@@ -1,6 +1,7 @@
 import React from 'react'
 
 import SelectYear from './SelectYear'
+import CheckboxList from './CheckboxList'
 
 const reasonsForLeaving = {
   conflict: 'War or conflict',
@@ -23,7 +24,7 @@ const needsAndSupports = {
 export default function RegoRefugeeForm({
   state,
   handleChange,
-  handleSelectChange
+  updateRefugeeDetails
 }) {
 
   return (
@@ -36,7 +37,7 @@ export default function RegoRefugeeForm({
             id='countryOrigin'
             name='countryOrigin'
             value={state.countryOrigin}
-            onChange={handleChange}
+            onChange={updateRefugeeDetails}
           />
           <label>Country of origin...</label>
         </div>
@@ -48,7 +49,7 @@ export default function RegoRefugeeForm({
               <i className='material-icons prefix form-icon'>date_range</i>
               <SelectYear 
               name='yearLeft' start={-80} 
-              function={(e) => handleSelectChange(e, 'refugeeDetails')}
+              function={updateRefugeeDetails}
               class={'leavingSelect'}/>
           </div>
       </div>
@@ -61,7 +62,7 @@ export default function RegoRefugeeForm({
         </p>
         <div>
           <CheckboxList options = {reasonsForLeaving}name="reasonForLeaving"
-          handleChange={(e)=> handleChange(e, 'refugeeDetails')} />
+          handleChange={updateRefugeeDetails} />
         </div>
       </div>
 
@@ -71,7 +72,7 @@ export default function RegoRefugeeForm({
               <i className='material-icons prefix form-icon'>date_range</i>
               <SelectYear 
               name='yearOfArrival' start={-80}
-              function={(e) => handleSelectChange(e, 'refugeeDetails')} className='arrivalSelect'/>
+              function={updateRefugeeDetails} className='arrivalSelect'/>
           </div>
       </div>
 
@@ -105,20 +106,3 @@ export default function RegoRefugeeForm({
   )
 }
 
-function CheckboxList({handleChange, name, options}) {
-  
-  return Object.keys(options).map(key => {
-    let text = options[key]
-    return <p key={key}>
-            <label>
-              <input
-                type='checkbox'
-                name={name}
-                value={key}
-                onChange={handleChange}
-              />
-              <span>{text}</span>
-            </label>
-          </p>
-  })
-}  

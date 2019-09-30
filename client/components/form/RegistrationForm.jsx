@@ -65,6 +65,14 @@ class RegistrationForm extends Component {
     })
   }
 
+  updateUserDetails = (e) => {
+    this.handleChange(e, 'userDetails') 
+  }
+
+  updateRefugeeDetails = (e) => {
+    this.handleChange(e, 'refugeeDetails') 
+  }
+
   handleChange = (e, section) => {
     // let { name, value, type, checked } = e.target
 
@@ -98,12 +106,6 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'password') {
-      this.setState({password: e.target.value })
-    } else if (e.target.name === 'confirmPassword') {
-      this.setState({ confirmPassword: e.target.value })
-    } else if (e.target.name === 'languages') {
-      this.setState({ languages: e.target.value})
     } else if (e.target.name === 'firstName') {
       this.setState ({  userDetails : {...this.state.userDetails, firstName: e.target.value}})
     } else if (e.target.name === 'lastName') {
@@ -227,6 +229,7 @@ class RegistrationForm extends Component {
       handleChange,
       handleSelectChange,
       handleSelectChangeLanguage,
+      updateRefugeeDetails,
       handleNext,
       handlePrevious,
       state
@@ -255,7 +258,7 @@ class RegistrationForm extends Component {
             {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm 
               handleChange={handleChange}
-              handleSelectChange={handleSelectChange}
+              updateRefugeeDetails={updateRefugeeDetails}
               state={state}
             />)}
             {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
