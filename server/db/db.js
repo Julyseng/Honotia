@@ -1,9 +1,7 @@
-function registerUser(userId, userDetails, connection) {
+function registerUser(userId, { firstName, lastName }, connection) {
   return connection('users')
     .where('id', userId)
-    .insert({
-      userDetails
-    })
+    .update({ firstName, lastName })
 }
 
 function registerLanguage(userId, languageId, connection) {
@@ -18,8 +16,15 @@ function registerNeed() {}
 
 function registerSupport() {}
 
+function saveProfileUrl(userId, profileImg, connection) {
+  return connection('users')
+    .where('id', userId)
+    .update({ profileImg })
+}
+
 module.exports = {
   registerUser,
   registerLanguage,
-  registerRefugee
+  registerRefugee,
+  saveProfileUrl
 }

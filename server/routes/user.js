@@ -1,15 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const { decodeToken } = require('authenticare/server')
+const { getTokenDecoder } = require('authenticare/server')
 
+const tokenDecoder = getTokenDecoder(false)
 const db = require('../db/db')
 
-router.post('/register', decodeToken, (req, res) => {
+router.put('/register-user-details', tokenDecoder, (req, res) => {
   let conn = req.app.connection
-  // const userId = decodeToken()
-  console.log('id', userId)
-  db.registerUser(userId, req.body.user, conn).then(() => {
-    res.status(201)
+  db.registerUser(req.user.id, req.body.user, conn).then(() => {
+    res.status(201).send()
   })
 })
 
