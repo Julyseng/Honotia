@@ -48,21 +48,23 @@ function RegoBioForm({
         </div>
       </div>
 
-      <div className='section'>
-        <h5>Areas where I can offer support</h5>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore alias
-          numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
-          ut.
-        </p>
-        <div>
-          <CheckboxList
-            options={needsAndSupports}
-            name='supports'
-            handleChange={handleChange}
-          />
+      {state.userDetails.status === 'AL' && (
+        <div className='section'>
+          <h5>Areas where I can offer support</h5>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            alias numquam obcaecati iure sapiente earum nisi ab est, ad illo
+            ipsam non ut.
+          </p>
+          <div>
+            <CheckboxList
+              options={needsAndSupports}
+              name='supports'
+              handleChange={handleChange}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className='section'>
         <h5>Bio</h5>

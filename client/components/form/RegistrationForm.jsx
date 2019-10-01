@@ -3,16 +3,13 @@ import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
-import RegoRefugeeForm from './RegoRefugeeForm'
 import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
 import RegoBioForm from './RegoBioForm'
+import RegoRefugeeForm from './RegoRefugeeForm'
 import FormNavControllers from './FormNavControllers'
 
-import { registerUser } from '../../apiClient'
-import { fetchLanguages } from '../../actions'
-import { fetchSupports } from '../../actions'
-import { fetchNeeds } from '../../actions'
+import { fetchFormDatas, registerUser } from '../../actions'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -48,9 +45,7 @@ class RegistrationForm extends Component {
 
   componentDidMount() {
     this.initiateMaterialize()
-    this.props.dispatch(fetchLanguages())
-    this.props.dispatch(fetchSupports())
-    this.props.dispatch(fetchNeeds())
+    this.props.dispatch(fetchFormDatas())
   }
 
   componentDidUpdate() {
@@ -155,44 +150,66 @@ class RegistrationForm extends Component {
     )
       .then(() => {
         if (isAuthenticated()) {
-          this.props.history.push('/')
+          this.props.dispatch(
+            registerUser(
+              {
+                user: this.state.userDetails,
+                refugee: this.state.refugeeDetails,
+                needs: this.state.needs,
+                languages: this.state.languages,
+                supports: this.state.supports,
+                actualFile: this.state.actualFile
+              },
+              this.props.dispatch
+            )
+          )
         }
       })
       .then(() => {
-        registerUser(
-          {
-            user: this.state.userDetails,
-            refugee: this.state.refugeeDetails,
-            needs: this.state.needs,
-            languages: this.state.languages,
-            supports: this.state.supports,
-            actualFile: this.state.actualFile
-          },
-          this.props.dispatch
-        ).then(res => {
-          this.props.history.push('/')
+        this.props.history.push('/')
+      })
+      .catch(e => {
+        this.setState({
+          errorMessage: 'Unable to register. Please fill out the form correctly'
         })
       })
   }
 
   formValidation = e => {
-    switch (e.target.name) {
+    let { name, value } = e.target
+    let targetClassList = e.target.classList
+    switch (name) {
       case 'password':
       case 'confirmPassword':
         this.state[e.target.name] = e.target.value
         let { password, confirmPassword } = this.state
+        let passwordInputs = document.querySelectorAll('.regoPassword')
+
         if (password != confirmPassword) {
-          // target both nodes
-          e.target.classList.add('invalid')
+          passwordInputs.forEach(input => input.classList.add('invalid'))
           this.setState({ errorMessage: 'Password does not match' })
         } else {
-          e.target.classList.remove('invalid')
+          passwordInputs.forEach(input => input.classList.remove('invalid'))
+          this.setState({ errorMessage: null })
+        }
+        break
+      case 'email':
+        if (!this.validateEmail(value)) {
+          targetClassList.add('invalid')
+          this.setState({ errorMessage: 'Please enter valid email' })
+        } else {
+          targetClassList.remove('invalid')
           this.setState({ errorMessage: null })
         }
         break
       default:
         this.setState({ errorMessage: null })
     }
+  }
+
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase())
   }
 
   render() {
