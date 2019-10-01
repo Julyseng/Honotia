@@ -38,6 +38,19 @@
   z-index: 5;
 }
 
+.storyPost-container {
+  padding: 2.5rem 0;
+}
+
+.story-authorName {
+  border-bottom: 1.5px solid #897cce;
+  cursor: pointer;
+
+  &:hover {
+    color: #a397e0;
+  }
+}
+
 @-webkit-keyframes slide {
   0% {
     opacity: 0;
