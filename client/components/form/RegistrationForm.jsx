@@ -3,14 +3,13 @@ import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
-import RegoRefugeeForm from './RegoRefugeeForm'
 import RegoStatusForm from './RegoStatusForm'
 import RegoProfileForm from './RegoProfileForm'
 import RegoBioForm from './RegoBioForm'
+import RegoRefugeeForm from './RegoRefugeeForm'
 import FormNavControllers from './FormNavControllers'
 
-import { registerUser } from '../../apiClient'
-import { fetchFormDatas } from '../../actions'
+import { fetchFormDatas, registerUser } from '../../actions'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -155,19 +154,23 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        registerUser(
-          {
-            user: this.state.userDetails,
-            refugee: this.state.refugeeDetails,
-            needs: this.state.needs,
-            languages: this.state.languages,
-            supports: this.state.supports,
-            actualFile: this.state.actualFile
-          },
-          this.props.dispatch
-        ).then(res => {
-          this.props.history.push('/')
-        })
+        this.props
+          .dispatch(
+            registerUser(
+              {
+                user: this.state.userDetails,
+                refugee: this.state.refugeeDetails,
+                needs: this.state.needs,
+                languages: this.state.languages,
+                supports: this.state.supports,
+                actualFile: this.state.actualFile
+              },
+              this.props.dispatch
+            )
+          )
+          .then(res => {
+            this.props.history.push('/')
+          })
       })
   }
 
