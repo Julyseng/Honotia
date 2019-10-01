@@ -176,23 +176,40 @@ class RegistrationForm extends Component {
   }
 
   formValidation = e => {
-    switch (e.target.name) {
+    let { name, value } = e.target
+    let targetClassList = e.target.classList
+    switch (name) {
       case 'password':
       case 'confirmPassword':
         this.state[e.target.name] = e.target.value
         let { password, confirmPassword } = this.state
+        let passwordInputs = document.querySelectorAll('.regoPassword')
+
         if (password != confirmPassword) {
-          // target both nodes
-          e.target.classList.add('invalid')
+          passwordInputs.forEach(input => input.classList.add('invalid'))
           this.setState({ errorMessage: 'Password does not match' })
         } else {
-          e.target.classList.remove('invalid')
+          passwordInputs.forEach(input => input.classList.remove('invalid'))
+          this.setState({ errorMessage: null })
+        }
+        break
+      case 'email':
+        if (!this.validateEmail(value)) {
+          targetClassList.add('invalid')
+          this.setState({ errorMessage: 'Please enter valid email' })
+        } else {
+          targetClassList.remove('invalid')
           this.setState({ errorMessage: null })
         }
         break
       default:
         this.setState({ errorMessage: null })
     }
+  }
+
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase())
   }
 
   render() {

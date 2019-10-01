@@ -72,7 +72,6 @@ function registerSupports(userId, supportsObj, connection) {
     }
   })
 
-  console.log('db supports', supportsToSave)
   return connection('user_support').insert(supportsToSave)
 }
 
