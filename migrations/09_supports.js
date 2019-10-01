@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('supports', t => {
         t.increments('id')
-        t.string('supports')
+        t.string('supports').references()
     })
   
 };

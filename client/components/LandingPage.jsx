@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { isAuthenticated } from 'authenticare/client'
 
 export default function LandingPage({ currentUser }) {
-  // const { firstName } = currentUser
-  console.log(currentUser.firstName)
   return (
     <div className='landingPage-container'>
       <div className='center-align'>
