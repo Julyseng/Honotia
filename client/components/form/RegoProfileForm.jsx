@@ -116,6 +116,7 @@ export default function RegoProfileForm({
         <div className='input-field '>
           <i className='material-icons prefix form-icon'>lock</i>
           <input
+            className='regoPassword'
             type='password'
             id='regoPassword'
             name='password'
@@ -127,6 +128,7 @@ export default function RegoProfileForm({
         <div className='input-field '>
           <i className='material-icons prefix form-icon'>lock</i>
           <input
+            className='regoPassword'
             type='password'
             id='confirmPassword'
             name='confirmPassword'
