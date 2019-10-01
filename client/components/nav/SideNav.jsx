@@ -18,7 +18,19 @@ export default function SideNav({ handleLogoff, displayLogin }) {
       </li>
       <IfAuthenticated>
         <li>
-          <Link to='/profiles'>Connect</Link>
+          <Link to='/resources' className='exclusive-menuItem'>
+            Resources
+          </Link>
+        </li>
+        <li>
+          <Link to='/connect' className='exclusive-menuItem'>
+            Connect
+          </Link>
+        </li>
+        <li>
+          <Link to='/my-profile' className='icon-profile'>
+            <i className='material-icons '>person_outline</i>
+          </Link>
         </li>
         <li>
           <LogoffButton handleLogoff={handleLogoff} />
