@@ -1,5 +1,5 @@
 - woah, where are the tests?
-- unused or failing tests need to be skipped or removed
+- [x] unused or failing tests need to be skipped or removed
 - [x] '/s3' routes should be put under the /api/v1 prefix
 - [x] move the require('dotenv').config() from each route to the index.js
 - [x] remove console.log in line 10 of apiClient
