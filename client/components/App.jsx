@@ -1,9 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
-import { isAuthenticated } from 'authenticare/client'
-
-import { fetchLoggedInUser } from '../actions'
 
 import LandingPage from './LandingPage'
 import RegistrationForm from './form/RegistrationForm'
@@ -13,54 +9,21 @@ import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
 import StoriesPage from './StoriesPage'
 
-class App extends Component {
-  constructor(props) {
-    super()
-    this.state = {
-      currentUser: props.currentUser
-    }
-  }
+export default function App() {
+  return (
+    <Router>
+      <div className='container'>
+        <Route path='/' component={Navbar} />
+        <Route exact path='/' component={LandingPage} />
+        <Route path='/registration' component={RegistrationForm} />
+        <Route path='/about' component={AboutPage} />
+        <Route path='/resources' component={ResourcesPage} />
+        <Route path='/connect' component={ConnectPage} />
+        <Route path='/user-profile' component={ConnectPage} />
+        <Route path='/stories' component={StoriesPage} />
+      </div>
 
-  componentDidMount() {
-    if (isAuthenticated()) {
-      this.props.dispatch(fetchLoggedInUser())
-    }
-  }
-
-  componentWillReceiveProps({ currentUser }) {
-    this.setState({ currentUser })
-  }
-
-  render() {
-    return (
-      <Router>
-        <div className='container'>
-          <Route path='/' component={Navbar} />
-          <Route
-            exact
-            path='/'
-            render={props => (
-              <LandingPage {...props} currentUser={this.state.currentUser} />
-            )}
-          />
-          <Route path='/registration' component={RegistrationForm} />
-          <Route path='/about' component={AboutPage} />
-          <Route path='/resources' component={ResourcesPage} />
-          <Route path='/connect' component={ConnectPage} />
-          <Route path='/user-profile' component={ConnectPage} />
-          <Route path='/stories' component={StoriesPage} />
-        </div>
-
-        <div className='bg_gradient'></div>
-      </Router>
-    )
-  }
+      <div className='bg_gradient'></div>
+    </Router>
+  )
 }
-
-function mapStateToProps({ currentUser }) {
-  return {
-    currentUser
-  }
-}
-
-export default connect(mapStateToProps)(App)

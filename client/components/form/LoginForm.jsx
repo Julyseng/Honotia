@@ -61,7 +61,7 @@ export default class LoginForm extends Component {
             <label htmlFor='password'>Password</label>
           </div>
           <button
-            className='btn waves-effect waves-light btn-login'
+            className='btn waves-effect btn-login'
             type='submit'
             name='action'
           >
