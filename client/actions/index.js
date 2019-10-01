@@ -4,6 +4,7 @@ import { getAuthorizationHeader } from 'authenticare/client'
 export const SEND_USER_ACCOUNT = 'SEND_USER_ACCOUNT'
 export const RECEIVE_USER_PROFILES = 'RECEIVE_USER_PROFILES'
 export const RECEIVE_LOGGEDIN_USER_DETAILS = 'RECEIVE_LOGGEDIN_USER_DETAILS'
+export const RECEIVE_STORIES = 'RECEIVE_STORIES'
 
 const storeFormData = userAccountData => {
   return {
@@ -26,6 +27,13 @@ const receiveUser = currentUser => {
   }
 }
 
+const receiveStories = stories => {
+  return {
+    type: RECEIVE_STORIES,
+    stories
+  }
+}
+
 export function fetchProfiles() {
   return dispatch => {
     return request
@@ -44,6 +52,16 @@ export const fetchLoggedInUser = () => {
       .set(getAuthorizationHeader())
       .then(res => {
         dispatch(receiveUser(res.body))
+      })
+  }
+}
+
+export function fetchStories() {
+  return dispatch => {
+    return request
+      .get('/api/v1/stories')
+      .then(res => {
+        dispatch(receiveStories(res.body))
       })
   }
 }
