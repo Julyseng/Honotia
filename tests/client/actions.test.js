@@ -30,11 +30,47 @@ test('fetchProfiles', () => {
   return actions.fetchProfiles('profile data')(dispatch)
     .then(() => {
       expect(dispatch.mock.calls.length).toBe(1)
+      expect(dispatch.mock.calls[0][0].type).toBe('RECEIVE_USER_PROFILES')
+
+      let receiveProfiles = dispatch.mock.calls[0][0]
+      expect(receiveProfiles.profiles[0].data).toBe('fetched profiles')
       scope.done()
     })
 })
 
+test('fetch logged in users', () =>{
+  const scope = nock('http://localhost')
+  .get('/api/v1/user/current')
+  .reply(200, [{data: 'fetch loginned users'}])
 
+  const dispatch = jest.fn()
+
+  return actions.fetchLoggedInUser('loginned users')(dispatch)
+    .then(() => {
+      expect(dispatch.mock.calls.length).toBe(1)
+      expect(dispatch.mock.calls[0][0].type).toBe('RECEIVE_LOGGEDIN_USER_DETAILS')
+
+      let receiveUser = dispatch.mock.calls[0][0]
+      expect(receiveUser.currentUser[0].data).toBe('fetch loginned users')
+      scope.done()
+    })
+})
+
+test('fetch stories', () => {
+  const scope = nock('http://localhost')
+  .get('/api/v1/stories/stories')
+  .reply(200, [{data: 'fetch stories data'}])
+
+  const dispatch = jest.fn()
+
+  return actions.fetchStories('stories data')
+  (dispatch)
+    .then(() => {
+      expect(dispatch.mock.calls.length).toBe(1)
+      expect(dispatch.mock.calls[0][0].type).toBe('RECEIVE_STORIES')
+      scope.done()
+    })
+})
 
 
 
