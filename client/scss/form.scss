@@ -61,24 +61,38 @@ form {
     border-top: 1px solid grey;
     display: block;
   }
+
+  &:focus {
+    border-radius: 10px;
+    background-color: #cacaca;
+    outline: none;
+  }
 }
 
 // profile form
 .profile-container {
+  width: 100%;
+  height: 100%;
   padding: 20px;
   background-color: #c4c4c4;
   border-radius: 10px;
-  width: 190px;
-  height: 190px;
-  margin: 30px auto;
-  background-position: center;
   position: relative;
-  background: cover;
+
   background: linear-gradient(
       rgba(153, 153, 153, 0.5),
       rgba(141, 141, 141, 0.5)
     ),
     url('../../public/meet-kiwi.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.border {
+  border: 1px solid #d8d8d8;
+  padding: 8px;
+  margin: 30px auto;
+  width: 220px;
+  height: 220px;
 }
 
 .file-path {

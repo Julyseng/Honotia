@@ -1,13 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import CheckboxList from './CheckboxList'
 
-import { needsAndSupports } from './RegoRefugeeForm'
-
-export default function RegoBioForm({
+function RegoBioForm({
   state,
   handleChange,
   updateUserDetails,
-  handleSelectChangeLanguage
+  handleSelectChangeLanguage,
+  languages,
+  needsAndSupports
 }) {
   return (
     <div className='section'>
@@ -30,16 +32,18 @@ export default function RegoBioForm({
         <div className='input-field'>
           <select
             multiple
-            name="languages"
+            name='languages'
             onChange={handleSelectChangeLanguage}
             className='languageSelect'
           >
             <option value='' disabled defaultValue>
               Languages I speak...
             </option>
-            <option value='English'>English</option>
-            <option value='French'>French</option>
-            <option value='Water'>Water</option>
+            {languages.map((language, i) => (
+              <option key={i} value={language.id}>
+                {language.language}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -52,9 +56,11 @@ export default function RegoBioForm({
           ut.
         </p>
         <div>
-          <CheckboxList options = {needsAndSupports}    
-            name="supports"
-            handleChange={handleChange} />
+          <CheckboxList
+            options={needsAndSupports}
+            name='supports'
+            handleChange={handleChange}
+          />
         </div>
       </div>
 
@@ -80,3 +86,17 @@ export default function RegoBioForm({
     </div>
   )
 }
+
+function mapStateToProps({ form }) {
+  let needsAndSupports = form.needs.reduce((acc, need) => {
+    acc[need.id] = need.needs
+    return acc
+  }, {})
+
+  return {
+    languages: form.languages,
+    needsAndSupports
+  }
+}
+
+export default connect(mapStateToProps)(RegoBioForm)

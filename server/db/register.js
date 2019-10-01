@@ -30,21 +30,58 @@ function registerProfileUrl(userId, profileImg, connection) {
     .update({ profileImg })
 }
 
-function registerLanguage(userId, languageId, connection) {
-  return connection('languages').insert('user_id', userId)
+function registerLanguage(userId, languages, connection) {
+  let languagesToSave = languages.map(languageId => {
+    return {
+      user_id: userId,
+      language_id: languageId
+    }
+  })
+  return connection('user_languages').insert(languagesToSave)
 }
 
-function registerRefugee(refugeeDetails, connection) {
-  return connection('refugees').insert(refugeeDetails)
+function registerRefugee(userId, refugeeData, connection) {
+  const { country, yearLeft, reasonForLeaving, yearOfArrival } = refugeeData
+
+  return connection('refugees').insert({
+    user_id: userId,
+    country,
+    yearLeft,
+    reasonForLeaving,
+    yearOfArrival
+  })
 }
 
-function registerNeed() {}
+function registerNeeds(userId, needsObj, connection) {
+  let needs = Object.keys(needsObj)
+  let needsToSave = needs.map(needId => {
+    return {
+      user_id: userId,
+      needs_id: needId
+    }
+  })
+  return connection('user_needs').insert(needsToSave)
+}
 
-function registerSupport() {}
+function registerSupports(userId, supportsObj, connection) {
+  let supports = Object.keys(supportsObj)
+  let supportsToSave = supports.map(supportId => {
+    return {
+      user_id: userId,
+      supports_id: supportId
+    }
+  })
+
+  console.log('db supports', supportsToSave)
+  return connection('user_support').insert(supportsToSave)
+}
 
 module.exports = {
   registerUser,
   registerLanguage,
   registerRefugee,
-  registerProfileUrl
+  registerProfileUrl,
+  registerRefugee,
+  registerNeeds,
+  registerSupports
 }

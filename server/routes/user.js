@@ -3,7 +3,14 @@ const router = express.Router()
 const { getTokenDecoder } = require('authenticare/server')
 
 const tokenDecoder = getTokenDecoder(false)
-const { registerUser, registerLanguage } = require('../db/register')
+
+const {
+  registerUser,
+  registerLanguage,
+  registerRefugee,
+  registerNeeds,
+  registerSupports
+} = require('../db/register')
 const { getUserProfiles, getCurrentUserProfile } = require('../db/fetch')
 
 router.get('/profiles', tokenDecoder, (req, res) => {
@@ -27,10 +34,33 @@ router.get('/current', tokenDecoder, (req, res) => {
 router.put('/register-user-details', tokenDecoder, (req, res) => {
   let conn = req.app.connection
   let userId = req.user.id
-  let { user } = req.body
+  let { user, languages, refugee, needs, supports } = req.body
+  let { status } = req.body.user
+
   registerUser(userId, user, conn)
     .then(() => {
-      registerLanguage(userId, languageId)
+      return registerLanguage(userId, languages, conn)
+    })
+    .then(() => {
+      if (status === 'NR' || status === 'FR') {
+        return registerRefugee(userId, refugee, conn)
+      } else {
+        return Promise.resolve()
+      }
+    })
+    .then(() => {
+      if (status === 'AL' || status === 'FR') {
+        return registerSupports(userId, supports, conn)
+      } else {
+        return Promise.resolve()
+      }
+    })
+    .then(() => {
+      if (status === 'NR') {
+        return registerNeeds(userId, needs, conn)
+      } else {
+        return Promise.resolve()
+      }
     })
     .then(() => {
       res.status(201).send()
