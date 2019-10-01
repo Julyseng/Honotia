@@ -2,7 +2,6 @@ import request from 'superagent'
 import { getAuthorizationHeader } from 'authenticare/client'
 
 export const RECEIVE_NEEDS_N_SUPPORTS_LIST = 'RECEIVE_NEEDS_N_SUPPORTS_LIST'
-export const RECEIVE_SUPPORTS_LIST = 'RECEIVE_SUPPORTS_LIST'
 export const RECEIVE_LANGUAGES_LIST = 'RECEIVE_LANGUAGES_LIST'
 
 export const SEND_USER_ACCOUNT = 'SEND_USER_ACCOUNT'
@@ -98,7 +97,7 @@ export function registerUser(data) {
       .set(getAuthorizationHeader())
       .send(data)
       .then(() => {
-        dispatch(fetchLoggedInUser())
+        // dispatch(fetchLoggedInUser())
         return registerProfileImg(data.actualFile)
       })
       .catch(e => {

@@ -150,12 +150,7 @@ class RegistrationForm extends Component {
     )
       .then(() => {
         if (isAuthenticated()) {
-          this.props.history.push('/')
-        }
-      })
-      .then(() => {
-        this.props
-          .dispatch(
+          this.props.dispatch(
             registerUser(
               {
                 user: this.state.userDetails,
@@ -168,9 +163,15 @@ class RegistrationForm extends Component {
               this.props.dispatch
             )
           )
-          .then(res => {
-            this.props.history.push('/')
-          })
+        }
+      })
+      .then(() => {
+        this.props.history.push('/')
+      })
+      .catch(e => {
+        this.setState({
+          errorMessage: 'Unable to register. Please fill out the form correctly'
+        })
       })
   }
 
