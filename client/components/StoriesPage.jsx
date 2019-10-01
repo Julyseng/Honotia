@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { fetchStories } from '../actions'
+import StoriesAll from './StoriesAll'
 
 class StoriesPage extends React.Component {
     componentDidMount() {
@@ -19,7 +20,7 @@ class StoriesPage extends React.Component {
                     </p>
 
                     <div className='section'>
-                        <p>Posts go here</p>
+                        <StoriesAll />
                     </div>   
 
                 </div>
