@@ -144,3 +144,22 @@ describe('get /profiles', () => {
     expect.assertions(0)
   })
 })
+
+// ? how to mock req.user.id
+describe('get /current', () => {
+  let query
+  beforeEach(() => {
+    query = request(server).get('/api/v1/user/current')
+  })
+
+  test('calls getCurrentUserProfile', () => {
+    expect.assertions(1)
+    return query.expect(201).then(() => {
+      expect(getCurrentUserProfile).toHaveBeenCalled()
+    })
+  })
+
+  test('sends error if userId not found', () => {
+    expect.assertions(0)
+  })
+})
