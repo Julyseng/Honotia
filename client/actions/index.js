@@ -91,19 +91,19 @@ export function fetchStories() {
 }
 
 export function registerUser(data) {
-  return dispatch => {
-    return request
-      .put('/api/v1/user/register-user-details')
-      .set(getAuthorizationHeader())
-      .send(data)
-      .then(() => {
-        // dispatch(fetchLoggedInUser())
+  return request
+    .put('/api/v1/user/register-user-details')
+    .set(getAuthorizationHeader())
+    .send(data)
+    .then(() => {
+      if (data.actualFile) {
         return registerProfileImg(data.actualFile)
-      })
-      .catch(e => {
-        console.log(e)
-      })
-  }
+      }
+      // do i need to return anything here?
+    })
+    .catch(e => {
+      console.log(e)
+    })
 }
 
 function registerProfileImg(profileFile) {

@@ -31,13 +31,16 @@ function registerProfileUrl(userId, profileImg, connection) {
 }
 
 function registerLanguage(userId, languages, connection) {
+  if (languages.length < 1) return Promise.resolve([])
+
   let languagesToSave = languages.map(languageId => {
     return {
       user_id: userId,
       language_id: languageId
     }
   })
-  return connection('user_languages').insert(languagesToSave)
+  return connection('user_languages')
+    .insert(languagesToSave)
 }
 
 function registerRefugee(userId, refugeeData, connection) {
@@ -60,6 +63,9 @@ function registerNeeds(userId, needsObj, connection) {
       needs_id: needId
     }
   })
+
+  if (needsToSave.length < 1) return Promise.resolve([])
+
   return connection('user_needs').insert(needsToSave)
 }
 
@@ -71,6 +77,8 @@ function registerSupports(userId, supportsObj, connection) {
       supports_id: supportId
     }
   })
+
+  if (supportsToSave.length < 1) return Promise.resolve([])
 
   return connection('user_support').insert(supportsToSave)
 }
