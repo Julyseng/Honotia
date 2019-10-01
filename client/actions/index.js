@@ -48,7 +48,9 @@ const receiveStories = stories => {
   return {
     type: RECEIVE_STORIES,
     stories
-    
+  }
+}
+
 export function fetchNeeds() {
   return dispatch => {
     return request.get(`/api/v1/form/needs`).then(res => {
