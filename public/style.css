@@ -6803,9 +6803,17 @@ form {
   position: absolute;
   text-align: center; }
 
+.flow-text {
+  color: #212121; }
+
 .about-h3 {
-  font-size: 18px;
+  font-size: 25px;
   font-family: 'Merriweather', Arial, Helvetica, sans-serif; }
+
+.content .about-steps {
+  font-size: 25xpx;
+  font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+  color: #f57171; }
 
 .quotation {
   font-size: 25px;
@@ -7069,6 +7077,14 @@ p {
 .pagination {
   display: flex;
   justify-content: center; }
+
+.resources-h3 {
+  text-align: center; }
+
+.material-icons {
+  font-size: 45px;
+  display: inline-flex;
+  vertical-align: top; }
 
 
 /*# sourceMappingURL=style.css.map*/
