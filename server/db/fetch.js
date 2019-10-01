@@ -8,7 +8,12 @@ function getCurrentUserProfile(userId, connection) {
     .first()
 }
 
+function getStories(connection) {
+  return connection('stories').select()
+}
+
 module.exports = {
   getUserProfiles,
-  getCurrentUserProfile
+  getCurrentUserProfile,
+  getStories
 }
