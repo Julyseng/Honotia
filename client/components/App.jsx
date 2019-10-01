@@ -7,7 +7,7 @@ import Navbar from './nav/Navbar'
 import AboutPage from './AboutPage'
 import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
-import StoriesPage from './StoriesPage'
+import StoriesPage from './stories/StoriesPage'
 
 export default function App() {
   return (
