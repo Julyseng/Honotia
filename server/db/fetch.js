@@ -9,7 +9,9 @@ function getCurrentUserProfile(userId, connection) {
 }
 
 function getStories(connection) {
-  return connection('stories').select()
+  return connection('stories')
+    .join('users', 'stories.user_id', 'users.id')
+    .select('stories.*', 'users.firstName', 'users.lastName')
 }
 
 module.exports = {

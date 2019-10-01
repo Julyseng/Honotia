@@ -4,7 +4,7 @@ exports.up = function(knex) {
         t.increments('id').primary()
         t.integer('user_id')
         t.string('title')
-        t.timestamp('dateCreated').defaultTo(knex.fn.now())
+        t.date('dateCreated')
         t.text('story')
     })
   

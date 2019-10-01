@@ -18,6 +18,8 @@ class StoriesPage extends React.Component {
                     <p className='b-font'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis sapiente, voluptatem saepe ducimus at, ratione laboriosam neque beatae necessitatibus, possimus ea? Facere saepe magni dignissimos libero eaque, exercitationem eos repudiandae.
                     </p>
+                    <br />
+                    <div className="divider"/>
 
                     <div className='section'>
                         {stories.map((story, i) => (
