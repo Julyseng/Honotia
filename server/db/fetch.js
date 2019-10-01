@@ -12,8 +12,18 @@ function getLanguagesList(connection) {
   return connection('languages')
 }
 
+function getSupportsList(connection) {
+  return connection('supports')
+}
+
+function getNeedsList(connection) {
+  return connection('needs')
+}
+
 module.exports = {
   getUserProfiles,
   getCurrentUserProfile,
-  getLanguagesList
+  getLanguagesList,
+  getSupportsList,
+  getNeedsList
 }

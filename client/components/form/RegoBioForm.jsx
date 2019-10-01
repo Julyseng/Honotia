@@ -1,7 +1,7 @@
 import React from 'react'
 import CheckboxList from './CheckboxList'
 
-import { needsAndSupports } from './RegoRefugeeForm'
+// import { needsAndSupports } from './RegoRefugeeForm'
 
 export default function RegoBioForm({
   state,

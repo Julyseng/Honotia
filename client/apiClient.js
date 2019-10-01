@@ -1,12 +1,14 @@
 import request from 'superagent'
 import { getAuthorizationHeader } from 'authenticare/client'
+import { fetchLoggedInUser } from './actions'
 
-export function registerUser(data) {
+export function registerUser(data, dispatch) {
   return request
     .put('/api/v1/user/register-user-details')
     .set(getAuthorizationHeader())
     .send(data)
     .then(() => {
+      // dispatch(fetchLoggedInUser())
       return registerProfileImg(data.actualFile)
     })
     .catch(e => {

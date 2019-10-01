@@ -13,24 +13,14 @@ import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
 
 class App extends Component {
-  constructor(props) {
-    super()
-    this.state = {
-      currentUser: props.currentUser
-    }
-  }
-
   componentDidMount() {
     if (isAuthenticated()) {
       this.props.dispatch(fetchLoggedInUser())
     }
   }
 
-  componentWillReceiveProps({ currentUser }) {
-    this.setState({ currentUser })
-  }
-
   render() {
+    const {currentUser} = this.props
     return (
       <Router>
         <div className='container'>
@@ -39,7 +29,7 @@ class App extends Component {
             exact
             path='/'
             render={props => (
-              <LandingPage {...props} currentUser={this.props.currentUser} />
+              <LandingPage {...props} currentUser={currentUser} />
             )}
           />
           <Route path='/registration' component={RegistrationForm} />
