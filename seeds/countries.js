@@ -21,7 +21,7 @@ exports.seed = function (knex) {
         { id: 14 , name: "Iraq" },
         { id: 15 , name: "Kuwait" },
         { id: 16 , name: "Laos"  },
-        { id: 17, name: "Nepal" },
+        { id: 17,  name: "Nepal" },
         { id: 18 , name: "Palestine" },
         { id: 19 , name: "Republic of Congo" },
         { id: 20 , name: "Rwanda" },
@@ -32,7 +32,7 @@ exports.seed = function (knex) {
         { id: 25 , name: "the Democratic Republic of Congo" },
         { id: 26 , name: "the Sudan" },
         { id: 27 , name: "Tunisia" },
-        { id: 28, name: "Vietnam"  },
+        { id: 28 ,  name: "Vietnam"  },
         
       ]);
     });
