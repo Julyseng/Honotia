@@ -1,12 +1,32 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import SelectYear from './SelectYear'
+import CheckboxList from './CheckboxList'
+
+const reasonsForLeaving = {
+  conflict: 'War or conflict',
+  religious: 'Religious persecution',
+  political: 'Political persecution',
+  humanRights: 'Human rights violations',
+  economic: 'Economic reasons',
+  climate: 'Climate change'}
+
+export const needsAndSupports = {
+  healthcare: 'Healthcare',
+  education: 'Education',
+  housing: 'Housing',
+  mentor: 'Mentor',
+  employment: 'Employment',
+  socialSupport: 'Social Support',
+  transport: 'Transport'
+}
 
 export default function RegoRefugeeForm({
   state,
   handleChange,
-  handleSelectChange
+  updateRefugeeDetails
 }) {
+
   return (
     <div className='section'>
       <div className='section'>
@@ -14,10 +34,10 @@ export default function RegoRefugeeForm({
         <div className='input-field'>
           <input
             type='text'
-            id='originCountry'
-            name='originCountry'
-            // value={this.state.originCountry}
-            // onChange={this.handleChange}
+            id='countryOrigin'
+            name='countryOrigin'
+            value={state.countryOrigin}
+            onChange={updateRefugeeDetails}
           />
           <label>Country of origin...</label>
         </div>
@@ -25,12 +45,13 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of leaving</h5>
-        <p>
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear name='selectYearLeft' start={-80}/>
+              <SelectYear 
+              name='yearLeft' start={-80} 
+              function={updateRefugeeDetails}
+              class={'leavingSelect'}/>
           </div>
-        </p>
       </div>
 
       <div className='section'>
@@ -40,83 +61,19 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='conflict'
-                // onChange={handleChange}
-              />
-              <span>War or conflict</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='religious'
-                // onChange={handleChange}
-              />
-              <span>Religious persecution</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='political'
-                // onChange={handleChange}
-              />
-              <span>Political persecution</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='humanRights'
-                // onChange={handleChange}
-              />
-              <span>Human rights violations</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='economic'
-                // onChange={handleChange}
-              />
-              <span>Economic reasons</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='climate'
-                // onChange={handleChange}
-              />
-              <span>Climate change</span>
-            </label>
-          </p>
+          <CheckboxList options = {reasonsForLeaving}name="reasonForLeaving"
+          handleChange={updateRefugeeDetails} />
         </div>
       </div>
 
       <div className='section'>
         <h5>Year of arrival in NZ</h5>
-        <p>
           <div className='input-field'>
               <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear name='selectYearArrival' start={-80}/>
+              <SelectYear 
+              name='yearOfArrival' start={-80}
+              function={updateRefugeeDetails} className='arrivalSelect'/>
           </div>
-        </p>
       </div>
 
       <div className='section'>
@@ -126,83 +83,8 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='healthcare'
-                onChange={handleChange}
-              />
-              <span>Healthcare</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='education'
-                onChange={handleChange}
-              />
-              <span>Education</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='housing'
-                onChange={handleChange}
-              />
-              <span>Housing</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='mentor'
-                onChange={handleChange}
-              />
-              <span>Mentor</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='employment'
-                onChange={handleChange}
-              />
-              <span>Employment</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='socialSupport'
-                onChange={handleChange}
-              />
-              <span>Social Support</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='transport'
-                onChange={handleChange}
-              />
-              <span>Transport</span>
-            </label>
-          </p>
+        <CheckboxList options = {needsAndSupports}   name="needs"
+          handleChange={handleChange} />
         </div>
       </div>
 
@@ -213,87 +95,13 @@ export default function RegoRefugeeForm({
           numquam obcaecati iure sapiente earum nisi ab est, ad illo ipsam non
           ut.
         </p>
-        {/* How I can support others */}
         <div>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='healthcare'
-                onChange={handleChange}
-              />
-              <span>Healthcare</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='education'
-                onChange={handleChange}
-              />
-              <span>Education</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='housing'
-                onChange={handleChange}
-              />
-              <span>Housing</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='mentor'
-                onChange={handleChange}
-              />
-              <span>Mentor</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='employment'
-                onChange={handleChange}
-              />
-              <span>Employment</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='socialSupport'
-                onChange={handleChange}
-              />
-              <span>Social Support</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                type='checkbox'
-                name='support'
-                value='transport'
-                onChange={handleChange}
-              />
-              <span>Transport</span>
-            </label>
-          </p>
+        <CheckboxList options = {needsAndSupports}    
+          name="supports"
+          handleChange={handleChange} />
         </div>
       </div>
     </div>
   )
 }
+

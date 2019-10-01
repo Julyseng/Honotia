@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { register, isAuthenticated, getDecodedToken } from 'authenticare/client'
-import { connect } from 'react-redux'
+import { register, isAuthenticated } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
 import RegoRefugeeForm from './RegoRefugeeForm'
@@ -11,17 +10,18 @@ import FormNavControllers from './FormNavControllers'
 
 import { registerUser } from '../../apiClient'
 
-class RegistrationForm extends Component {
+export default class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 1,
+      step: 2,
       previewProfileUrl: null,
       userDetails: {
         status: '',
         firstName: '',
         lastName: '',
         DOB: '',
+        email: '',
         currentCity: '',
         occupation: '',
         bio: ''
@@ -37,7 +37,8 @@ class RegistrationForm extends Component {
       supports: [],
       password: '',
       confirmPassword: '',
-      actualFile: undefined
+      actualFile: undefined,
+      errorMessage: null
     }
   }
 
@@ -47,6 +48,7 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
+    M.updateTextFields()
   }
 
   initiateMaterialize = () => {
@@ -62,21 +64,23 @@ class RegistrationForm extends Component {
     })
   }
 
-  handleChange = e => {
+  updateUserDetails = e => {
+    this.handleChange(e, 'userDetails')
+  }
+
+  updateRefugeeDetails = e => {
+    this.handleChange(e, 'refugeeDetails')
+  }
+
+  handleChange = (e, section) => {
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
-      let support = { ...this.state.support, [value]: e.target.checked }
+      let existingState = section ? this.state[section][name] : this.state[name]
+      let options = { ...existingState, [value]: e.target.checked }
       if (!e.target.checked) {
-        delete support[value]
+        delete options[value]
       }
-      value = support
-
-      // let needs = { ...this.state.needs, [value]: e.target.checked }
-      // if (!e.target.checked) {
-      //   delete needs[value]
-      // }
-      // value = needs
-      // console.log(value)
+      value = options
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -90,23 +94,26 @@ class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } else if (e.target.name === 'password') {
-      this.setState({ password: e.target.value })
-    } else if (e.target.name === 'confirmPassword') {
-      this.setState({ confirmPassword: e.target.value })
     }
-    this.setState({
-      userDetails: { ...this.state.userDetails, [name]: value }
-    })
+    if (section) {
+      this.setState({
+        [section]: {
+          ...this.state[section],
+          [name]: value
+        }
+      })
+    } else {
+      this.setState({
+        [name]: value
+      })
+    }
   }
 
-  handleSelectChange = e => {
-    let locationSelect = document.querySelector('.locationSelect')
-    let instance = M.FormSelect.getInstance(locationSelect)
-    let selected = instance.getSelectedValues()
-
-    this.setState({ ...this.state.userDetails, currentCity: selected })
-    // also need for languages, year of arrival, year left, year born
+  handleSelectChangeLanguage = e => {
+    let languageSelect = e.target
+    let languageInstance = M.FormSelect.getInstance(languageSelect)
+    let languageSelected = languageInstance.getSelectedValues()
+    this.setState({ languages: languageSelected })
   }
 
   handlePrevious = e => {
@@ -118,7 +125,6 @@ class RegistrationForm extends Component {
   handleNext = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
-    this.formValidation()
     if (
       this.state.step === 4 ||
       (this.state.step === 3 && this.state.userDetails.status === 'AL')
@@ -158,9 +164,18 @@ class RegistrationForm extends Component {
       })
   }
 
-  formValidation = () => {
-    if (this.state.password != this.state.confirmPassword) {
-      return console.log('password does not match')
+  formValidation = e => {
+    switch (e.target.name) {
+      case 'password':
+      case 'confirmPassword':
+        const { password, confirmPassword } = this.state
+        if (password != confirmPassword) {
+          e.target.classList.add('invalid')
+          this.setState({ errorMessage: 'Password does not match' })
+        }
+        break
+      default:
+        this.setState({ errorMessage: null })
     }
   }
 
@@ -169,12 +184,14 @@ class RegistrationForm extends Component {
       handleSubmit,
       setUserStatus,
       handleChange,
-      handleSelectChange,
+      handleSelectChangeLanguage,
+      updateUserDetails,
+      updateRefugeeDetails,
       handleNext,
       handlePrevious,
       state
     } = this
-    const { step, userDetails } = this.state
+    const { step, userDetails, errorMessage } = this.state
 
     return (
       <Fragment>
@@ -184,14 +201,26 @@ class RegistrationForm extends Component {
             {step === 2 && (
               <RegoProfileForm
                 handleChange={handleChange}
+                updateUserDetails={updateUserDetails}
                 state={state}
-                handleSelectChange={handleSelectChange}
               />
             )}
             {step === 3 && (
-              <RegoBioForm handleChange={handleChange} state={state} />
+              <RegoBioForm
+                handleChange={handleChange}
+                handleSelectChangeLanguage={handleSelectChangeLanguage}
+                updateUserDetails={updateUserDetails}
+                state={state}
+              />
             )}
-            {step === 4 && userDetails.status != 'AL' && <RegoRefugeeForm />}
+            {step === 4 && userDetails.status != 'AL' && (
+              <RegoRefugeeForm
+                handleChange={handleChange}
+                updateRefugeeDetails={updateRefugeeDetails}
+                state={state}
+              />
+            )}
+            {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}
               step={step}
@@ -204,5 +233,3 @@ class RegistrationForm extends Component {
     )
   }
 }
-
-export default connect()(RegistrationForm)
