@@ -17,18 +17,26 @@ router.get('/profiles', tokenDecoder, (req, res) => {
   let conn = req.app.connection
   let userId = req.user.id
 
-  getUserProfiles(userId, conn).then(profiles => {
-    res.status(201).send(profiles)
-  })
+  getUserProfiles(userId, conn)
+    .then(profiles => {
+      res.status(201).send(profiles)
+    })
+    .catch(e => {
+      res.status(500).json('Could not get profiles')
+    })
 })
 
 router.get('/current', tokenDecoder, (req, res) => {
   let conn = req.app.connection
   let userId = req.user.id
 
-  getCurrentUserProfile(userId, conn).then(user => {
-    res.status(201).send(user)
-  })
+  getCurrentUserProfile(userId, conn)
+    .then(user => {
+      res.status(201).send(user)
+    })
+    .catch(e => {
+      res.status(500).json('Could not get user')
+    })
 })
 
 router.put('/register-user-details', tokenDecoder, (req, res) => {
@@ -64,6 +72,9 @@ router.put('/register-user-details', tokenDecoder, (req, res) => {
     })
     .then(() => {
       res.status(201).send()
+    })
+    .catch(e => {
+      res.status(500).json('Error registering user')
     })
 })
 
