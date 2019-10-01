@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
@@ -9,12 +10,15 @@ import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
 
 import { registerUser } from '../../apiClient'
+import { fetchLanguages } from '../../actions'
+import { fetchSupports } from '../../actions'
+import { fetchNeeds } from '../../actions'
 
-export default class RegistrationForm extends Component {
+class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
+      step: 1,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -38,12 +42,15 @@ export default class RegistrationForm extends Component {
       password: '',
       confirmPassword: '',
       actualFile: undefined,
-      errorMessage: null
+      errorMessage: ''
     }
   }
 
   componentDidMount() {
     this.initiateMaterialize()
+    this.props.dispatch(fetchLanguages())
+    this.props.dispatch(fetchSupports())
+    this.props.dispatch(fetchNeeds())
   }
 
   componentDidUpdate() {
@@ -73,6 +80,7 @@ export default class RegistrationForm extends Component {
   }
 
   handleChange = (e, section) => {
+    this.formValidation(e)
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
       let existingState = section ? this.state[section][name] : this.state[name]
@@ -151,14 +159,17 @@ export default class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        registerUser({
-          user: this.state.userDetails,
-          refugee: this.state.refugeeDetails,
-          needs: this.state.needs,
-          languages: this.state.languages,
-          supports: this.state.supports,
-          actualFile: this.state.actualFile
-        }).then(res => {
+        registerUser(
+          {
+            user: this.state.userDetails,
+            refugee: this.state.refugeeDetails,
+            needs: this.state.needs,
+            languages: this.state.languages,
+            supports: this.state.supports,
+            actualFile: this.state.actualFile
+          },
+          this.props.dispatch
+        ).then(res => {
           this.props.history.push('/')
         })
       })
@@ -168,10 +179,15 @@ export default class RegistrationForm extends Component {
     switch (e.target.name) {
       case 'password':
       case 'confirmPassword':
-        const { password, confirmPassword } = this.state
+        this.state[e.target.name] = e.target.value
+        let { password, confirmPassword } = this.state
         if (password != confirmPassword) {
+          // target both nodes
           e.target.classList.add('invalid')
           this.setState({ errorMessage: 'Password does not match' })
+        } else {
+          e.target.classList.remove('invalid')
+          this.setState({ errorMessage: null })
         }
         break
       default:
@@ -233,3 +249,5 @@ export default class RegistrationForm extends Component {
     )
   }
 }
+
+export default connect()(RegistrationForm)
