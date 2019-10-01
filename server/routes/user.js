@@ -44,7 +44,7 @@ router.put('/register-user-details', tokenDecoder, (req, res) => {
   let userId = req.user.id
   let { user, languages, refugee, needs, supports } = req.body
   let { status } = req.body.user
-  
+
   registerUser(userId, user, conn)
     .then(() => {
       return registerLanguage(userId, languages, conn)
@@ -70,10 +70,11 @@ router.put('/register-user-details', tokenDecoder, (req, res) => {
         return Promise.resolve()
       }
     })
-    .then(() => {
+    .then(() => {console.log(5)
       res.status(201).send()
     })
     .catch(e => {
+      console.log(e)
       res.status(500).json('Error registering user')
     })
 })
