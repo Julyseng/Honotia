@@ -14,7 +14,7 @@ export default class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 1,
+      step: 2,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -75,14 +75,12 @@ export default class RegistrationForm extends Component {
   handleChange = (e, section) => {
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
-      console.log(name)
       let existingState = section ? this.state[section][name] : this.state[name]
       let options = { ...existingState, [value]: e.target.checked }
       if (!e.target.checked) {
         delete options[value]
       }
       value = options
-      console.log(value)
     } else if (e.target.type === 'file') {
       let fileUpload = e.target
       let reader = new FileReader()
@@ -96,10 +94,6 @@ export default class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-      // } else if (e.target.name === 'occupation') {
-      //   this.setState ({  userDetails : {...this.state.userDetails, occupation: e.target.value}})
-      // } else if (e.target.name === 'bio') {
-      //   this.setState ({  userDetails : {...this.state.userDetails, bio: e.target.value}})
     }
     if (section) {
       this.setState({
@@ -113,7 +107,6 @@ export default class RegistrationForm extends Component {
         [name]: value
       })
     }
-    console.log(e.target.name, value)
   }
 
   handleSelectChangeLanguage = e => {

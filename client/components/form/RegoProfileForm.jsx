@@ -8,26 +8,29 @@ export default function RegoProfileForm({
 }) {
   return (
     <div className='section'>
-      <div
-        className='profile-container hoverable'
-        style={{
-          background:
-            state.previewProfileUrl &&
-            `linear-gradient(
-      rgba(153, 153, 153, 0.5),
-      rgba(141, 141, 141, 0.5)
-    ),
-    url(${state.previewProfileUrl})`
-        }}
-      >
-        <p className='center'>My Profile</p>
-        <div className='file-field input-field'>
-          <div className='btn w-100 z-10'>
-            <span>Upload</span>
-            <input type='file' name='profileUrl' onChange={handleChange} />
-          </div>
-          <div className='file-path-wrapper'>
-            <input className='file-path validate' type='text' />
+      <div className='border'>
+        <div
+          className='profile-container hoverable'
+          style={{
+            background:
+              state.previewProfileUrl && `url(${state.previewProfileUrl})`,
+            backgroundSize: state.previewProfileUrl && 'cover'
+          }}
+        >
+          <p className='center'>My Profile</p>
+          <div className='file-field input-field'>
+            <div
+              className='btn w-100 z-10'
+              style={{
+                opacity: state.previewProfileUrl && '0.5'
+              }}
+            >
+              <span>Upload</span>
+              <input type='file' name='profileUrl' onChange={handleChange} />
+            </div>
+            <div className='file-path-wrapper'>
+              <input className='file-path validate' type='text' />
+            </div>
           </div>
         </div>
       </div>
@@ -59,10 +62,12 @@ export default function RegoProfileForm({
 
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>date_range</i>
-          <SelectYear 
-          name='DOB' start={-80} end={-18}
-          function={updateUserDetails}
-          class={'ageSelect'}
+          <SelectYear
+            name='DOB'
+            start={-80}
+            end={-18}
+            function={updateUserDetails}
+            class={'ageSelect'}
           />
         </div>
       </div>
@@ -74,7 +79,7 @@ export default function RegoProfileForm({
         <div className='input-field'>
           <i className='material-icons prefix form-icon'>add_location</i>
           <select
-            name="currentCity"
+            name='currentCity'
             onChange={updateUserDetails}
             className='locationSelect'
           >

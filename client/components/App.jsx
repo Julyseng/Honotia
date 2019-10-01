@@ -39,7 +39,7 @@ class App extends Component {
             exact
             path='/'
             render={props => (
-              <LandingPage {...props} currentUser={this.state.currentUser} />
+              <LandingPage {...props} currentUser={this.props.currentUser} />
             )}
           />
           <Route path='/registration' component={RegistrationForm} />

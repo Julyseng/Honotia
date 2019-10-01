@@ -10,7 +10,7 @@ export default function FormNavControllers({
     <div className='form-navArrows-container'>
       {step > 1 && (
         <button
-          className='btn waves-effect waves-green btn-left'
+          className='btn waves-effect btn-left'
           name='action'
           type='submit'
           onClick={handlePrevious}
@@ -20,7 +20,7 @@ export default function FormNavControllers({
         </button>
       )}
       <button
-        className='btn waves-effect waves-green btn-right'
+        className='btn waves-effect btn-right'
         name='action'
         type='submit'
         onClick={handleNext}
