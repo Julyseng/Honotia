@@ -8,7 +8,7 @@ export function registerUser(data, dispatch) {
     .set(getAuthorizationHeader())
     .send(data)
     .then(() => {
-      // dispatch(fetchLoggedInUser())
+      dispatch(fetchLoggedInUser())
       return registerProfileImg(data.actualFile)
     })
     .catch(e => {

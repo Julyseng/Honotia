@@ -31,12 +31,13 @@ function registerProfileUrl(userId, profileImg, connection) {
 }
 
 function registerLanguage(userId, languages, connection) {
-  languages.map(languageId => {
-    return connection('user_languages').insert({
+  let languagesToSave = languages.map(languageId => {
+    return {
       user_id: userId,
       language_id: languageId
-    })
+    }
   })
+  return connection('user_languages').insert(languagesToSave)
 }
 
 function registerRefugee(userId, refugeeData, connection) {
@@ -70,7 +71,9 @@ function registerSupports(userId, supportsObj, connection) {
       supports_id: supportId
     }
   })
-  return connection('user_supports').insert(supportsToSave)
+
+  console.log('db supports', supportsToSave)
+  return connection('user_support').insert(supportsToSave)
 }
 
 module.exports = {

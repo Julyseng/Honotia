@@ -31,24 +31,37 @@ router.get('/current', tokenDecoder, (req, res) => {
 })
 
 router.put('/register-user-details', tokenDecoder, (req, res) => {
+  // console.log(req.user)
+  // res.send('hi')
+  // return
   let conn = req.app.connection
   let userId = req.user.id
-  let { user, status, languages, refugee, needs, supports } = req.body
+  let { user, languages, refugee, needs, supports } = req.body
+  let { status } = req.body.user
 
-  Object.keys(supports)
-  Object.keys(needs)
-  
   registerUser(userId, user, conn)
     .then(() => {
-      registerLanguage(userId, languages, conn)
+      return registerLanguage(userId, languages, conn)
+    })
+    .then(() => {
+      if (status === 'NR' || status === 'FR') {
+        return registerRefugee(userId, refugee, conn)
+      } else {
+        return Promise.resolve()
+      }
+    })
+    .then(() => {
+      if (status === 'AL' || status === 'FR') {
+        return registerSupports(userId, supports, conn)
+      } else {
+        return Promise.resolve()
+      }
     })
     .then(() => {
       if (status === 'NR') {
-        registerRefugee(userId, refugee, needs, conn).then(() => {
-          registerNeeds(userId, needs, conn)
-        })
-      } else if (status === 'AL' || status === 'FR') {
-        registerSupports(userId, supports, conn)
+        return registerNeeds(userId, needs, conn)
+      } else {
+        return Promise.resolve()
       }
     })
     .then(() => {
@@ -57,26 +70,3 @@ router.put('/register-user-details', tokenDecoder, (req, res) => {
 })
 
 module.exports = router
-
-// {
-//   user: {
-//     status: 'AL',
-//     firstName: 'chloe',
-//     lastName: 'chloe',
-//     DOB: '',
-//     email: 'test@t.com',
-//     currentCity: '',
-//     occupation: 'student',
-//     bio: 'sdfasf'
-//   },
-//   refugee: {
-//     countryOrigin: '',
-//     yearLeft: null,
-//     reasonForLeaving: [],
-//     yearOfArrival: null
-//   },
-//   needs: [],
-//   languages: [ '1', '2' ],
-//   supports: { healthcare: true, education: true },
-//   actualFile: {}
-// }
