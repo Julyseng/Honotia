@@ -68,9 +68,25 @@ test('fetch stories', () => {
     .then(() => {
       expect(dispatch.mock.calls.length).toBe(1)
       expect(dispatch.mock.calls[0][0].type).toBe('RECEIVE_STORIES')
+
+
+      let receiveStories = dispatch.mock.calls[0][0]
+      expect(receiveStories.stories[0].data).toBe('fetch stories data')
       scope.done()
     })
 })
 
 
+// test('test register users ', ()=> {
+//   const scope = nock('http://localhost')
+//   .get('/api/v1/user/register-user-details')
+//   .reply(200, [{data: 'register user details'}])
 
+//   const dispatch = jest.fn()
+
+//   return actions.registerUser('user details')(dispatch)
+//     .then(()=> {
+//       expect(dispatch.mock.calls.length).toBe(1)
+//       expect(dispatch.mock.calls[0][0].type).toBe('')
+//     })
+// })
