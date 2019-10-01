@@ -62,7 +62,7 @@ exports.seed = function(knex) {
         { id: 55, language: "Shona" },
         { id: 56, language: "Sinhala" },
         { id: 57, language: "Somali" },
-        { id: 58, language: "Somoan"  },
+        { id: 58, language: "Samoan"  },
         { id: 59, language: "Spanish" },
         { id: 60, language: "Sudan" },
         { id: 61, language: "Swahili" },

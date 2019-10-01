@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import SelectYear from './SelectYear'
 import CheckboxList from './CheckboxList'
@@ -9,24 +10,15 @@ const reasonsForLeaving = {
   political: 'Political persecution',
   humanRights: 'Human rights violations',
   economic: 'Economic reasons',
-  climate: 'Climate change'}
-
-export const needsAndSupports = {
-  healthcare: 'Healthcare',
-  education: 'Education',
-  housing: 'Housing',
-  mentor: 'Mentor',
-  employment: 'Employment',
-  socialSupport: 'Social Support',
-  transport: 'Transport'
+  climate: 'Climate change'
 }
 
-export default function RegoRefugeeForm({
+function RegoRefugeeForm({
   state,
   handleChange,
-  updateRefugeeDetails
+  updateRefugeeDetails,
+  needsAndSupports
 }) {
-
   return (
     <div className='section'>
       <div className='section'>
@@ -45,13 +37,15 @@ export default function RegoRefugeeForm({
 
       <div className='section'>
         <h5>Year of leaving</h5>
-          <div className='input-field'>
-              <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear 
-              name='yearLeft' start={-80} 
-              function={updateRefugeeDetails}
-              class={'leavingSelect'}/>
-          </div>
+        <div className='input-field'>
+          <i className='material-icons prefix form-icon'>date_range</i>
+          <SelectYear
+            name='yearLeft'
+            start={-80}
+            function={updateRefugeeDetails}
+            class={'leavingSelect'}
+          />
+        </div>
       </div>
 
       <div className='section'>
@@ -61,19 +55,25 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-          <CheckboxList options = {reasonsForLeaving}name="reasonForLeaving"
-          handleChange={updateRefugeeDetails} />
+          <CheckboxList
+            options={reasonsForLeaving}
+            name='reasonForLeaving'
+            handleChange={updateRefugeeDetails}
+          />
         </div>
       </div>
 
       <div className='section'>
         <h5>Year of arrival in NZ</h5>
-          <div className='input-field'>
-              <i className='material-icons prefix form-icon'>date_range</i>
-              <SelectYear 
-              name='yearOfArrival' start={-80}
-              function={updateRefugeeDetails} className='arrivalSelect'/>
-          </div>
+        <div className='input-field'>
+          <i className='material-icons prefix form-icon'>date_range</i>
+          <SelectYear
+            name='yearOfArrival'
+            start={-80}
+            function={updateRefugeeDetails}
+            className='arrivalSelect'
+          />
+        </div>
       </div>
 
       <div className='section'>
@@ -83,8 +83,11 @@ export default function RegoRefugeeForm({
           quae voluptatibus ratione quo.
         </p>
         <div>
-        <CheckboxList options = {needsAndSupports}   name="needs"
-          handleChange={handleChange} />
+          <CheckboxList
+            options={needsAndSupports}
+            name='needs'
+            handleChange={handleChange}
+          />
         </div>
       </div>
 
@@ -96,12 +99,26 @@ export default function RegoRefugeeForm({
           ut.
         </p>
         <div>
-        <CheckboxList options = {needsAndSupports}    
-          name="supports"
-          handleChange={handleChange} />
+          <CheckboxList
+            options={needsAndSupports}
+            name='supports'
+            handleChange={handleChange}
+          />
         </div>
       </div>
     </div>
   )
 }
 
+function mapStateToProps({ form }) {
+  let needsAndSupports = form.needs.reduce((acc, need) => {
+    acc[need.id] = need.needs
+    return acc
+  }, {})
+
+  return {
+    needsAndSupports
+  }
+}
+
+export default connect(mapStateToProps)(RegoRefugeeForm)
