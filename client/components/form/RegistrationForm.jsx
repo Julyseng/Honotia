@@ -113,10 +113,11 @@ class RegistrationForm extends Component {
   }
 
   handleSelectChangeLanguage = e => {
-    let languageSelect = e.target
-    let languageInstance = M.FormSelect.getInstance(languageSelect)
-    let languageSelected = languageInstance.getSelectedValues()
-    this.setState({ languages: languageSelected })
+    let locationSelect = e.target
+    let instance = M.FormSelect.getInstance(locationSelect)
+    let languageSelected = instance.getSelectedValues()
+
+    // this.setState({ languages: languageSelected })
   }
 
   handlePrevious = e => {

@@ -36,7 +36,7 @@ function RegoBioForm({
             onChange={handleSelectChangeLanguage}
             className='languageSelect'
           >
-            <option value='' disabled defaultValue>
+            <option value='' disabled>
               Languages I speak...
             </option>
             {languages.map((language, i) => (
