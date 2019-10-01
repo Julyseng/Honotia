@@ -127,14 +127,17 @@ class RegistrationForm extends Component {
 
   handleNext = e => {
     e.preventDefault()
-    window.scrollTo(0, 0)
-    if (
-      this.state.step === 4 ||
-      (this.state.step === 3 && this.state.userDetails.status === 'AL')
-    ) {
-      this.handleSubmit({ preventDefault: () => {} })
-    } else {
-      this.setState({ step: this.state.step + 1 })
+
+    if (!this.state.errorMessage) {
+      window.scrollTo(0, 0)
+      if (
+        this.state.step === 4 ||
+        (this.state.step === 3 && this.state.userDetails.status === 'AL')
+      ) {
+        this.handleSubmit({ preventDefault: () => {} })
+      } else {
+        this.setState({ step: this.state.step + 1 })
+      }
     }
   }
 

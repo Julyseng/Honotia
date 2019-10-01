@@ -18,7 +18,7 @@ export default function SideNav({ handleLogoff, displayLogin }) {
       </li>
       <IfAuthenticated>
         <li>
-          <Link to='/profiles'>Profiles</Link>
+          <Link to='/profiles'>Connect</Link>
         </li>
         <li>
           <LogoffButton handleLogoff={handleLogoff} />
