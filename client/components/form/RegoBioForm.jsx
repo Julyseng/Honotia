@@ -7,7 +7,8 @@ export default function RegoBioForm({
   state,
   handleChange,
   updateUserDetails,
-  handleSelectChangeLanguage
+  handleSelectChangeLanguage,
+  languages
 }) {
   return (
     <div className='section'>
@@ -30,16 +31,18 @@ export default function RegoBioForm({
         <div className='input-field'>
           <select
             multiple
-            name="languages"
+            name='languages'
             onChange={handleSelectChangeLanguage}
             className='languageSelect'
           >
             <option value='' disabled defaultValue>
               Languages I speak...
             </option>
-            <option value='English'>English</option>
-            <option value='French'>French</option>
-            <option value='Water'>Water</option>
+            {languages.map((language, i) => (
+              <option key={i} value={language.id}>
+                {language.language}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -52,9 +55,11 @@ export default function RegoBioForm({
           ut.
         </p>
         <div>
-          <CheckboxList options = {needsAndSupports}    
-            name="supports"
-            handleChange={handleChange} />
+          <CheckboxList
+            options={needsAndSupports}
+            name='supports'
+            handleChange={handleChange}
+          />
         </div>
       </div>
 

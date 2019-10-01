@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
 import M from '../../materialize-js/bin/materialize'
 
@@ -9,12 +10,13 @@ import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
 
 import { registerUser } from '../../apiClient'
+import { fetchLanguages } from '../../actions'
 
-export default class RegistrationForm extends Component {
+class RegistrationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
+      step: 3,
       previewProfileUrl: null,
       userDetails: {
         status: '',
@@ -44,6 +46,7 @@ export default class RegistrationForm extends Component {
 
   componentDidMount() {
     this.initiateMaterialize()
+    this.props.dispatch(fetchLanguages())
   }
 
   componentDidUpdate() {
@@ -211,6 +214,7 @@ export default class RegistrationForm extends Component {
                 handleSelectChangeLanguage={handleSelectChangeLanguage}
                 updateUserDetails={updateUserDetails}
                 state={state}
+                languages={this.props.languages}
               />
             )}
             {step === 4 && userDetails.status != 'AL' && (
@@ -233,3 +237,11 @@ export default class RegistrationForm extends Component {
     )
   }
 }
+
+function mapStateToProps({ form }) {
+  return {
+    languages: form.languages
+  }
+}
+
+export default connect(mapStateToProps)(RegistrationForm)

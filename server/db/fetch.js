@@ -8,7 +8,12 @@ function getCurrentUserProfile(userId, connection) {
     .first()
 }
 
+function getLanguagesList(connection) {
+  return connection('languages')
+}
+
 module.exports = {
   getUserProfiles,
-  getCurrentUserProfile
+  getCurrentUserProfile,
+  getLanguagesList
 }
