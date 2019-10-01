@@ -59,8 +59,8 @@ export const fetchLoggedInUser = () => {
 export function fetchStories() {
   return dispatch => {
     return request
-      .get('/api/v1/stories')
-      .then(res => {
+    .get('/api/v1/stories/stories')
+    .then(res => {
         dispatch(receiveStories(res.body))
       })
   }

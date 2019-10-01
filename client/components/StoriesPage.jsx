@@ -10,7 +10,8 @@ class StoriesPage extends React.Component {
     }
 
     render() {
-        console.log(this.state)
+        const { stories } = this.props
+        console.log(stories)
         return (
             <React.Fragment>
                 <div className='page-header'>
@@ -20,8 +21,10 @@ class StoriesPage extends React.Component {
                     </p>
 
                     <div className='section'>
-                        <StoriesAll />
-                    </div>   
+                        {stories.map((story, i) => (
+                            <StoriesAll key={i} story={story} />
+                        ))}
+                    </div>
 
                 </div>
             </React.Fragment>
@@ -29,4 +32,10 @@ class StoriesPage extends React.Component {
     }
 }
 
-export default connect()(StoriesPage)
+function mapStateToProps({ stories }) {
+    return {
+        stories
+    }
+}
+
+export default connect(mapStateToProps)(StoriesPage)
