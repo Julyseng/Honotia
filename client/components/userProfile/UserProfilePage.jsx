@@ -9,15 +9,12 @@ class UserProfilePage extends Component {
   }
 
   render() {
-    const { profileUrl, firstName, lastName } = this.props.currentUser
+    const { profileImg, firstName, lastName } = this.props.currentUser
     return (
       <Fragment>
         <div className='userProfile-container'>
           <div className='userProfile-nav-container'>
-            <img
-              src='https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.VsZFTut_yarKVKgSWeXAigHaLH%26pid%3DApi&f=1'
-              alt=''
-            />
+            <img src={profileImg} alt='' />
             <p>
               {firstName} {lastName}
             </p>
