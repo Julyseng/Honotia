@@ -7,6 +7,7 @@ import Navbar from './nav/Navbar'
 import AboutPage from './AboutPage'
 import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
+import StoriesPage from './StoriesPage'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path='/resources' component={ResourcesPage} />
         <Route path='/connect' component={ConnectPage} />
         <Route path='/user-profile' component={ConnectPage} />
+        <Route path='/stories' component={StoriesPage} />
       </div>
 
       <div className='bg_gradient'></div>

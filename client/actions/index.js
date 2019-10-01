@@ -8,6 +8,7 @@ export const RECEIVE_LANGUAGES_LIST = 'RECEIVE_LANGUAGES_LIST'
 export const SEND_USER_ACCOUNT = 'SEND_USER_ACCOUNT'
 export const RECEIVE_USER_PROFILES = 'RECEIVE_USER_PROFILES'
 export const RECEIVE_LOGGEDIN_USER_DETAILS = 'RECEIVE_LOGGEDIN_USER_DETAILS'
+export const RECEIVE_STORIES = 'RECEIVE_STORIES'
 
 const receiveNeeds = needs => {
   return {
@@ -40,6 +41,13 @@ const receiveUser = currentUser => {
   return {
     type: RECEIVE_LOGGEDIN_USER_DETAILS,
     currentUser
+  }
+}
+
+const receiveStories = stories => {
+  return {
+    type: RECEIVE_STORIES,
+    stories
   }
 }
 
@@ -85,6 +93,16 @@ export const fetchLoggedInUser = () => {
       .set(getAuthorizationHeader())
       .then(res => {
         dispatch(receiveUser(res.body))
+      })
+  }
+}
+
+export function fetchStories() {
+  return dispatch => {
+    return request
+    .get('/api/v1/stories/stories')
+    .then(res => {
+        dispatch(receiveStories(res.body))
       })
   }
 }
