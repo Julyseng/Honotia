@@ -11,7 +11,7 @@ export default function AboutPage() {
       <h4 className='quotation'> “the action of connection” </h4>
       <br />
 
-      <p>Since 1956 till today, New Zealand accepts refugees from all over the world.
+      <p className='flow-text'>Since 1956 till today, New Zealand accepts refugees from all over the world.
         In 2018, refugee quota has increased to 1000 per year. Every refugee spends
         the first six weeks in Mangere Refugee Resettlement Centre where they are
         supported with English Language classes, health screening and mental health.
@@ -21,7 +21,7 @@ export default function AboutPage() {
         scattered all over the place and individual support are either limited or non-existence.
       </p>
 
-      <p> If you are a refugee who just arrived in New Zealand, we would like to help you connect
+      <p className='flow-text'> If you are a refugee who just arrived in New Zealand, we would like to help you connect
         with other refugees or Ally who are interested to support you and make your journey a
         little easier. Honotia is a place where you find allies and former refugees for the
         continued support and build your network of people.
@@ -35,7 +35,7 @@ export default function AboutPage() {
           <ul className="timeline-list">
             <li>
               <div className="content">
-                <h3> Step 1:</h3>
+                <h3 className='about-steps'> Step 1:</h3>
 
                 <p>
                   Choose your status. If you are a newly arrived refugee, your status
@@ -45,7 +45,7 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="content">
-                <h3> Step 2:</h3>
+                <h3 className='about-steps'> Step 2:</h3>
 
                 <p>
                   Register on the page to fill out your details and let other people know
@@ -55,7 +55,7 @@ export default function AboutPage() {
             </li>
             <li>
               <div className="content">
-                <h3> Step 3: </h3>
+                <h3 className='about-steps'> Step 3: </h3>
                 <p>
                   View your profile and profiles to learn about other user on the
                   page.
@@ -65,7 +65,7 @@ export default function AboutPage() {
 
             <li>
               <div className="content">
-                <h3> Step 4:</h3>
+                <h3 className='about-steps'> Step 4:</h3>
                 <p>
                   Take action and start connecting and enjoy your journey.
 								</p>
