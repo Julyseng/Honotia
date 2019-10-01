@@ -50,7 +50,6 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
-    M.updateTextFields()
   }
 
   initiateMaterialize = () => {
@@ -58,6 +57,7 @@ class RegistrationForm extends Component {
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
+    M.updateTextFields()
   }
 
   setUserStatus = status => {
@@ -112,12 +112,12 @@ class RegistrationForm extends Component {
     }
   }
 
-  handleSelectChangeLanguage = e => {
-    let locationSelect = e.target
-    let instance = M.FormSelect.getInstance(locationSelect)
+  handleSelectChangeLanguage = () => {
+    let languageSelect = document.querySelector('.languageSelect')
+    let instance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = instance.getSelectedValues()
 
-    // this.setState({ languages: languageSelected })
+    this.setState({ languages: languageSelected })
   }
 
   handlePrevious = e => {
@@ -145,6 +145,7 @@ class RegistrationForm extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
+    this.handleSelectChangeLanguage()
     register(
       {
         username: this.state.userDetails.email,
@@ -168,6 +169,8 @@ class RegistrationForm extends Component {
             )
           )
         }
+
+        //do i need to return promise here?
       })
       .then(() => {
         this.props.history.push('/')

@@ -96,8 +96,10 @@ export function registerUser(data) {
     .set(getAuthorizationHeader())
     .send(data)
     .then(() => {
-      // dispatch(fetchLoggedInUser())
-      return registerProfileImg(data.actualFile)
+      if (data.actualFile) {
+        return registerProfileImg(data.actualFile)
+      }
+      // do i need to return anything here?
     })
     .catch(e => {
       console.log(e)

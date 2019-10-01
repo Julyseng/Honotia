@@ -30,12 +30,7 @@ function RegoBioForm({
       <div className='section'>
         <h5>Languages</h5>
         <div className='input-field'>
-          <select
-            multiple
-            name='languages'
-            onChange={handleSelectChangeLanguage}
-            className='languageSelect'
-          >
+          <select multiple name='languages' className='languageSelect'>
             <option value='' disabled>
               Languages I speak...
             </option>

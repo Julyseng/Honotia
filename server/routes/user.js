@@ -70,7 +70,7 @@ router.put('/register-user-details', tokenDecoder, (req, res) => {
         return Promise.resolve()
       }
     })
-    .then(() => {console.log(5)
+    .then(() => {
       res.status(201).send()
     })
     .catch(e => {
