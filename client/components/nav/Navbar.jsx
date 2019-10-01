@@ -69,7 +69,7 @@ export default class Nav extends Component {
             </div>
             <div className='adminBtns-wrapper'>
               <IfAuthenticated>
-                <Link to='/user-profile' className='icon-profile'>
+                <Link to='/my-profile' className='icon-profile'>
                   <i className='material-icons '>person_outline</i>
                 </Link>
                 <LogoffButton handleLogoff={this.handleLogoff} />
