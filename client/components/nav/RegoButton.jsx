@@ -5,7 +5,7 @@ export default function RegoButton() {
   return (
       <Link
         to='/registration'
-        className='waves-effect waves-light btn-large btn-round'
+        className='waves-effect btn-large btn-round'
       >
         Register
       </Link>

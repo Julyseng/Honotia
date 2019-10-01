@@ -30,7 +30,7 @@ export default class RegistrationForm extends Component {
         countryOrigin: '',
         yearLeft: null,
         reasonForLeaving: [],
-        yearOfArrival: null,
+        yearOfArrival: null
       },
       needs: [],
       languages: [],
@@ -64,16 +64,15 @@ export default class RegistrationForm extends Component {
     })
   }
 
-  updateUserDetails = (e) => {
-    this.handleChange(e, 'userDetails') 
+  updateUserDetails = e => {
+    this.handleChange(e, 'userDetails')
   }
 
-  updateRefugeeDetails = (e) => {
-    this.handleChange(e, 'refugeeDetails') 
+  updateRefugeeDetails = e => {
+    this.handleChange(e, 'refugeeDetails')
   }
 
   handleChange = (e, section) => {
-
     let { name, value } = e.target
     if (e.target.type == 'checkbox') {
       let existingState = section ? this.state[section][name] : this.state[name]
@@ -95,29 +94,28 @@ export default class RegistrationForm extends Component {
       reader.addEventListener('load', () => {
         this.setState({ previewProfileUrl: reader.result })
       })
-    } 
-    if (section){
+    }
+    if (section) {
       this.setState({
         [section]: {
-          ...this.state[section], 
+          ...this.state[section],
           [name]: value
         }
       })
-    }
-    else {
+    } else {
       this.setState({
         [name]: value
       })
     }
   }
 
-  handleSelectChangeLanguage = e => {           
+  handleSelectChangeLanguage = e => {
     let languageSelect = e.target
     let languageInstance = M.FormSelect.getInstance(languageSelect)
     let languageSelected = languageInstance.getSelectedValues()
-    this.setState({ languages: languageSelected})
+    this.setState({ languages: languageSelected })
   }
- 
+
   handlePrevious = e => {
     e.preventDefault()
     window.scrollTo(0, 0)
@@ -182,13 +180,12 @@ export default class RegistrationForm extends Component {
   }
 
   render() {
-
     const {
       handleSubmit,
       setUserStatus,
       handleChange,
       handleSelectChangeLanguage,
-      updateUserDetails,      
+      updateUserDetails,
       updateRefugeeDetails,
       handleNext,
       handlePrevious,
@@ -210,17 +207,19 @@ export default class RegistrationForm extends Component {
             )}
             {step === 3 && (
               <RegoBioForm
-              handleChange={handleChange} 
-              handleSelectChangeLanguage={handleSelectChangeLanguage} 
-              updateUserDetails={updateUserDetails}
-              state={state} />
+                handleChange={handleChange}
+                handleSelectChangeLanguage={handleSelectChangeLanguage}
+                updateUserDetails={updateUserDetails}
+                state={state}
+              />
             )}
             {step === 4 && userDetails.status != 'AL' && (
-              <RegoRefugeeForm 
-              handleChange={handleChange}
-              updateRefugeeDetails={updateRefugeeDetails}
-              state={state}
-            />)}
+              <RegoRefugeeForm
+                handleChange={handleChange}
+                updateRefugeeDetails={updateRefugeeDetails}
+                state={state}
+              />
+            )}
             {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
             <FormNavControllers
               userStatus={userDetails.status}

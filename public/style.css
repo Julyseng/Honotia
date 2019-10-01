@@ -6773,6 +6773,10 @@ form {
   .status-wrapper .status-text {
     border-top: 1px solid grey;
     display: block; }
+  .status-wrapper:focus {
+    border-radius: 10px;
+    background-color: #cacaca;
+    outline: none; }
 
 .profile-container {
   padding: 20px;

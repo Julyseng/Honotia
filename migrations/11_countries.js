@@ -4,7 +4,6 @@ exports.up = function(knex) {
         t.increments('id')
         t.string('name')
     })
-  
 };
 
 exports.down = function(knex) {
