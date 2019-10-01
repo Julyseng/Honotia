@@ -11,6 +11,7 @@ import Navbar from './nav/Navbar'
 import AboutPage from './AboutPage'
 import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
+import StoriesPage from './StoriesPage'
 
 class App extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class App extends Component {
           <Route path='/resources' component={ResourcesPage} />
           <Route path='/connect' component={ConnectPage} />
           <Route path='/user-profile' component={ConnectPage} />
+          <Route path='/stories' component={StoriesPage} />
         </div>
 
         <div className='bg_gradient'></div>

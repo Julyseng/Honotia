@@ -57,7 +57,7 @@ export default class Nav extends Component {
           <div className='hide-on-med-and-down navItems-wrapper'>
             <div className='manuItems-wrapper'>
               <Link to='/about'>About</Link>
-              <a href='sass.html'>Stories</a>
+              <Link to='/stories'>Stories</Link>
               <IfAuthenticated>
                 <Link to='/resources' className='exclusive-menuItem'>
                   Resources
