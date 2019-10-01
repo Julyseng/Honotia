@@ -7078,5 +7078,13 @@ p {
   display: flex;
   justify-content: center; }
 
+.resources-h3 {
+  text-align: center; }
+
+.material-icons {
+  font-size: 45px;
+  display: inline-flex;
+  vertical-align: top; }
+
 
 /*# sourceMappingURL=style.css.map*/
