@@ -51,27 +51,26 @@ const receiveStories = stories => {
   }
 }
 
-export function fetchNeeds() {
+export function fetchFormDatas() {
   return dispatch => {
-    return request.get(`/api/v1/form/needs`).then(res => {
-      dispatch(receiveNeeds(res.body))
-    })
-  }
-}
-
-export function fetchSupports() {
-  return dispatch => {
-    return request.get(`/api/v1/form/supports`).then(res => {
-      dispatch(receiveSupports(res.body))
-    })
-  }
-}
-
-export function fetchLanguages() {
-  return dispatch => {
-    return request.get(`/api/v1/form/languages`).then(res => {
-      dispatch(receiveLanguages(res.body))
-    })
+    return request
+      .get(`/api/v1/form/languages`)
+      .then(res => {
+        dispatch(receiveLanguages(res.body))
+      })
+      .then(() => {
+        return request.get(`/api/v1/form/supports`).then(res => {
+          dispatch(receiveSupports(res.body))
+        })
+      })
+      .then(() => {
+        return dispatch => {
+          return request.get(`/api/v1/form/needs`).then(res => {
+            dispatch(receiveNeeds(res.body))
+          })
+        }
+      })
+      .catch(e => console.log(e.message))
   }
 }
 
@@ -99,10 +98,8 @@ export const fetchLoggedInUser = () => {
 
 export function fetchStories() {
   return dispatch => {
-    return request
-    .get('/api/v1/stories/stories')
-    .then(res => {
-        dispatch(receiveStories(res.body))
-      })
+    return request.get('/api/v1/stories/stories').then(res => {
+      dispatch(receiveStories(res.body))
+    })
   }
 }

@@ -10,9 +10,7 @@ import RegoBioForm from './RegoBioForm'
 import FormNavControllers from './FormNavControllers'
 
 import { registerUser } from '../../apiClient'
-import { fetchLanguages } from '../../actions'
-import { fetchSupports } from '../../actions'
-import { fetchNeeds } from '../../actions'
+import { fetchFormDatas } from '../../actions'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -48,9 +46,7 @@ class RegistrationForm extends Component {
 
   componentDidMount() {
     this.initiateMaterialize()
-    this.props.dispatch(fetchLanguages())
-    this.props.dispatch(fetchSupports())
-    this.props.dispatch(fetchNeeds())
+    this.props.dispatch(fetchFormDatas())
   }
 
   componentDidUpdate() {
