@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchStories } from '../../actions'
 import StoryPost from './StoryPost'
 
-class StoriesPage extends React.Component {
+class StoriesPage extends Component {
   componentDidMount() {
     this.props.dispatch(fetchStories())
   }
@@ -12,7 +12,7 @@ class StoriesPage extends React.Component {
   render() {
     const { stories } = this.props
     return (
-      <React.Fragment>
+      <Fragment>
         <div className='page-header'>
           <h2>Stories</h2>
           <p className='b-font'>
@@ -21,16 +21,14 @@ class StoriesPage extends React.Component {
             laboriosam neque beatae necessitatibus, possimus ea? Facere saepe
             magni dignissimos libero eaque, exercitationem eos repudiandae.
           </p>
-          <br />
-          <div className='divider' />
-
-          <div className='section'>
-            {stories.map((story, i) => (
-              <StoryPost key={i} story={story} />
-            ))}
-          </div>
         </div>
-      </React.Fragment>
+
+        <div className='section'>
+          {stories.map((story, i) => (
+            <StoryPost key={i} story={story} />
+          ))}
+        </div>
+      </Fragment>
     )
   }
 }

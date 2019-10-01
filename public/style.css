@@ -6533,7 +6533,8 @@ nav {
 
 .brand-title {
   font-family: 'Merriweather', Arial, Helvetica, sans-serif;
-  font-size: 30px; }
+  font-weight: 700;
+  font-size: 31px; }
 
 .navItems-wrapper {
   display: flex;
@@ -6628,6 +6629,15 @@ nav {
   right: 0;
   z-index: 5; }
 
+.storyPost-container {
+  padding: 2.5rem 0; }
+
+.story-authorName {
+  border-bottom: 1.5px solid #897cce;
+  cursor: pointer; }
+  .story-authorName:hover {
+    color: #a397e0; }
+
 @-webkit-keyframes slide {
   0% {
     opacity: 0;
@@ -6672,7 +6682,12 @@ body {
 h2 {
   font-family: "Merriweather", Arial, Helvetica, sans-serif;
   font-size: 28px;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  color: #252525; }
+
+h3 {
+  font-family: "Merriweather", Arial, Helvetica, sans-serif;
+  font-size: 22px; }
 
 h4 {
   font-family: "Merriweather", Arial, Helvetica, sans-serif;
@@ -6700,6 +6715,9 @@ h5 {
 .page-header {
   max-width: 700px;
   width: 100%; }
+
+.c-grey {
+  color: #929292; }
 
 @font-face {
   font-family: 'Material Icons';
