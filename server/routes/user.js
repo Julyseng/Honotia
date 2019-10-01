@@ -3,6 +3,7 @@ const router = express.Router()
 const { getTokenDecoder } = require('authenticare/server')
 
 const tokenDecoder = getTokenDecoder(false)
+
 const {
   registerUser,
   registerLanguage,
@@ -31,9 +32,6 @@ router.get('/current', tokenDecoder, (req, res) => {
 })
 
 router.put('/register-user-details', tokenDecoder, (req, res) => {
-  // console.log(req.user)
-  // res.send('hi')
-  // return
   let conn = req.app.connection
   let userId = req.user.id
   let { user, languages, refugee, needs, supports } = req.body

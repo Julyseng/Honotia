@@ -20,15 +20,6 @@ jest.mock('../../../server/db/register', () => {
   }
 })
 
-// function getTokenDecoder (throwNoTokenError = true) {
-//    return (req, res, next) => {
-//      verifyJwt({
-//        secret: getSecret,
-//        credentialsRequired: throwNoTokenError
-//      })(req, res, next)
-//    }
-//  }
-
 jest.mock('authenticare/server', () => {
   return {
     getTokenDecoder: () => {
@@ -36,7 +27,6 @@ jest.mock('authenticare/server', () => {
         req.user = {
           id: 1
         }
-        console.log('test')
         next()
       }
     },
@@ -44,25 +34,48 @@ jest.mock('authenticare/server', () => {
   }
 })
 
-describe('PUT /register-user-details', () => {
-  describe('new refugee', () => {
-    let query
-    beforeEach(() => {
-      query = request(server)
-        .put('/api/v1/register-user-details')
-        .send({
-          user: {
-            status: 'NR'
-          }
-        })
-    })
+beforeEach(() => {
+  jest.clearAllMocks()
+})
 
-    test('calls registerRefugee', () => {
-      return query.then(res => {
-        expect(registerRefugee).toHaveBeenCalled()
-      })
+describe('PUT /register-user-details', () => {
+  test('calls registerUser', () => {
+    expect.assertions(1)
+    return registerUserDetails({ user: { status: 'NR' } }).then(req => {
+      expect(registerUser).toHaveBeenCalled()
     })
-    test('does not call registerSupports', () => {})
-    test('calls registerNeeds', () => {})
+  })
+
+  test('calls db functions for new refugees', () => {
+    expect.assertions(3)
+    return registerUserDetails({ user: { status: 'NR' } }).then(() => {
+      expect(registerRefugee).toHaveBeenCalled()
+      expect(registerSupports).not.toHaveBeenCalled()
+      expect(registerNeeds).toHaveBeenCalled()
+    })
+  })
+
+  test('calls db functions for former refugees', () => {
+    expect.assertions(3)
+    return registerUserDetails({ user: { status: 'FR' } }).then(() => {
+      expect(registerRefugee).toHaveBeenCalled()
+      expect(registerSupports).toHaveBeenCalled()
+      expect(registerNeeds).not.toHaveBeenCalled()
+    })
+  })
+
+  test('calls db functions for ally', () => {
+    expect.assertions(3)
+    return registerUserDetails({ user: { status: 'AL' } }).then(() => {
+      expect(registerRefugee).not.toHaveBeenCalled()
+      expect(registerSupports).toHaveBeenCalled()
+      expect(registerNeeds).not.toHaveBeenCalled()
+    })
   })
 })
+
+function registerUserDetails(data) {
+  return request(server)
+    .put('/api/v1/user/register-user-details')
+    .send(data)
+}
