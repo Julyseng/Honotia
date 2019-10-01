@@ -1,35 +1,23 @@
-import { SEND_USER_ACCOUNT } from '../actions'
+import {
+  RECEIVE_LANGUAGES_LIST,
+  RECEIVE_SUPPORTS_LIST,
+  RECEIVE_NEEDS_LIST
+} from '../actions'
 
 const initialState = {
-  userAccount: {
-    userStatus: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    dob: '',
-    currentCity: '',
-    profileImg: ''
-  },
-  userBio: {
-    occupation: '',
-    languages: [],
-    supports: [],
-    bioText: ''
-  },
-  refugees: {
-    needs: [],
-    supports: [],
-    yearLeft: null,
-    reasonForLeaving: '',
-    yearOfArrival: null,
-    originCountry: ''
-  }
+  languages: [],
+  supports: [],
+  needs: []
 }
 
 export default function form(state = initialState, action) {
   switch (action.type) {
-    case SEND_USER_ACCOUNT:
-      return { ...state, userAccount: action.userAccountData }
+    case RECEIVE_LANGUAGES_LIST:
+      return { ...state, languages: action.languages }
+    case RECEIVE_SUPPORTS_LIST:
+      return { ...state, supports: action.supports }
+    case RECEIVE_NEEDS_LIST:
+      return { ...state, needs: action.needs }
 
     default:
       return state

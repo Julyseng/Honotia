@@ -14,7 +14,7 @@ export default function SideNav({ handleLogoff, displayLogin }) {
         <Link to='/about'>About</Link>
       </li>
       <li>
-        <a href='sass.html'>Stories</a>
+        <Link to='/stories'>Stories</Link>
       </li>
       <IfAuthenticated>
         <li>

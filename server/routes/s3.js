@@ -38,6 +38,10 @@ router.post(
   (req, res) => {
     let conn = req.app.connection
 
+    if (!req.file) {
+      return res.status(400).send()
+    }
+
     db.registerProfileUrl(req.user.id, req.file.location, conn)
       .then(() => {
         res.status(201).send()

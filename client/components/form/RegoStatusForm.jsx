@@ -8,7 +8,7 @@ export default function RegoStatusForm({ setUserStatus }) {
         <div
           className='status-wrapper z-depth-2 hoverable waves-effect'
           onClick={() => setUserStatus('NR')}
-          tabindex='0'
+          tabIndex='0'
         >
           <p className='b-font'>
             Newly arrived refugee
@@ -18,7 +18,7 @@ export default function RegoStatusForm({ setUserStatus }) {
         <div
           className='status-wrapper z-depth-2 hoverable waves-effect'
           onClick={() => setUserStatus('FR')}
-          tabindex='0'
+          tabIndex='0'
         >
           <p className='b-font'>
             Former Refugee
@@ -28,7 +28,7 @@ export default function RegoStatusForm({ setUserStatus }) {
         <div
           className='status-wrapper z-depth-2 hoverable waves-effect'
           onClick={() => setUserStatus('AL')}
-          tabindex='0'
+          tabIndex='0'
         >
           <p className='b-font'>
             Ally
