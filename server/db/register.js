@@ -51,23 +51,26 @@ function registerRefugee(userId, refugeeData, connection) {
   })
 }
 
-function registerNeeds(userId, needs, connection) {
-  // if needs is obj - convert to array
+function registerNeeds(userId, needsObj, connection) {
+  let needs = Object.keys(needsObj)
   let needsToSave = needs.map(needId => {
     return {
       user_id: userId,
       needs_id: needId
-    }})
+    }
+  })
   return connection('user_needs').insert(needsToSave)
 }
 
-function registerSupports(userId, supports, connection) {
-  supports.map(supportId => {
-    return connection('user_needs').insert({
+function registerSupports(userId, supportsObj, connection) {
+  let supports = Object.keys(supportsObj)
+  let supportsToSave = supports.map(supportId => {
+    return {
       user_id: userId,
       supports_id: supportId
-    })
+    }
   })
+  return connection('user_supports').insert(supportsToSave)
 }
 
 module.exports = {

@@ -13,15 +13,6 @@ const reasonsForLeaving = {
   climate: 'Climate change'
 }
 
-// export const needsAndSupports = {
-//   healthcare: 'Healthcare',
-//   education: 'Education',
-//   housing: 'Housing',
-//   mentor: 'Mentor',
-//   employment: 'Employment',
-//   socialSupport: 'Social Support',
-//   transport: 'Transport'
-// }
 function RegoRefugeeForm({
   state,
   handleChange,
@@ -124,8 +115,6 @@ function mapStateToProps({ form }) {
     acc[need.id] = need.needs
     return acc
   }, {})
-
-  console.log(needsAndSupports)
 
   return {
     needsAndSupports

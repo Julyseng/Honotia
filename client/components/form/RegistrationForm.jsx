@@ -159,14 +159,17 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
-        registerUser({
-          user: this.state.userDetails,
-          refugee: this.state.refugeeDetails,
-          needs: this.state.needs,
-          languages: this.state.languages,
-          supports: this.state.supports,
-          actualFile: this.state.actualFile
-        }, this.props.dispatch).then(res => {
+        registerUser(
+          {
+            user: this.state.userDetails,
+            refugee: this.state.refugeeDetails,
+            needs: this.state.needs,
+            languages: this.state.languages,
+            supports: this.state.supports,
+            actualFile: this.state.actualFile
+          },
+          this.props.dispatch
+        ).then(res => {
           this.props.history.push('/')
         })
       })
@@ -179,6 +182,7 @@ class RegistrationForm extends Component {
         this.state[e.target.name] = e.target.value
         let { password, confirmPassword } = this.state
         if (password != confirmPassword) {
+          // target both nodes
           e.target.classList.add('invalid')
           this.setState({ errorMessage: 'Password does not match' })
         } else {
@@ -217,15 +221,14 @@ class RegistrationForm extends Component {
                 state={state}
               />
             )}
-            {/* {step === 3 && (
+            {step === 3 && (
               <RegoBioForm
                 handleChange={handleChange}
                 handleSelectChangeLanguage={handleSelectChangeLanguage}
                 updateUserDetails={updateUserDetails}
                 state={state}
-                languages={this.props.languages}
               />
-            )} */}
+            )}
             {step === 4 && userDetails.status != 'AL' && (
               <RegoRefugeeForm
                 handleChange={handleChange}
@@ -247,12 +250,4 @@ class RegistrationForm extends Component {
   }
 }
 
-function mapStateToProps({ form }) {
-  return {
-    languages: form.languages,
-    supports: form.supports,
-    needs: form.needs
-  }
-}
-
-export default connect(mapStateToProps)(RegistrationForm)
+export default connect()(RegistrationForm)

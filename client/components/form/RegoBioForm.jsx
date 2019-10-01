@@ -1,14 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import CheckboxList from './CheckboxList'
 
-// import { needsAndSupports } from './RegoRefugeeForm'
-
-export default function RegoBioForm({
+function RegoBioForm({
   state,
   handleChange,
   updateUserDetails,
   handleSelectChangeLanguage,
-  languages
+  languages,
+  needsAndSupports
 }) {
   return (
     <div className='section'>
@@ -85,3 +86,17 @@ export default function RegoBioForm({
     </div>
   )
 }
+
+function mapStateToProps({ form }) {
+  let needsAndSupports = form.needs.reduce((acc, need) => {
+    acc[need.id] = need.needs
+    return acc
+  }, {})
+
+  return {
+    languages: form.languages,
+    needsAndSupports
+  }
+}
+
+export default connect(mapStateToProps)(RegoBioForm)
