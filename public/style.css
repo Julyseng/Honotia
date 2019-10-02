@@ -6812,6 +6812,9 @@ h5 {
   margin: 0 auto;
   padding: 2rem 0; }
 
+.hoverable {
+  cursor: pointer; }
+
 footer {
   padding-bottom: 2rem;
   text-align: center; }

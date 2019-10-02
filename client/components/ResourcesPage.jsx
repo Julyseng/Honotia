@@ -18,7 +18,7 @@ export default function ResourcesPage() {
           <div className='row'>
             <div className='col s12 m4'>
               <a>
-                <div className='card red lighten-2'>
+                <div className='card red lighten-2 hoverable'>
                   <div className='card-content white-text'>
                     <h3 className='resources-h3'>
                       <i className='material-icons'>business_center</i>
@@ -31,7 +31,7 @@ export default function ResourcesPage() {
 
             <div className='col s12 m4'>
               <a>
-                <div className='card blue-grey darken-1'>
+                <div className='card blue-grey darken-1 hoverable'>
                   <div className='card-content white-text'>
                     <h3 className='resources-h3'>
                       <i className='material-icons'>local_library</i>Education
@@ -43,7 +43,7 @@ export default function ResourcesPage() {
 
             <div className='col s12 m4'>
               <a>
-                <div className='card grey lighten-1'>
+                <div className='card grey lighten-1 hoverable'>
                   <div className='card-content white-text'>
                     <h3 className='resources-h3'>
                       <i className='material-icons'>local_hospital</i>Healthcare
@@ -55,7 +55,7 @@ export default function ResourcesPage() {
 
             <div className='col s12 m4'>
               <a>
-                <div className='card grey lighten-1'>
+                <div className='card grey lighten-1 hoverable'>
                   <div className='card-content white-text'>
                     <h3 className='resources-h3'>
                       <i className='material-icons'>directions_transit</i>
@@ -68,7 +68,7 @@ export default function ResourcesPage() {
 
             <div className='col s12 m4'>
               <a>
-                <div className='card amber accent-2'>
+                <div className='card amber accent-2 hoverable'>
                   <div className='card-content white-text'>
                     <h3 className='resources-h3'>
                       <i className='material-icons'>home</i>Housing
@@ -80,7 +80,7 @@ export default function ResourcesPage() {
 
             <div className='col s12 m4'>
               <a>
-                <div className='card green lighten-2'>
+                <div className='card green lighten-2 hoverable'>
                   <div className='card-content white-text'>
                     <h3 className='resources-h3'>
                       <i className='material-icons'>person</i>Your Rights
