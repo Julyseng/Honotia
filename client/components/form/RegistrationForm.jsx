@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
+
 import M from '../../materialize-js/bin/materialize'
 
 import RegoStatusForm from './RegoStatusForm'
@@ -177,7 +178,6 @@ class RegistrationForm extends Component {
         this.props.history.push('/')
       })
       .catch(e => {
-        // console.log(e.message)
         if (e.message === 'Bad Request') {
           this.setState({
             errorMessage: 'Choose another email'

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { logOff } from 'authenticare/client'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import M from '../../materialize-js/bin/materialize'
 
@@ -13,7 +13,7 @@ import RegoButton from './RegoButton'
 import LoginButton from './LoginButton'
 import LogoffButton from './LogoffButton'
 
-import {fetchLoggedInUser} from '../../actions'
+import { fetchLoggedInUser } from '../../actions'
 
 class Navbar extends Component {
   state = {

@@ -92,7 +92,7 @@ export function fetchStories() {
 
 export function registerUser(data) {
   return dispatch => {
-   return request
+    return request
       .put('/api/v1/user/register-user-details')
       .set(getAuthorizationHeader())
       .send(data)
