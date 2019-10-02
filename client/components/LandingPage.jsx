@@ -14,14 +14,18 @@ class LandingPage extends Component {
 
   render() {
     const { currentUser } = this.props
+    const userName = isAuthenticated() ? (
+      <span>, &nbsp;{currentUser.firstName}</span>
+    ) : null
+
     return (
       <div className='landingPage-container'>
         <div className='center-align'>
-          <h2>Kia Ora {isAuthenticated() && currentUser.firstName}!</h2>
+          <h2>Kia Ora{userName}!</h2>
           <p>Welcome to Honotia - a place to connect, share, and learn</p>
         </div>
 
-        <div className='row mb-2'>
+        <div className='row pb-2'>
           <div className='col s12 l4 center-align'>
             <img className='landing-img' src='./1.png' alt='' />
             <h4>Connect</h4>
