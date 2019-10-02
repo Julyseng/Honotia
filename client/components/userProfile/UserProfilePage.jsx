@@ -58,7 +58,6 @@ class UserProfilePage extends Component {
 }
 
 function mapStateToProps({ currentUser }) {
-  console.log(currentUser)
   return {
     currentUser
   }

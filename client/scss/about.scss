@@ -8,6 +8,13 @@
   font-family: 'Merriweather', Arial, Helvetica, sans-serif;
 }
 
+.quote-text {
+  font-style: 'italic';
+  line-height: 1.6;
+  font-weight: '400';
+  font-family: $bodyFont;
+}
+
 .content .about-steps {
   font-size: 25xpx;
   font-family: 'Merriweather', Arial, Helvetica, sans-serif;
@@ -44,7 +51,6 @@
 
 $fontstack_heading: 'Merriweather', sans-serif;
 $fontstack_body: 'Merriweather', sans-serif;
-
 .block-content {
   min-height: 100vh;
 }
