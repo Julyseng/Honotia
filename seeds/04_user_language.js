@@ -13,7 +13,6 @@ exports.seed = function(knex) {
         {user_id: 5, language_id: 3},
         {user_id: 5, language_id: 2},
         {user_id: 6, language_id: 2},
-        
       ]);
     });
 };
