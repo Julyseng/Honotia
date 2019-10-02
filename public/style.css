@@ -6563,9 +6563,9 @@ nav {
 .icon-profile {
   display: inline-flex;
   justify-content: center;
-  border: 1px solid #a8a8a8;
   border-radius: 50%;
-  width: 56px; }
+  width: 56px;
+  height: 56px; }
   .icon-profile i {
     display: inline-block !important;
     font-size: 30px !important;

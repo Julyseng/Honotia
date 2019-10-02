@@ -73,7 +73,10 @@ class Navbar extends Component {
             </div>
             <div className='adminBtns-wrapper'>
               <IfAuthenticated>
-                <Link to='/my-profile' className='icon-profile'>
+                <Link
+                  to='/my-profile'
+                  className='icon-profile btn waves-effect'
+                >
                   <i className='material-icons '>person_outline</i>
                 </Link>
                 <LogoffButton handleLogoff={this.handleLogoff} />
