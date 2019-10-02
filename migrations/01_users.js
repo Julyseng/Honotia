@@ -10,7 +10,7 @@ exports.up = function(knex) {
     t.string('hash')
     t.text('bio')
     t.string('status')
-    t.string('profileImg')
+    t.text('profileImg')
   })
 }
 
