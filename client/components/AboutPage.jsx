@@ -4,20 +4,16 @@ export default function AboutPage() {
   return (
     <div className='about-container'>
       <h4 className='about-h4'>
-        Refugee -
-        <span
-          style={{ fontStyle: 'italic', lineHeight: '1.5', fontWeight: '400' }}
-        >
+        Refugee - <br />
+        <span className='quote-text'>
           A person forced to flee their country <br /> because of violence or
           persecution.
         </span>
       </h4>
 
       <h4 className='about-h4'>
-        Honotia -
-        <span style={{ fontStyle: 'italic', fontWeight: '400' }}>
-          The action of connection
-        </span>
+        Honotia - <br />
+        <span className='quote-text'>The action of connection</span>
       </h4>
 
       <p className='b-font about-text'>
@@ -30,13 +26,11 @@ export default function AboutPage() {
         stepping into a foreign land without knowing where to begin. Although
         there are many supports available after the six weeks programme, they
         are scattered all over the place and individual support are either
-        limited or non-existence.
+        limited or non-existent.
         <br /> <br />
-        If you are a refugee who just arrived in New Zealand, we would like to
-        help you connect with other refugees or Ally who are interested to
-        support you and make your journey a little easier. Honotia is a place
-        where you find allies and former refugees for the continued support and
-        build your network of people.
+        Honotia is a place created for newly arrived refugees to connect with
+        former refugees and allies for the continued support and connection to
+        make the journey a little easier.
       </p>
 
       <section className='block-content t-block-teal l-block-spacing'>
@@ -49,18 +43,18 @@ export default function AboutPage() {
               <div className='content'>
                 <h5 className='about-steps'> Step 1:</h5>
                 <p>
-                  Choose your status. If you are a newly arrived refugee, your
-                  status can be updated later too.
+                  Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id,
+                  lorem. Maecenas nec odio et ante tincidunt tempus.
                 </p>
               </div>
             </li>
             <li>
               <div className='content'>
                 <h5 className='about-steps'> Step 2:</h5>
-
                 <p>
-                  Register on the page to fill out your details and let other
-                  people know abit about yourself
+                  Donec vitae sapien ut libero venenatis faucibus. Nullam quis
+                  ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis
+                  leo.
                 </p>
               </div>
             </li>
@@ -68,8 +62,8 @@ export default function AboutPage() {
               <div className='content'>
                 <h5 className='about-steps'> Step 3: </h5>
                 <p>
-                  View your profile and profiles to learn about other user on
-                  the page.
+                  Etiam ultricies nisi vel augue. Curabitur ullamcorper
+                  ultricies nisi.
                 </p>
               </div>
             </li>
@@ -77,7 +71,10 @@ export default function AboutPage() {
             <li>
               <div className='content'>
                 <h5 className='about-steps'> Step 4:</h5>
-                <p>Take action and start connecting and enjoy your journey.</p>
+                <p>
+                  Maecenas tempus, tellus eget condimentum rhoncus, sem quam
+                  semper libero, sit amet adipiscing sem neque sed ipsum.
+                </p>
               </div>
             </li>
           </ul>

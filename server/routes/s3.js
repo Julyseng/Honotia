@@ -38,7 +38,6 @@ router.post(
   (req, res) => {
     let conn = req.app.connection
 
-    // console.log('hit')
     if (!req.file) {
       return res.status(400).send()
     }

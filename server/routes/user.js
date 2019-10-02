@@ -74,7 +74,7 @@ router.put('/register-user-details', tokenDecoder, (req, res) => {
       res.status(201).send()
     })
     .catch(e => {
-      console.log(e)
+      // console.log(e)
       res.status(500).json('Error registering user')
     })
 })
