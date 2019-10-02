@@ -6575,12 +6575,11 @@ nav {
   border-radius: 40px; }
 
 .btn-register {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: #f57171;
   color: #ffffff;
-  width: 200px; }
+  width: 200px;
+  display: block;
+  margin: 0 auto; }
 
 .btn-register:hover {
   background-color: #ffa0a0; }
