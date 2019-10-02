@@ -5,16 +5,15 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('reasonFL').insert([
-        {id: 1, reason: 'War or conflict'},
-        {id: 2, reason: 'Religious persecution'},
-        {id: 3, reason: 'Political instability'},
-        {id: 4, reason: 'Human rights violation'},
-        {id: 5, reason: 'Expulsion'},
-        {id: 6, reason: 'Poverty'},
-        {id: 7, reason: 'Anti-semitism'},
-        {id: 8, reason: 'Climate change'},
-        {id: 9, reason: 'National persecution'},
-
+        {reason: 'War or conflict'},
+        {reason: 'Religious persecution'},
+        {reason: 'Political instability'},
+        {reason: 'Human rights violation'},
+        {reason: 'Expulsion'},
+        {reason: 'Poverty'},
+        {reason: 'Anti-semitism'},
+        {reason: 'Climate change'},
+        {reason: 'National persecution'},
       ]);
     });
 };

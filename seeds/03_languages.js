@@ -76,6 +76,9 @@ exports.seed = function(knex) {
         { id: 69, language: "Tigrigna" },
         { id: 70, language: "Tongan"  },
         { id: 71, language: "Turkic" },
-      ]);
+      ])
+      .then(() => {
+        return knex.raw("SELECT setval('languages_id_seq', 72, true)").then(() => {})
+      })
     });
 };

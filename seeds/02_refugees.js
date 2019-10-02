@@ -6,7 +6,6 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('refugees').insert([
         {
-          id: 1,
           user_id: 1,
           country: 'Burma/Myanmar',
           yearLeft: 1990,
@@ -14,7 +13,6 @@ exports.seed = function(knex) {
           yearOfArrival: 2019
         },
         {
-          id: 2,
           user_id: 2,
           country: 'Syria',
           yearLeft: 1998,
@@ -22,7 +20,6 @@ exports.seed = function(knex) {
           yearOfArrival: 2002
         },
         {
-          id: 3,
           user_id: 3,
           country: 'Vietnam',
           yearLeft: 2001,
@@ -30,7 +27,6 @@ exports.seed = function(knex) {
           yearOfArrival: 1999
         },
         {
-          id: 4,
           user_id: 4,
           country: 'China',
           yearLeft: 2008,
@@ -38,7 +34,6 @@ exports.seed = function(knex) {
           yearOfArrival: 2005
         },
         {
-          id: 5,
           user_id: 5,
           country: 'Afghanistan',
           yearLeft: 2003,
@@ -46,7 +41,6 @@ exports.seed = function(knex) {
           yearOfArrival: 2008
         },
         {
-          id: 6,
           user_id: 6,
           country: 'Colombia',
           yearLeft: 2005,

@@ -142,7 +142,7 @@ exports.seed = function(knex) {
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXYTY5FOj5DjOZ1M1EqIWyGZLHWyMWkKvAFAVln3dk_xkE3BAglQ'
         }
       ]).then(() => {
-        return knex.raw("SELECT setval('users_id_seq', 10, true)").then((res) => console.log(res))
+        return knex.raw("SELECT setval('users_id_seq', 10, true)").then(() => {})
       })
     })
 }

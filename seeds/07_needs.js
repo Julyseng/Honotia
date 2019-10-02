@@ -13,6 +13,8 @@ exports.seed = function(knex) {
         {id: 6, needs: 'Transport'},
         {id: 7, needs: 'Mentor'},
         {id: 8, needs: 'Business'}
-      ]);
+      ]).then(() => {
+        return knex.raw("SELECT setval('needs_id_seq', 9, true)").then(() => {})
+      })
     });
 };
