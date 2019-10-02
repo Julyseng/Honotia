@@ -28,6 +28,12 @@ export default function App() {
       </div>
 
       <div className='bg_gradient'></div>
+      <footer>
+        <small>
+          Quam aspernatur debitis porro sed labore sapiente laudantium eaque.
+          Copyright Honotia
+        </small>
+      </footer>
     </Router>
   )
 }

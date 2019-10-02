@@ -18,18 +18,20 @@ class UserProfilePage extends Component {
       <Fragment>
         <div className='userProfile-container'>
           <div className='userProfile-nav-container'>
-            <img src={profileImg} alt='' />
-            <p>
-              {firstName} {lastName}
-            </p>
-            <div className='grid-card-footer'>
-              <span className='tag'>Wellington</span>
-              <span className='tag'>Dentist</span>
+            <div className='userProfile-inner-wrapper'>
+              <img src={profileImg} alt='' />
+              <p>
+                {firstName} {lastName}
+              </p>
+              <div className='grid-card-footer'>
+                <span className='tag'>Wellington</span>
+                <span className='tag'>Dentist</span>
+              </div>
             </div>
           </div>
 
           <div className='userProfile-details-container'>
-            <p>Edit your profile</p>
+            {/* <p>My profile</p> */}
             <div className='fake-input'>
               <span className='fake-input-label'>First Name:</span>
               <span className='fake-input-field'>{firstName}</span>
@@ -40,11 +42,15 @@ class UserProfilePage extends Component {
             </div>
             <div className='fake-input'>
               <span className='fake-input-label'>Password:</span>
-              <span className='fake-input-field'>{firstName}</span>
+              <span className='fake-input-field'>
+                &#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;
+              </span>
             </div>
             <div className='fake-input'>
               <span className='fake-input-label'>Confirm Password:</span>
-              <span className='fake-input-field'>{firstName}</span>
+              <span className='fake-input-field'>
+                &#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;
+              </span>
             </div>
             <div className='fake-input'>
               <span className='fake-input-label'>Bio:</span>
