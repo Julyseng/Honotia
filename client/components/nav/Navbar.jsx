@@ -24,12 +24,14 @@ export default class Nav extends Component {
 
   displayLogin = () => {
     this.setState({ displayLogin: true })
-    let form = document.querySelector('.login-container')
-    form.classList.toggle('open')
+  }
+
+  hideLogin = () => {
+    this.setState({ displayLogin: false })
   }
 
   finishLogin = () => {
-    this.setState({ displayLogin: false })
+    this.hideLogin()
     const currentPath = this.props.history.location.pathname
 
     if (currentPath != '/') {
@@ -41,7 +43,6 @@ export default class Nav extends Component {
     logOff()
 
     this.props.history.push('/')
-    // TO DO: refresh page to reflect logged off state
   }
 
   render() {
@@ -86,9 +87,11 @@ export default class Nav extends Component {
           handleLogoff={this.handleLogoff}
         />
 
-        {this.state.displayLogin && (
-          <LoginForm finishLogin={this.finishLogin} />
-        )}
+        <LoginForm
+          finishLogin={this.finishLogin}
+          hideLogin={this.hideLogin}
+          showLogin={this.state.displayLogin}
+        />
       </Fragment>
     )
   }

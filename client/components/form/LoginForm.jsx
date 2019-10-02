@@ -35,8 +35,13 @@ export default class LoginForm extends Component {
   }
 
   render() {
+    let extraClass = this.props.showLogin ? 'open' : ''
+
     return (
-      <div className='login-container z-depth-1'>
+      <div className={`login-container z-depth-1 ${extraClass}`}>
+        <div className='btn-close' onClick={this.props.hideLogin}>
+          <span />
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className='input-field login-input'>
             <i className='material-icons prefix'>account_circle</i>
