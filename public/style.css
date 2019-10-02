@@ -7188,7 +7188,14 @@ form {
   justify-content: center; }
 
 .resources-h3 {
-  text-align: center; }
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0; }
 
 .material-icons {
   font-size: 45px;

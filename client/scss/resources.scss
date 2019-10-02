@@ -1,9 +1,16 @@
 .resources-h3 {
-    text-align: center;
+  text-align: center;
+  font-family: $bodyFont;
+  font-size: 15px !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
 }
 
 .material-icons {
-    font-size: 45px;
-    display: inline-flex;
-    vertical-align: top;
+  font-size: 45px;
+  display: inline-flex;
+  vertical-align: top;
 }
