@@ -6854,6 +6854,18 @@ form {
 .login-input {
   margin-bottom: 20px; }
 
+.loginFormPage-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem; }
+
+.loginFormPage-form {
+  max-width: 400px;
+  border: 1px solid #d8d8d8;
+  padding: 1.5rem; }
+
 .status-container {
   display: flex;
   justify-content: space-between;
