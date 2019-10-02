@@ -9,7 +9,7 @@ import RegoBioForm from './RegoBioForm'
 import RegoRefugeeForm from './RegoRefugeeForm'
 import FormNavControllers from './FormNavControllers'
 
-import { fetchFormDatas, registerUser, fetchLoggedInUser} from '../../actions'
+import { fetchFormDatas, registerUser, fetchLoggedInUser } from '../../actions'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -155,7 +155,7 @@ class RegistrationForm extends Component {
     )
       .then(() => {
         if (isAuthenticated()) {
-          this.props.dispatch(
+          return this.props.dispatch(
             registerUser(
               {
                 user: this.state.userDetails,
