@@ -25,7 +25,7 @@ class LandingPage extends Component {
           <div className='col s12 l4 center-align'>
             <img
               className='landing-img'
-              src='https://cdn.dribbble.com/users/729829/screenshots/5444723/galshir-connection-illustration.png'
+              src='./peopleg.png'
               alt=''
             />
             <h4>Connect</h4>
@@ -34,7 +34,7 @@ class LandingPage extends Component {
           <div className='col s12 l4 center-align'>
             <img
               className='landing-img'
-              src='https://cdn.dribbble.com/users/729829/screenshots/5444723/galshir-connection-illustration.png'
+              src='./young.png'
               alt=''
             />
             <h4>Share</h4>
@@ -43,7 +43,7 @@ class LandingPage extends Component {
           <div className='col s12 l4 center-align'>
             <img
               className='landing-img'
-              src='https://cdn.dribbble.com/users/729829/screenshots/5444723/galshir-connection-illustration.png'
+              src='./share.png'
               alt=''
             />
             <h4>Learn</h4>

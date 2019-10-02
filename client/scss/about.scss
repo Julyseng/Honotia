@@ -54,12 +54,7 @@ $fontstack_body: 'Merriweather', sans-serif;
 .block-content {
   min-height: 100vh;
 }
-block-content p {
-  font-size: 1.1em;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  margin: 0 auto 1em auto;
-}
+
 .block-content h2 {
   text-align: center;
   margin: 1em 0 0 0;
@@ -156,7 +151,6 @@ block-content p {
 .t-block-teal p {
   color: black;
 }
-
 //list animation
 //scale in the circle, follwoed by the list item
 //the border must also animate in.
