@@ -6598,6 +6598,44 @@ nav {
   position: absolute;
   right: 0; }
 
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  cursor: pointer; }
+  .btn-close span {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    overflow: hidden; }
+    .btn-close span:hover::before, .btn-close span:hover::after {
+      background: #f57171; }
+    .btn-close span::before, .btn-close span::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      margin-top: -1px;
+      background: #9e9e9e; }
+    .btn-close span::before {
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg); }
+    .btn-close span::after {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg); }
+    .btn-close span.hairline::before, .btn-close span.hairline::after {
+      height: 1px; }
+
 .container {
   width: 90%;
   position: relative;
@@ -6751,6 +6789,9 @@ h5 {
 .b-font {
   font-family: Arial, Helvetica, sans-serif; }
 
+.fs-14 {
+  font-size: 14px; }
+
 .page-header {
   max-width: 800px;
   width: 100%; }
@@ -6812,6 +6853,18 @@ form {
 
 .login-input {
   margin-bottom: 20px; }
+
+.loginFormPage-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem; }
+
+.loginFormPage-form {
+  max-width: 400px;
+  border: 1px solid #d8d8d8;
+  padding: 1.5rem; }
 
 .status-container {
   display: flex;

@@ -3,6 +3,7 @@ import { HashRouter as Router, Route } from 'react-router-dom'
 
 import LandingPage from './LandingPage'
 import RegistrationForm from './form/RegistrationForm'
+import LoginFormPage from './form/LoginFormPage'
 import Navbar from './nav/Navbar'
 import AboutPage from './AboutPage'
 import ResourcesPage from './ResourcesPage'
@@ -23,6 +24,7 @@ export default function App() {
         <Route path='/user-profile' component={ConnectPage} />
         <Route path='/stories' component={StoriesPage} />
         <Route path='/my-profile' component={UserProfile} />
+        <Route path='/login' component={LoginFormPage} />
       </div>
 
       <div className='bg_gradient'></div>

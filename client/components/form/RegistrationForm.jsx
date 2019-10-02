@@ -168,17 +168,25 @@ class RegistrationForm extends Component {
               this.props.dispatch
             )
           )
+        } else {
+          return Promise.resolve()
         }
-
-        //do i need to return promise here?
       })
       .then(() => {
         this.props.history.push('/')
       })
       .catch(e => {
-        this.setState({
-          errorMessage: 'Unable to register. Please fill out the form correctly'
-        })
+        console.log(e.message)
+        if (e.message === 'Bad Request') {
+          this.setState({
+            errorMessage: 'Choose another email'
+          })
+        } else {
+          this.setState({
+            errorMessage:
+              'Unable to register. Please fill out the form correctly'
+          })
+        }
       })
   }
 
