@@ -9,35 +9,35 @@ export const RECEIVE_USER_PROFILES = 'RECEIVE_USER_PROFILES'
 export const RECEIVE_LOGGEDIN_USER_DETAILS = 'RECEIVE_LOGGEDIN_USER_DETAILS'
 export const RECEIVE_STORIES = 'RECEIVE_STORIES'
 
-const receiveNeedsAndSupports = needs => {
+export const receiveNeedsAndSupports = needs => {
   return {
     type: RECEIVE_NEEDS_N_SUPPORTS_LIST,
     needs
   }
 }
 
-const receiveLanguages = languages => {
+export const receiveLanguages = languages => {
   return {
     type: RECEIVE_LANGUAGES_LIST,
     languages
   }
 }
 
-const receiveProfiles = profiles => {
+export const receiveProfiles = profiles => {
   return {
     type: RECEIVE_USER_PROFILES,
     profiles
   }
 }
 
-const receiveUser = currentUser => {
+export const receiveUser = currentUser => {
   return {
     type: RECEIVE_LOGGEDIN_USER_DETAILS,
     currentUser
   }
 }
 
-const receiveStories = stories => {
+export const receiveStories = stories => {
   return {
     type: RECEIVE_STORIES,
     stories
