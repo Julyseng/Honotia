@@ -9,6 +9,12 @@ h2 {
   font-family: $featureFont;
   font-size: 28px;
   margin-bottom: 0;
+  color: #252525;
+}
+
+h3 {
+  font-family: $featureFont;
+  font-size: 22px;
 }
 
 h4 {
@@ -41,9 +47,27 @@ h5 {
   font-family: $bodyFont;
 }
 
+.fs-14 {
+  font-size: 14px;
+}
+
 .page-header {
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
+}
+
+.section {
+  padding: 2.5rem 0;
+}
+
+.c-grey {
+  color: #929292;
+}
+
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
 }
 
 @font-face {

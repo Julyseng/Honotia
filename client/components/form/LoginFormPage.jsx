@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { isAuthenticated, signIn } from 'authenticare/client'
 
-export default class LoginForm extends Component {
+export default class LoginFormPage extends Component {
   constructor() {
     super()
     this.state = {
@@ -35,14 +35,9 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    let extraClass = this.props.showLogin ? 'open' : ''
-
     return (
-      <div className={`login-container z-depth-1 ${extraClass}`}>
-        <div className='btn-close' onClick={this.props.hideLogin}>
-          <span />
-        </div>
-        <form onSubmit={this.handleSubmit}>
+      <div className='loginFormPage-container'>
+        <form onSubmit={this.handleSubmit} className='loginFormPage-form'>
           <div className='input-field login-input'>
             <i className='material-icons prefix'>account_circle</i>
             <input

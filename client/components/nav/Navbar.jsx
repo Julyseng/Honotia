@@ -14,7 +14,7 @@ import LogoffButton from './LogoffButton'
 
 export default class Nav extends Component {
   state = {
-    displayLogin: true
+    displayLogin: false
   }
 
   componentDidMount() {
@@ -24,12 +24,14 @@ export default class Nav extends Component {
 
   displayLogin = () => {
     this.setState({ displayLogin: true })
-    let form = document.querySelector('.login-container')
-    form.classList.toggle('open')
+  }
+
+  hideLogin = () => {
+    this.setState({ displayLogin: false })
   }
 
   finishLogin = () => {
-    this.setState({ displayLogin: false })
+    this.hideLogin()
     const currentPath = this.props.history.location.pathname
 
     if (currentPath != '/') {
@@ -41,7 +43,6 @@ export default class Nav extends Component {
     logOff()
 
     this.props.history.push('/')
-    // TO DO: refresh page to reflect logged off state
   }
 
   render() {
@@ -69,7 +70,7 @@ export default class Nav extends Component {
             </div>
             <div className='adminBtns-wrapper'>
               <IfAuthenticated>
-                <Link to='/user-profile' className='icon-profile'>
+                <Link to='/my-profile' className='icon-profile'>
                   <i className='material-icons '>person_outline</i>
                 </Link>
                 <LogoffButton handleLogoff={this.handleLogoff} />
@@ -81,14 +82,13 @@ export default class Nav extends Component {
             </div>
           </div>
         </nav>
-        <SideNav
-          displayLogin={this.displayLogin}
-          handleLogoff={this.handleLogoff}
-        />
+        <SideNav handleLogoff={this.handleLogoff} />
 
-        {this.state.displayLogin && (
-          <LoginForm finishLogin={this.finishLogin} />
-        )}
+        <LoginForm
+          finishLogin={this.finishLogin}
+          hideLogin={this.hideLogin}
+          showLogin={this.state.displayLogin}
+        />
       </Fragment>
     )
   }

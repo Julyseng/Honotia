@@ -17,7 +17,11 @@ export default function SelectYear(props) {
         onChange={props.function}
         className={props.class}
         name={props.name}
+        defaultValue=''
       >
+        <option value='' disabled>
+          Select Year...
+        </option>
         {years.reverse().map((year, i) => (
           <option key={i}>{year}</option>
         ))}

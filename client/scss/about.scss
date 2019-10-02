@@ -1,17 +1,15 @@
 .about-container {
-  position: absolute;
   text-align: center;
+  padding: 3rem 0;
 }
+
+.flow-text {
+  color: rgb(33, 33, 33);
+}
+
 .about-h3 {
   font-size: 25px;
   font-family: 'Merriweather', Arial, Helvetica, sans-serif;
-}
-
-.quote-text {
-  font-style: 'italic';
-  line-height: 1.6;
-  font-weight: '400';
-  font-family: $bodyFont;
 }
 
 .content .about-steps {
@@ -50,6 +48,10 @@
 
 $fontstack_heading: 'Merriweather', sans-serif;
 $fontstack_body: 'Merriweather', sans-serif;
+body {
+  font-size: 100%;
+  line-height: 1.6;
+}
 .block-content {
   min-height: 100vh;
 }
