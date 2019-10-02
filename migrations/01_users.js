@@ -3,7 +3,7 @@ exports.up = function(knex) {
     t.increments('id')
     t.string('firstName')
     t.string('lastName')
-    t.integer('DOB')
+    t.string('DOB')
     t.string('currentCity')
     t.string('occupation')
     t.string('email')
