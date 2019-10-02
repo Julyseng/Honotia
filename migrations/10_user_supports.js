@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('user_support', t => {
-    t.integer('user_id').references('users.id')
-    t.integer('supports_id').references('supports.id')
+    t.integer('user_id')
+    t.integer('supports_id')
   })
 }
 

@@ -39,8 +39,7 @@ function registerLanguage(userId, languages, connection) {
       language_id: languageId
     }
   })
-  return connection('user_languages')
-    .insert(languagesToSave)
+  return connection('user_languages').insert(languagesToSave)
 }
 
 function registerRefugee(userId, refugeeData, connection) {
