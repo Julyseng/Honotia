@@ -3,10 +3,6 @@
   padding: 3rem 0;
 }
 
-.flow-text {
-  color: rgb(33, 33, 33);
-}
-
 .about-h3 {
   font-size: 25px;
   font-family: 'Merriweather', Arial, Helvetica, sans-serif;
@@ -48,19 +44,11 @@
 
 $fontstack_heading: 'Merriweather', sans-serif;
 $fontstack_body: 'Merriweather', sans-serif;
-body {
-  font-size: 100%;
-  line-height: 1.6;
-}
+
 .block-content {
   min-height: 100vh;
 }
-block-content p {
-  font-size: 1.1em;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  margin: 0 auto 1em auto;
-}
+
 .block-content h2 {
   text-align: center;
   margin: 1em 0 0 0;
