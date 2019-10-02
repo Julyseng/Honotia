@@ -6776,6 +6776,9 @@ h5 {
   font-family: "Merriweather", Arial, Helvetica, sans-serif;
   font-size: 18px; }
 
+.mt-0 {
+  margin-top: 0; }
+
 .pb-2 {
   padding-bottom: 2rem; }
 
@@ -7173,7 +7176,8 @@ form {
     flex: 1; }
   .grid-card-title {
     margin: 0;
-    text-align: center; }
+    text-align: center;
+    font-size: 16px; }
   .grid-card-body {
     flex: 1; }
   .grid-card-footer {
