@@ -69,7 +69,6 @@ test('fetch stories', () => {
       expect(dispatch.mock.calls.length).toBe(1)
       expect(dispatch.mock.calls[0][0].type).toBe('RECEIVE_STORIES')
 
-
       let receiveStories = dispatch.mock.calls[0][0]
       expect(receiveStories.stories[0].data).toBe('fetch stories data')
       scope.done()

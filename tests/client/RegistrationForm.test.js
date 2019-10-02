@@ -3,11 +3,20 @@ import { shallow } from 'enzyme'
 
 import RegistrationForm from '../../client/components/form/RegistrationForm'
 
-let wrapper
+jest.mock('react-redux', () => {
+  return {
+    connect: () => {
+      return (component) => component
+    }
+  }
+})
 
-describe.skip('<RegistrationForm />', () => {
+let wrapper, dispatch
+
+describe('<RegistrationForm />', () => {
   beforeEach(() => {
-    wrapper = shallow(<RegistrationForm />)
+    dispatch = jest.fn()
+    wrapper = shallow(<RegistrationForm dispatch={dispatch}/>)
 
     wrapper.instance().setState({
       name: 'Arthur',
@@ -22,7 +31,7 @@ describe.skip('<RegistrationForm />', () => {
   })
 
   describe('form renders correct values', () => {
-    test('name', () => {
+    test.only('name', () => {
       let input = wrapper.find('#name')
       expect(input.prop('value')).toBe('Arthur')
     })
