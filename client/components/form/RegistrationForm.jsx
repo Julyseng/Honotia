@@ -50,7 +50,6 @@ class RegistrationForm extends Component {
 
   componentDidUpdate() {
     this.initiateMaterialize()
-    M.updateTextFields()
   }
 
   initiateMaterialize = () => {
@@ -58,6 +57,7 @@ class RegistrationForm extends Component {
 
     let textNeedCount = document.querySelectorAll('.materialize-textarea')
     M.CharacterCounter.init(textNeedCount)
+    M.updateTextFields()
   }
 
   setUserStatus = status => {
@@ -112,10 +112,11 @@ class RegistrationForm extends Component {
     }
   }
 
-  handleSelectChangeLanguage = e => {
-    let languageSelect = e.target
-    let languageInstance = M.FormSelect.getInstance(languageSelect)
-    let languageSelected = languageInstance.getSelectedValues()
+  handleSelectChangeLanguage = () => {
+    let languageSelect = document.querySelector('.languageSelect')
+    let instance = M.FormSelect.getInstance(languageSelect)
+    let languageSelected = instance.getSelectedValues()
+
     this.setState({ languages: languageSelected })
   }
 
@@ -127,20 +128,24 @@ class RegistrationForm extends Component {
 
   handleNext = e => {
     e.preventDefault()
-    window.scrollTo(0, 0)
-    if (
-      this.state.step === 4 ||
-      (this.state.step === 3 && this.state.userDetails.status === 'AL')
-    ) {
-      this.handleSubmit({ preventDefault: () => {} })
-    } else {
-      this.setState({ step: this.state.step + 1 })
+
+    if (!this.state.errorMessage) {
+      window.scrollTo(0, 0)
+      if (
+        this.state.step === 4 ||
+        (this.state.step === 3 && this.state.userDetails.status === 'AL')
+      ) {
+        this.handleSubmit({ preventDefault: () => {} })
+      } else {
+        this.setState({ step: this.state.step + 1 })
+      }
     }
   }
 
   handleSubmit = e => {
     e.preventDefault()
 
+    this.handleSelectChangeLanguage()
     register(
       {
         username: this.state.userDetails.email,
@@ -164,6 +169,8 @@ class RegistrationForm extends Component {
             )
           )
         }
+
+        //do i need to return promise here?
       })
       .then(() => {
         this.props.history.push('/')

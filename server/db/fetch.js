@@ -5,6 +5,17 @@ function getUserProfiles(userId, connection) {
 function getCurrentUserProfile(userId, connection) {
   return connection('users')
     .where('id', userId)
+    .select(
+      'firstName',
+      'lastName',
+      'DOB',
+      'currentCity',
+      'occupation',
+      'email',
+      'bio',
+      'status',
+      'profileImg'
+    )
     .first()
 }
 
