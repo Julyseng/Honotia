@@ -10,6 +10,7 @@ import ResourcesPage from './ResourcesPage'
 import ConnectPage from './connect/ConnectPage'
 import StoriesPage from './stories/StoriesPage'
 import UserProfile from './userProfile/UserProfilePage'
+import Footer from './Footer'
 
 export default function App() {
   return (
@@ -26,14 +27,8 @@ export default function App() {
         <Route path='/my-profile' component={UserProfile} />
         <Route path='/login' component={LoginFormPage} />
       </div>
-
+      <Footer />
       <div className='bg_gradient'></div>
-      <footer>
-        <small>
-          Quam aspernatur debitis porro sed labore sapiente laudantium eaque.
-          Copyright Honotia
-        </small>
-      </footer>
     </Router>
   )
 }

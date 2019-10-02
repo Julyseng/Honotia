@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchStories } from '../../actions'
+
 import StoryPost from './StoryPost'
+import Pagination from '../connect/Pagination'
 
 class StoriesPage extends Component {
   componentDidMount() {
@@ -28,6 +30,8 @@ class StoriesPage extends Component {
             <StoryPost key={i} story={story} />
           ))}
         </div>
+
+        <Pagination />
       </Fragment>
     )
   }
