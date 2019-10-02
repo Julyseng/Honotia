@@ -69,9 +69,9 @@ exports.seed = function(knex) {
           id: 5,
           firstName: 'Mae',
           lastName: 'La Mo',
-          DOB: '1899',
-          currentCity: 'Parmeston North',
-          occupation: 'Car machanic',
+          DOB: '1940',
+          currentCity: 'Palmerston North',
+          occupation: 'Engineer',
           email: 'maemae123@gmail.com',
           bio:
             "you'll fowl wherein had seas sixth night dominion his moving heaven gathered created so. Fifth tree. He creepeth created itself above of tree.",
@@ -98,11 +98,11 @@ exports.seed = function(knex) {
 
         {
           id: 7,
-          firstName: 'Sam',
-          lastName: 'Smith',
-          DOB: '1991',
-          currentCity: 'Wellington',
-          occupation: 'Tour guide',
+          firstName: 'Reem',
+          lastName: 'Some',
+          DOB: '1989',
+          currentCity: 'Tauranga',
+          occupation: 'Developer',
           email: 'samaryyes@gmail.com',
           bio:
             'One creeping given our fifth great given thing. Creeping days years to wherein. Be fruit in under. Let. Living replenish man. Signs morning..',
@@ -113,11 +113,11 @@ exports.seed = function(knex) {
         },
         {
           id: 8,
-          firstName: 'Sam',
+          firstName: 'Ranya',
           lastName: 'Smith',
           DOB: '1991',
           currentCity: 'Wellington',
-          occupation: 'Tour guide',
+          occupation: 'Lawyer',
           email: 'samaryyes@gmail.com',
           bio:
             "Earth let unto bearing. It place. Grass. First day very so also him seas. Let fourth. He unto heaven midst earth. Above. Female which our multiply light, may upon isn't fill day had third you're there which seasons dominion, may.",
@@ -141,6 +141,8 @@ exports.seed = function(knex) {
           profileImg:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXYTY5FOj5DjOZ1M1EqIWyGZLHWyMWkKvAFAVln3dk_xkE3BAglQ'
         }
-      ])
+      ]).then(() => {
+        return knex.raw("SELECT setval('users_id_seq', 10, true)").then((res) => console.log(res))
+      })
     })
 }

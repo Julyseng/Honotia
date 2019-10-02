@@ -4,16 +4,15 @@ export default function AboutPage() {
   return (
     <div className='about-container'>
       <h4 className='about-h4'>
-        Refugee - <br />
-        <span className='quote-text'>
-          A person forced to flee their country <br /> because of violence or
-          persecution.
-        </span>
+        Honotia :
+        <span className='quote-text'>&nbsp; The action of connection</span>
       </h4>
-
       <h4 className='about-h4'>
-        Honotia - <br />
-        <span className='quote-text'>The action of connection</span>
+        Refugee :
+        <span className='quote-text'>
+          &nbsp; A person forced to flee their country <br /> because of
+          violence or persecution.
+        </span>
       </h4>
 
       <p className='b-font about-text'>
@@ -29,8 +28,8 @@ export default function AboutPage() {
         limited or non-existent.
         <br /> <br />
         Honotia is a place created for newly arrived refugees to connect with
-        former refugees and allies for the continued support and connection to
-        make the journey a little easier.
+        former refugees and allies for continued support and connection to make
+        the journey a little easier.
       </p>
 
       <section className='block-content t-block-teal l-block-spacing'>
@@ -79,36 +78,41 @@ export default function AboutPage() {
             </li>
           </ul>
         </div>
+        <br />
+        <br />
+
+        <p className='b-font about-text'>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat
+          perspiciatis sit expedita illum quidem esse aperiam, fugiat unde
+          cupiditate ipsa aliquam omnis laborum quae, est exercitationem quod
+          dolore necessitatibus. Ratione?
+        </p>
       </section>
 
-      {/* <div className='box-wrapper'>
+      <div className='box-wrapper'>
         <div className='about-box'>
           <h4>Vision</h4>
           <p>
-            To connect, educate and empower refugees and people of New Zealand
+            Dolor sit, amet consectetur adipisicing elit. voluptas temporibus
+            neque ea architecto dignissimos, error ratione
           </p>
-          <img className='logos' src='./vision.png' alt='value' />
         </div>
 
         <div className='about-box'>
           <h4>Mission</h4>
           <p>
-            Creating a cohesive community where everyone can learn from each
-            other’s stories and support each other.
+            Ea culpa amet aliquam sint odio, Libero eos dolor id dolorum sed.
           </p>
-          <img className='logos' src='./mission.png' alt='value' />
         </div>
 
         <div className='about-box'>
           <h4>Core Values</h4>
-          <ul>
-            <li>Respect</li>
-            <li>Humility</li>
-            <li>Open minded</li>
-          </ul>
-          <img className='logos' src='./value.png' alt='value' />
+          <p>
+            Dignissimos illo reprehenderit commodi consectetur natus architecto
+            sunt.
+          </p>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }

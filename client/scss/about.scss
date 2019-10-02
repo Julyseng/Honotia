@@ -9,14 +9,16 @@
 }
 
 .quote-text {
-  font-style: 'italic';
   line-height: 1.6;
-  font-weight: '400';
-  font-family: $bodyFont;
+  font-weight: 400;
+  font-family: $featureFont;
+  font-size: 15px;
+  color: #5c5c5c;
+  padding-top: 1rem;
 }
 
 .content .about-steps {
-  font-size: 25xpx;
+  font-size: 18px;
   font-family: 'Merriweather', Arial, Helvetica, sans-serif;
   color: #f57171;
 }
@@ -35,6 +37,8 @@
 .box-wrapper {
   display: flex;
   flex-direction: row;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .about-box {

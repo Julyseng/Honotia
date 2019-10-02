@@ -2,9 +2,9 @@
 
 module.exports = {
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './server/db/dev.sqlite3'
+	database: 'honotia-dev'
     },
     useNullAsDefault: true
   },
