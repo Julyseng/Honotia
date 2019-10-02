@@ -92,13 +92,14 @@ export function fetchStories() {
 
 export function registerUser(data) {
   return dispatch => {
-    return request
+    request
       .put('/api/v1/user/register-user-details')
       .set(getAuthorizationHeader())
       .send(data)
       .then(() => {
-        // dispatch(fetchLoggedInUser())
-        return registerProfileImg(data.actualFile)
+        if (data.actualFile) {
+          registerProfileImg(data.actualFile)
+        }
       })
       .catch(e => {
         console.log(e)

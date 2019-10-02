@@ -82,8 +82,9 @@ export default function RegoProfileForm({
             name='currentCity'
             onChange={updateUserDetails}
             className='locationSelect'
+            defaultValue=''
           >
-            <option value='' disabled defaultValue>
+            <option value='' disabled>
               Current Location...
             </option>
             <option value='Auckland'>Auckland</option>

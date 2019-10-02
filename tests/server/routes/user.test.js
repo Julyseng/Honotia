@@ -2,6 +2,8 @@ const request = require('supertest')
 
 let server = require('../../../server/server')
 
+server.connection = 'fake-connection'
+
 const {
   registerUser,
   registerLanguage,
@@ -32,12 +34,15 @@ jest.mock('../../../server/db/fetch', () => {
   }
 })
 
+// start with mock
+const mockUserId = 1
+
 jest.mock('authenticare/server', () => {
   return {
     getTokenDecoder: () => {
       return (req, res, next) => {
         req.user = {
-          id: 1
+          id: mockUserId
         }
         next()
       }
@@ -86,35 +91,35 @@ describe('PUT /register-user-details', () => {
   })
 
   // ? how to mock req data
-  describe.skip('functions are called with arguments', () => {
+  describe('functions are called with arguments', () => {
     let query
-    let reqData = {
+    let reqBodyData = {
       languages: ['test'],
       refugee: {},
       needs: [],
       supports: [],
       user: {
-        id: 2
+        status: 'AL'
       }
     }
 
     beforeEach(() => {
-      query = registerUserDetails(reqData)
+      query = registerUserDetails(reqBodyData)
     })
 
     test('registerUser', () => {
       expect.assertions(1)
-      return query.then(() => {
-        const { user, languages } = reqData
-        expect(registerUser).toHaveBeenCalledWith(1, ['test'])
+      return query.then(response => {
+        const { user, languages } = reqBodyData
+        expect(registerUser).toHaveBeenCalledWith(mockUserId, user, server.connection)
       })
     })
 
     test('registerLanguage', () => {
       expect.assertions(1)
       return query.then(() => {
-        const { user, body } = reqData
-        expect(registerLanguage).toHaveBeenCalledWith(user.id, body.languages)
+        const { user, languages } = reqBodyData
+        expect(registerLanguage).toHaveBeenCalledWith(mockUserId, languages, server.connection)
       })
     })
   })
