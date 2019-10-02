@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-redux-async",
+  "name": "honotia",
   "version": "0.1.1",
-  "description": "React Redux with simple async action",
+  "description": "Honotia - a place to connect, share, and learn",
   "main": "server/index",
   "scripts": {
     "dev": "nodemon --watch server & webpack --watch",
@@ -9,7 +9,7 @@
     "start": "node server",
     "postinstall": "webpack && knex migrate:latest"
   },
-  "author": "EDA",
+  "author": "Chloe, July, Linh",
   "license": "ISC",
   "babel": {
     "presets": [
