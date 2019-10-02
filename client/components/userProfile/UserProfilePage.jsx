@@ -1,11 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
+import M from '../../materialize-js/bin/materialize'
+
 import { fetchLoggedInUser } from '../../actions'
 
 class UserProfilePage extends Component {
   componentDidMount() {
     this.props.dispatch(fetchLoggedInUser())
+    M.AutoInit()
+    M.updateTextFields()
   }
 
   render() {
@@ -23,6 +27,7 @@ class UserProfilePage extends Component {
               <span className='tag'>Dentist</span>
             </div>
           </div>
+
           <div className='userProfile-details-container'>
             <p>Edit your profile</p>
             <div className='fake-input'>

@@ -9,7 +9,7 @@ import RegoBioForm from './RegoBioForm'
 import RegoRefugeeForm from './RegoRefugeeForm'
 import FormNavControllers from './FormNavControllers'
 
-import { fetchFormDatas, registerUser } from '../../actions'
+import { fetchFormDatas, registerUser, fetchLoggedInUser} from '../../actions'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -173,6 +173,7 @@ class RegistrationForm extends Component {
         }
       })
       .then(() => {
+        this.props.dispatch(fetchLoggedInUser())
         this.props.history.push('/')
       })
       .catch(e => {

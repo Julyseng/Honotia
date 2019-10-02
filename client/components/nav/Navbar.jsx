@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { logOff } from 'authenticare/client'
+import {connect} from 'react-redux'
 
 import M from '../../materialize-js/bin/materialize'
 
@@ -12,7 +13,9 @@ import RegoButton from './RegoButton'
 import LoginButton from './LoginButton'
 import LogoffButton from './LogoffButton'
 
-export default class Nav extends Component {
+import {fetchLoggedInUser} from '../../actions'
+
+class Navbar extends Component {
   state = {
     displayLogin: false
   }
@@ -33,7 +36,7 @@ export default class Nav extends Component {
   finishLogin = () => {
     this.hideLogin()
     const currentPath = this.props.history.location.pathname
-
+    this.props.dispatch(fetchLoggedInUser())
     if (currentPath != '/') {
       return this.props.history.push('/')
     }
@@ -93,3 +96,5 @@ export default class Nav extends Component {
     )
   }
 }
+
+export default connect()(Navbar)
