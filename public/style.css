@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,900);
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -6802,6 +6801,11 @@ h5 {
 .c-grey {
   color: #929292; }
 
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0; }
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -6916,8 +6920,8 @@ form {
   display: none; }
 
 .about-container {
-  position: absolute;
-  text-align: center; }
+  text-align: center;
+  padding: 3rem 0; }
 
 .flow-text {
   color: #212121; }
@@ -6997,14 +7001,6 @@ block-content p {
     .content h3 {
       font-size: 2.5em; } }
 
-h1, h2, h3 {
-  font-family: "Merriweather", sans-serif;
-  font-weight: 250; }
-
-p {
-  font-family: "Merriweather", sans-serif;
-  line-height: 1.5; }
-
 .l-block-spacing {
   min-height: 80vh;
   padding: 2em 0 4em 0; }
@@ -7026,8 +7022,8 @@ p {
   max-width: 700px;
   margin: 0 auto; }
   .timeline-list:before {
-    content: "";
-    border-left: 5px solid #CCC;
+    content: '';
+    border-left: 5px solid #ccc;
     left: -0.25em;
     top: 2em;
     height: 100%;
@@ -7037,7 +7033,7 @@ p {
     transform-origin: 0 0;
     animation: scaleVertical 3s 1s ease both 1; }
   .timeline-list:after {
-    content: "";
+    content: '';
     clear: both;
     position: absolute;
     bottom: 0px;
@@ -7045,8 +7041,8 @@ p {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: none repeat scroll 0% 0% #DDD;
-    border: 5px solid #DDD;
+    background: none repeat scroll 0% 0% #ddd;
+    border: 5px solid #ddd;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     animation: revealScaleUp 0.75s 2.82s ease both 1; }
 
@@ -7065,7 +7061,7 @@ p {
   position: relative; }
 
 .timeline-list li:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0px;
   left: -1.45em;

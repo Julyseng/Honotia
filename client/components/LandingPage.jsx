@@ -18,7 +18,7 @@ class LandingPage extends Component {
       <div className='landingPage-container'>
         <div className='center-align'>
           <h2>Kia Ora {isAuthenticated() && currentUser.firstName}!</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Welcome to Honotia - a place to connect, share, and learn</p>
         </div>
 
         <div className='row mb-2'>
@@ -38,7 +38,7 @@ class LandingPage extends Component {
               alt=''
             />
             <h4>Share</h4>
-            <p>tips, ideas, stories</p>
+            <p>stories, advice, knowledge</p>
           </div>
           <div className='col s12 l4 center-align'>
             <img
@@ -47,7 +47,7 @@ class LandingPage extends Component {
               alt=''
             />
             <h4>Learn</h4>
-            <p>your neighbours</p>
+            <p>about your neighbours</p>
           </div>
         </div>
 

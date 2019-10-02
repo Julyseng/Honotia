@@ -45,6 +45,7 @@ export default function RegoProfileForm({
             name='firstName'
             value={state.userDetails.firstName}
             onChange={updateUserDetails}
+            required
           />
           <label htmlFor='firstName'>First Name</label>
         </div>
@@ -56,6 +57,7 @@ export default function RegoProfileForm({
             name='lastName'
             value={state.userDetails.lastName}
             onChange={updateUserDetails}
+            required
           />
           <label htmlFor='lastName'>Last Name</label>
         </div>
@@ -111,6 +113,7 @@ export default function RegoProfileForm({
             name='email'
             value={state.userDetails.email}
             onChange={updateUserDetails}
+            required
           />
           <label htmlFor='regoEmail'>Email</label>
         </div>
@@ -123,6 +126,7 @@ export default function RegoProfileForm({
             name='password'
             value={state.password}
             onChange={handleChange}
+            required
           />
           <label htmlFor='regoPassword'>Password</label>
         </div>
@@ -135,6 +139,7 @@ export default function RegoProfileForm({
             name='confirmPassword'
             value={state.confirmPassword}
             onChange={handleChange}
+            required
           />
           <label htmlFor='confirmPassword'>Confirm Password</label>
         </div>
