@@ -14,7 +14,7 @@ import LogoffButton from './LogoffButton'
 
 export default class Nav extends Component {
   state = {
-    displayLogin: true
+    displayLogin: false
   }
 
   componentDidMount() {
