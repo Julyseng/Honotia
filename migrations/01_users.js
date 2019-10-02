@@ -8,7 +8,7 @@ exports.up = function(knex) {
     t.string('occupation')
     t.string('email')
     t.string('hash')
-    t.string('bio')
+    t.text('bio')
     t.string('status')
     t.string('profileImg')
   })

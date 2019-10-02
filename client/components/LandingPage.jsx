@@ -23,29 +23,17 @@ class LandingPage extends Component {
 
         <div className='row mb-2'>
           <div className='col s12 l4 center-align'>
-            <img
-              className='landing-img'
-              src='./peopleg.png'
-              alt=''
-            />
+            <img className='landing-img' src='./1.png' alt='' />
             <h4>Connect</h4>
             <p>with your community</p>
           </div>
           <div className='col s12 l4 center-align'>
-            <img
-              className='landing-img'
-              src='./young.png'
-              alt=''
-            />
+            <img className='landing-img' src='./2.png' alt='' />
             <h4>Share</h4>
             <p>stories, advice, knowledge</p>
           </div>
           <div className='col s12 l4 center-align'>
-            <img
-              className='landing-img'
-              src='./share.png'
-              alt=''
-            />
+            <img className='landing-img' src='./3.png' alt='' />
             <h4>Learn</h4>
             <p>about your neighbours</p>
           </div>
