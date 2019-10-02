@@ -75,17 +75,18 @@ test('fetch stories', () => {
     })
 })
 
+test('registerUser to have called route', () => {
+  expect.assertions(1)
+  const scope = nock('http://localhost')
+    .put('/api/v1/user/register-user-details')
+    .reply(200, [{data: 'sends data'}])
+    .post('/api/v1/s3/upload')
+    .reply(200, {})
+    
+   return actions.registerUser({})()
+      .then(() => {
+        expect(scope.isDone()).toBe(true)
+        scope.done()
+      })
+})
 
-// test('test register users ', ()=> {
-//   const scope = nock('http://localhost')
-//   .get('/api/v1/user/register-user-details')
-//   .reply(200, [{data: 'register user details'}])
-
-//   const dispatch = jest.fn()
-
-//   return actions.registerUser('user details')(dispatch)
-//     .then(()=> {
-//       expect(dispatch.mock.calls.length).toBe(1)
-//       expect(dispatch.mock.calls[0][0].type).toBe('')
-//     })
-// })
