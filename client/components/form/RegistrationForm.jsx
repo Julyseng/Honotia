@@ -176,7 +176,7 @@ class RegistrationForm extends Component {
         this.props.history.push('/')
       })
       .catch(e => {
-        console.log(e.message)
+        // console.log(e.message)
         if (e.message === 'Bad Request') {
           this.setState({
             errorMessage: 'Choose another email'
