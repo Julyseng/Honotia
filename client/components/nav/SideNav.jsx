@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 import RegoButton from './RegoButton'
-import LoginButton from './LoginButton'
 import LogoffButton from './LogoffButton'
 
-export default function SideNav({ handleLogoff, displayLogin }) {
+export default function SideNav({ handleLogoff }) {
   return (
     <ul className='sidenav' id='mobile-demo'>
       <li>
@@ -28,9 +27,7 @@ export default function SideNav({ handleLogoff, displayLogin }) {
           </Link>
         </li>
         <li>
-          <Link to='/my-profile' className='icon-profile'>
-            <i className='material-icons '>person_outline</i>
-          </Link>
+          <Link to='/my-profile'>My Profile</Link>
         </li>
         <li>
           <LogoffButton handleLogoff={handleLogoff} />
@@ -41,7 +38,9 @@ export default function SideNav({ handleLogoff, displayLogin }) {
           <RegoButton />
         </li>
         <li>
-          <LoginButton displayLogin={displayLogin} />
+          <Link to='/login' className='waves-effect btn-large btn-round fs-14'>
+            Login
+          </Link>
         </li>
       </IfNotAuthenticated>
     </ul>
