@@ -6923,12 +6923,15 @@ form {
   text-align: center;
   padding: 3rem 0; }
 
-.flow-text {
-  color: #212121; }
-
 .about-h3 {
   font-size: 25px;
   font-family: 'Merriweather', Arial, Helvetica, sans-serif; }
+
+.quote-text {
+  font-style: 'italic';
+  line-height: 1.6;
+  font-weight: '400';
+  font-family: Arial, Helvetica, sans-serif; }
 
 .content .about-steps {
   font-size: 25xpx;
@@ -6957,10 +6960,6 @@ form {
 .logos {
   width: 70px;
   height: 70px; }
-
-body {
-  font-size: 100%;
-  line-height: 1.6; }
 
 .block-content {
   min-height: 100vh; }
